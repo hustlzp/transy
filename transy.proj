@@ -1,0 +1,40 @@
+<NotepadPlus>
+    <Project name="Transy">
+        <Folder name="images">
+            <File name="images\arrowright.gif" />
+            <File name="images\bar.png" />
+            <File name="images\bin.png" />
+            <File name="images\br_next.png" />
+            <File name="images\br_prev.png" />
+            <File name="images\comment.png" />
+            <File name="images\comment_break.png" />
+            <File name="images\config.png" />
+            <File name="images\cut.png" />
+            <File name="images\doc.png" />
+            <File name="images\dot.png" />
+            <File name="images\flash_copy_btn.png" />
+            <File name="images\link.png" />
+            <File name="images\link_break.png" />
+            <File name="images\logo.png" />
+            <File name="images\mergedown.png" />
+            <File name="images\mergeup.png" />
+            <File name="images\next.png" />
+            <File name="images\plus.png" />
+            <File name="images\pre.png" />
+        </Folder>
+        <Folder name="js">
+            <File name="js\article.js" />
+            <File name="js\base.js" />
+            <File name="js\clipboard.swf" />
+            <File name="js\jquery.min.js" />
+            <File name="js\transy.js" />
+        </Folder>
+        <Folder name="style">
+            <File name="style\base.css" />
+            <File name="style\itempage.css" />
+            <File name="style\mainpage.css" />
+        </Folder>
+        <File name="article.html" />
+        <File name="transy.html" />
+    </Project>
+</NotepadPlus>

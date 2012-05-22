@@ -1,0 +1,162 @@
+<html>
+<head>
+	<title>Transy | 收藏、品味、翻译外文精华</title>
+	<link rel="stylesheet" type="text/css" href="style/base.css">
+	<link rel="stylesheet" type="text/css" href="style/mainpage.css">
+</head>
+
+<body>
+
+<!-- 主页面 -->
+<div id="main">
+	<!-- 侧边栏 -->
+	<div id="sideBar">
+		<!-- 翻页栏 -->
+		<div id="pager"> 
+			<span id="pager-left" ></span>
+			<span id="pager-right" ></span>
+			<div id="pager-number">
+				<span>第</span>
+				<span id="pager-currentNum">1</span>
+				<span>页</span>
+				<span>/</span>
+				<span>共</span>
+				<span id="pager-totalNum">1</span>
+				<span>页</span>
+			</div>
+		</div>
+		<!-- 文章列表 -->
+		<ul id="articleList"></ul>
+	</div>
+	
+	<!-- 文章区 -->
+	<div id="article">
+		<!-- 文章正文 -->
+		<div id="articleArea"></div>
+		<!-- 新的翻译 -->
+		<div id="newArticle">
+			<p>
+				<label for="newArticleTitle">标题：</label>
+				<input id="newArticleTitle" type="text" />
+			</p>
+			<p>
+				<label for="newArticleUrl">链接：</label>
+				<input id="newArticleUrl">
+			</p>
+			<p>
+				<label for="newArticleContent">原文：</label>
+				<textarea id="newArticleContent" contentEditable="true"></textarea>
+			</p>
+			<span id="notice"></span>
+			<button id="returnToArticlePage">返 回</button>
+			<button id="createNewArticle">创 建</button>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<!-- 功能栏 -->
+<div id="functionBar">
+	<ul>
+		<li>
+			<select id="articleFormat">
+				<option value="EN/CN">EN/CN</option>
+				<option value="EN">EN</option>				
+				<option value="CN">CN</option>
+			</select>
+		</li>		
+		<li><button id="new">新 建</button></li>
+		<li><button id="flash-copy"></button></li>
+		<li><button id="edit">翻 译</button></li>
+	</ul>
+</div>
+
+<iframe id="translationPage" src="" width="100%" height="100%" />
+</iframe>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/transy.js"></script>
+<script src="http://www.zhangxinxu.com/Scripts/swfobject_modified.js?ver=20100817" type="text/javascript"></script>
+<script type="text/javascript">
+
+	//全局变量，保存当前文章
+	GLOBAL.currentArticleTitle = "";
+	
+	//全局变量，保存当前页数
+	GLOBAL.pageNumber = 1;
+	
+	//全局变量，保存每页的文章条目数
+	GLOBAL.articleNumberPerPage = 7;
+
+	//获取轻量级的文章列表数据
+	GLOBAL.articleList = new ArticleList(getBriefArticleList(), GLOBAL.articleNumberPerPage);
+	
+	//若存在文章条目
+	if(!GLOBAL.articleList.isEmpty()){
+		//创建文章列表;
+		createArticleList();
+
+		//显示最近创建的文章
+		GLOBAL.currentArticleTitle = GLOBAL.articleList.getFirstArticle();
+		showArticle("EN/CN");	
+		
+		//初始化总页数
+		var totalPageNumber = document.getElementById("pager-totalNum");
+		totalPageNumber.innerHTML = GLOBAL.articleList.getPageCount();
+	} else { 	
+		//若不存在，则禁用相关功能按键
+		document.getElementById("articleFormat").disabled = true;
+		document.getElementById("edit").disabled = true;
+	}
+	
+	//向左翻页
+	var pageLeft = document.getElementById("pager-left");
+	pageLeft.onclick = handlePageLeft;
+	
+	//向右翻页
+	var pageRight = document.getElementById("pager-right");
+	pageRight.onclick = handlePageRight;
+
+	//文章格式的切换
+	var articleFormatChange = document.getElementById("articleFormat");
+	articleFormatChange.onchange = handleArticleFormatChange;
+	
+	//新的翻译
+	var newBtn = document.getElementById("new");
+	newBtn.onclick = handleNewArticle;
+	
+	//开始翻译
+	var editBtn = document.getElementById("edit");
+	editBtn.onclick = handleEditArticle;
+	
+	//创建新的文章
+	var createNewArticleBtn = document.getElementById("createNewArticle");
+	createNewArticleBtn.onclick = handleCreateNewArticle;
+	
+	//返回主界面
+	var returnToArticlePageBtn = document.getElementById("returnToArticlePage");
+	returnToArticlePageBtn.onclick = handleReturnToArticlePage;
+	
+	//flash 复制文字到剪切板
+	var copyCon = document.getElementById("articleArea").innerHTML;
+	var flashvars = {
+		content: encodeURIComponent(copyCon),
+		uri: 'images/flash_copy_btn.png'
+	};
+	var params = {
+		wmode: "transparent",
+		allowScriptAccess: "always"
+	};
+	swfobject.embedSWF("js/clipboard.swf", "flash-copy", "46", "20", "9.0.0", null, flashvars, params);
+	/*
+	//flash回调
+	function copySuccess(){
+		alert("复制成功！");
+	}
+	*/
+
+</script>
+
+</body>
+</html>
