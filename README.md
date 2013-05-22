@@ -1,4 +1,6 @@
-transy
+Transy
 ======
 
-A Chrome extension helps people translate English essay into Chinese.
+http://www.transy.org
+
+A simple tool helps people translate English into Chinese.
