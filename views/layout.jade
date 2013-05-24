@@ -1,0 +1,31 @@
+doctype 5
+html
+  head
+    title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="/css/modern.css", rel="stylesheet")
+    link(href="/css/modern-responsive.css", rel='stylesheet')
+    link(href='/css/site.css', rel='stylesheet')
+    script(src='/js/jquery.min.js')
+
+  body.metrouicss
+    div.page
+      <!-- nav -->
+      div.nav-bar
+        div.nav-bar-inner.padding10       
+          a(href="#")
+            span.element.brand
+              | Transy&nbsp;
+              sup beta
+
+          span.divider
+
+          ul.menu
+              li
+                a(href="#") Home
+              li
+                a(href="#") My Space
+
+      <!-- content -->
+      div.grid
+        block content
