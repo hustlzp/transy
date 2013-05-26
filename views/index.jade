@@ -7,3 +7,8 @@ block content
     
     div.span8
       p article content
+
+      each a in articles
+        h3 #{a.enTitle}
+        each p in a.paraList
+          p #{p.en}
