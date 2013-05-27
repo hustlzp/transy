@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  div.row
+    div.span8
+      h2 #{article.enTitle}
+      p
+        a(href='#{article.url}', target="_blank") #{article.url}
+
+      each p in article.paraList
+        p #{p.en}
+    
+    div.span4
+    

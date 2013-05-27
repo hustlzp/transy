@@ -10,6 +10,13 @@ var express = require('express')
 
 var app = express();
 
+var mongoose = require('mongoose');
+var option = {
+  server: { keepAlive: 1 },
+  replset: { keepAlive: 1 }
+};
+mongoose.connect('mongodb://localhost:27017/transy');
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');

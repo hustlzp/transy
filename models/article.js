@@ -16,6 +16,7 @@ var Article = new Schema({
   enTitle: String,
   cnTitle: String,
   url: String,
+  abstract: String,
   completion: Number,
   createTime: Date,
   updateTime: Date,
@@ -23,4 +24,4 @@ var Article = new Schema({
   commentList: [String]
 });
 
-exports.Article = mongoose.model('Article', Article);
+module.exports = mongoose.model('Article', Article);

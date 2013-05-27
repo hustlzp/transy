@@ -7,6 +7,12 @@ module.exports = function(app){
   app.get('/', site.index);
 
   /* article */
+  // new
+  app.get('/article/add', article.showAdd);
+  app.post('/article/add', article.add);
+  // edit
+  app.get('/article/edit/:id', article.showEdit);
+  app.get('/article/edit/:id', article.edit);
   // single article
   app.get('/article/:id', article.article);
 }

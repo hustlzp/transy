@@ -2,13 +2,13 @@ extends layout
 
 block content
   div.row
-    div.span4
-      h2 article list
-    
     div.span8
-      p article content
-
       each a in articles
-        h3 #{a.enTitle}
-        each p in a.paraList
-          p #{p.en}
+        a(href='/article/#{a.id}')
+          h2 #{a.cnTitle}
+        p #{a.abstract}
+    
+    div.span4
+      h3 近期热门
+      
+

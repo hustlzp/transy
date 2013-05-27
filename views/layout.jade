@@ -1,19 +1,19 @@
 doctype 5
 html
   head
-    title= title
+    title #{title}
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(href="/css/modern.css", rel="stylesheet")
     link(href="/css/modern-responsive.css", rel='stylesheet')
     link(href='/css/site.css', rel='stylesheet')
     script(src='/js/jquery.min.js')
 
-  body.metrouicss
+  body.metrouicss(id='#{page}')
     div.page
       <!-- nav -->
       div.nav-bar
         div.nav-bar-inner.padding10       
-          a(href="#")
+          a(href="/")
             span.element.brand
               | Transy&nbsp;
               sup beta
@@ -22,9 +22,11 @@ html
 
           ul.menu
               li
-                a(href="#") Home
+                a(href="/") Home
               li
                 a(href="#") My Space
+
+          a.button.bg-color-yellow.btn-add-article(href='/article/add') ADD
 
       <!-- content -->
       div.grid

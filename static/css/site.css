@@ -1,2 +1,8 @@
 .metrouicss .page{width:940px;margin:auto;}
-.metrouicss .nav-bar{margin-bottom:20px;}
+.metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .btn-add-article{margin:0;float:right;}
+#page-edit-article{outline:none;}#page-edit-article .title{margin-bottom:10px;}#page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;display:inline-block;outline:none;min-width:50px;}
+#page-edit-article .title .title-divider{display:inline-block;padding:0 15px;}
+#page-edit-article .url{margin-bottom:15px;}#page-edit-article .url .label{margin-right:10px;}
+#page-edit-article .url span{outline:none;}
+#page-edit-article .para-list{margin-bottom:15px;}#page-edit-article .para-list .en,#page-edit-article .para-list .cn{outline:none;display:inline-block;width:48%;vertical-align:text-top;}
+#page-edit-article .para-list .ec-divider{display:inline-block;width:1%;margin-left:1%;margin-right:2%;background-color:black;height:100%;vertical-align:text-top;}
