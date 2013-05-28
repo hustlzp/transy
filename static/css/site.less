@@ -1,3 +1,5 @@
+/* layout
+----------------------------------------------------*/
 .metrouicss{
     .page{
         width: 940px;
@@ -14,11 +16,51 @@
     }
 }
 
+/* page index
+----------------------------------------------------*/
+#page-index{
+	.article-item{
+		padding-bottom: 5px;
+		margin-bottom: 10px;
+		border-bottom: 1px solid lightgray;
+	}
+}
+
+/* page article
+----------------------------------------------------*/
+#page-article{
+	.title{
+		margin-bottom: 15px;
+	}
+
+	.url-wap,
+	.abstract-wap{
+		margin-bottom: 10px;
+
+		.label{
+			margin-right: 10px;
+		}
+	}
+	.abstract-wap{
+		border-bottom: 1px solid lightgray;
+		padding-bottom: 15px;		
+	}
+
+	.para-list{
+		text-align: justify;
+	}
+}
+
+/* page edit article
+----------------------------------------------------*/
 #page-edit-article{
-	outline: none;
+	
+	[contenteditable]{
+		outline: none;
+	}
 
 	.title{
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 
 		.cn-title,
 		.en-title{
@@ -35,38 +77,47 @@
 		}		
 	}
 
-	.url{
-		margin-bottom: 15px;
+	.url-wap,
+	.abstract-wap{
+		margin-bottom: 10px;
 
 		.label{
 			margin-right: 10px;
 		}
+	}
 
-		span{
-			outline: none;
-		}
+	.abstract-wap{
+		border-bottom: 1px solid lightgray;
+		padding-bottom: 15px;
+		margin-bottom: 15px;
 	}
 
 	.para-list{
-		margin-bottom: 15px;
+		margin-bottom: 5px;
 
 		.en,
 		.cn{
-			outline: none;
 			display: inline-block;
-			width: 48%;
 			vertical-align: text-top;
-		}
+			text-align: justify;
+ 		}
+
+ 		.en{
+ 			width: 515px;
+ 			margin-bottom: 15px;
+ 		}
+ 		.cn{
+ 			width: 375px;
+ 		}
 
 		.ec-divider{
 			display: inline-block;
-			width: 1%;
-			margin-left: 1%;
-			margin-right: 2%;
-			background-color: black;
-			height: 100%;
+			width: 10px;
+			margin-left: 20px;
+			margin-right: 20px;
 			vertical-align: text-top;
+			background-color: #aaa;
+			cursor: pointer;
 		}
 	}
-
 }

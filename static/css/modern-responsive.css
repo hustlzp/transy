@@ -532,6 +532,20 @@
 .clearfix:after {
   clear: both;
 }
+/*add by hustlzp*/
+.paddingr5 {
+  padding-right: 5px;
+}
+.paddingr10 {
+  padding-right: 10px;
+}
+.paddingb5 {
+  padding-bottom: 5px;
+}
+.paddingb10 {
+  padding-bottom: 10px;
+}
+/*end*/
 .padding5 {
   padding: 5px;
 }

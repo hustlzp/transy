@@ -1,16 +1,16 @@
 extends ../layout
 
 block content
-  h2 Add new article
+  h2 添加原文
   form.span8(action='/article/add', method='post')
     div.input-control.text
-      input(type='text', name='title', placeholder='title')
+      input(type='text', name='title', placeholder='标题')
 
     div.input-control.text
-      input(type='text', name='url', placeholder='url')
+      input(type='text', name='url', placeholder='链接')
 
     div.input-control.textarea
-      textarea(name='content', placeholder='content', rows='20')
+      textarea(name='content', placeholder='正文', rows='20')
 
-    input(type='submit', value='Submit')
+    input(type='submit', value='创建')
       

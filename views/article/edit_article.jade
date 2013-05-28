@@ -1,33 +1,80 @@
 extends ../layout
 
 block content
-
   script
     $(function(){
       $('.para-list').each(function(){
-        var pHeight = $(this).innerHeight();
-
-        $(this).find('.ec-divider').css('height', pHeight + 'px');
+        // the para item's height
+        var pHeight = $(this).height();
+        
         $(this).find('.cn').css('height', pHeight + 'px');
+        $(this).find('.ec-divider').css('height', pHeight + 'px');
+      });
+
+      $('.btn-save').click(function(){
+        var article = {
+          enTitle: $('.en-title').text(),
+          cnTitle: $('.cn-title').text(),
+          url: $('.url').text(),
+          abstract: $('.abstract').text()
+        };
+
+        // build para list
+        var paraList = [];
+        $('.para-list').each(function(){
+          paraList.push({
+            en: $(this).find('.en').text().trim(),
+            cn: $(this).find('.cn').text().trim(),
+            type: 'para',
+            state: false
+          });
+        });
+        article.paraList = paraList;
+
+        // post
+        $.ajax({
+          url: '/article/#{article.id}/edit',
+          method: 'POST',
+          data: {
+            article: article
+          },
+          success: function(data){
+            if(data.result === 1){
+              alert('saved');
+            }
+          }
+        });
       });
     });
 
-  form(action='/article/edit/#{article.id}', method='post')
-    div.title
-      h2.en-title(contenteditable=true) #{article.enTitle}
-      h2.title-divider /
-      h2.cn-title(contenteditable=true, placeholder="中文标题") #{article.cnTitle}
-    
-    div.url
-      span.label.warning url
-      span.url(contenteditable=true) #{article.url}
+  a(href="/article/#{article.id}").back-button.place-right
 
-    each p in article.paraList
-      div.para-list
-        div.en(contenteditable=true) #{p.en}
-        div.ec-divider
-        div.cn(contenteditable=true) #{p.cn}
+  div.title
+    h2.en-title(contenteditable=true) #{article.enTitle}
+    h2.title-divider /
+    h2.cn-title(contenteditable=true, placeholder="中文标题") #{article.cnTitle}
+  
+  div.url-wap
+    span.label.warning 链接
+    span.url(contenteditable=true) #{article.url}
 
+  div.abstract-wap
+    span.label.warning 摘要
+    span.abstract(contenteditable=true) #{article.abstract}
+
+  each p in article.paraList
+    div.para-list
+      div.en(contenteditable=true) #{p.en}
+      div.ec-divider
+      div.cn(contenteditable=true) #{p.cn}
+
+  button.btn-save.place-right
+    i.icon-save
+    | 保存
+
+  //- button.btn-save.place-right
+  //-   i.icon-save
+  //-   | 浏览
 
 
 

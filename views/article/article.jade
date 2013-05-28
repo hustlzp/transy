@@ -1,14 +1,61 @@
 extends ../layout
 
 block content
+  script
+    $(function(){
+      $('.btn-delete').click(function(){
+        if(!confirm('Really to delete this article?')){
+          return false;
+        }
+      });
+
+      // select view mode
+      $('.btn-sel-ec').click(function(){
+        $('.en').show();
+        $('.cn').show();
+      });
+
+      $('.btn-sel-en').click(function(){
+        $('.en').show();
+        $('.cn').hide();
+      });
+
+      $('.btn-sel-cn').click(function(){
+        $('.en').hide();
+        $('.cn').show();
+      });
+    });
+
   div.row
     div.span8
-      h2 #{article.enTitle}
-      p
+      div.title
+        h2.en.enTitle #{article.enTitle}
+        h2.cn.cnTitle #{article.cnTitle}
+
+      p.url-wap
+        span.label.warning 链接
         a(href='#{article.url}', target="_blank") #{article.url}
 
+      p.abstract-wap
+        span.label.warning 摘要
+        span #{article.abstract}
+
       each p in article.paraList
-        p #{p.en}
+        div.para-list
+          p.en #{p.en}
+          p.cn #{p.cn}
     
     div.span4
-    
+      div.button-set.place-right(data-role='button-set')
+        button.btn-sel-ec.active 中 / 英
+        button.btn-sel-cn 中
+        button.btn-sel-en 英
+
+      div.button-set
+        a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
+          i.icon-remove
+          | 删除
+        a.button.place-right(href='/article/#{article.id}/edit')
+          i.icon-pencil
+          | 编辑
+

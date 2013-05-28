@@ -7,6 +7,7 @@ html
     link(href="/css/modern-responsive.css", rel='stylesheet')
     link(href='/css/site.css', rel='stylesheet')
     script(src='/js/jquery.min.js')
+    script(src='/js/buttonset.js')
 
   body.metrouicss(id='#{page}')
     div.page
@@ -22,11 +23,13 @@ html
 
           ul.menu
               li
-                a(href="/") Home
+                a(href="/") 主页
               li
-                a(href="#") My Space
+                a(href="#") 个人空间
 
-          a.button.bg-color-yellow.btn-add-article(href='/article/add') ADD
+          a.button.bg-color-yellow.btn-add-article(href='/article/add') 
+            i.icon-copy
+            | 添加
 
       <!-- content -->
       div.grid
