@@ -3,6 +3,8 @@ extends ../layout
 block content
   script
     $(function(){
+      var clickItem;
+
       $('.para-list').each(function(){
         // the para item's height
         var pHeight = $(this).height();
@@ -12,24 +14,23 @@ block content
       });
 
       $('.btn-save').click(function(){
+        // build article object
         var article = {
           enTitle: $('.en-title').text(),
           cnTitle: $('.cn-title').text(),
           url: $('.url').text(),
-          abstract: $('.abstract').text()
+          abstract: $('.abstract').text(),
+          paraList: []
         };
 
-        // build para list
-        var paraList = [];
         $('.para-list').each(function(){
-          paraList.push({
+          article.paraList.push({
             en: $(this).find('.en').text().trim(),
             cn: $(this).find('.cn').text().trim(),
             type: 'para',
             state: false
           });
         });
-        article.paraList = paraList;
 
         // post
         $.ajax({
@@ -44,6 +45,52 @@ block content
             }
           }
         });
+      });
+
+      $('.para-list').each(function(){
+        $(this)[0].oncontextmenu = function(e){
+          e.preventDefault();
+          clickItem = e.target;
+
+          $('.context-menu').css({
+            top: e.clientY + 2 + 'px',
+            left: e.clientX + 2 + 'px',
+            display: 'block'
+          });
+        }
+      });
+
+      $('.context-menu').click(function(e){
+        switch(e.target.id){
+          // change para type
+          case "main-header":
+            // todo
+            break;
+          case "sub-header":
+            // todo
+            break;
+          case "text":
+            // todo
+            break;
+          case "quote":
+            // todo
+            break;
+          case "code":
+            // todo
+            
+            break;
+          // add or remove para
+          case "add-para":
+            alert('s');
+            break;
+          case "remove-para":
+            alert('s');
+            break;
+        }
+      });
+
+      $(document).click(function(){
+        $('.context-menu').hide();
       });
     });
 
@@ -72,9 +119,21 @@ block content
     i.icon-save
     | 保存
 
-  //- button.btn-save.place-right
+  //- button.btn-save.place-rightmenu
   //-   i.icon-save
   //-   | 浏览
+
+  ul.context-menu
+    li 格式
+      span.arrow
+      ul.sub-menu
+        li#main-header 主标题
+        li#sub-header 子标题
+        li#text 正文
+        li#quote 引用
+        li#code 代码 
+    li#add-para 增加段落
+    li#remove-para 删除段落
 
 
 

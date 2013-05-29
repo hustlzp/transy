@@ -29,6 +29,7 @@ exports.add = function(req, res){
     completion: 0,
     createTime: new Date(),
     updateTime: new Date(),
+    paraList: []
   });
 
   // process the paragraph
@@ -40,7 +41,7 @@ exports.add = function(req, res){
       continue;
     }
 
-    paraList.push({
+    article.paraList.push({
       en: paras[i],
       cn: '',
       type: 'para',
@@ -48,7 +49,6 @@ exports.add = function(req, res){
     });
   }
 
-  article.paraList = paraList;
   article.save(function(err){
     if(!err){
       res.redirect('/');

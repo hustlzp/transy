@@ -85,7 +85,6 @@
 			margin-right: 10px;
 		}
 	}
-
 	.abstract-wap{
 		border-bottom: 1px solid lightgray;
 		padding-bottom: 15px;
@@ -118,6 +117,72 @@
 			vertical-align: text-top;
 			background-color: #aaa;
 			cursor: pointer;
+		}
+	}
+
+	.context-menu{
+		margin: 0;
+		display: none;
+		list-style: none;
+		position: fixed;
+
+		& > li{
+			font-size: 12px;
+			padding: 5px 10px;
+			background-color: orange;
+			color: white;
+			border-bottom: 1px solid white;
+			cursor: pointer;
+			position: relative;
+
+			&:last-child{
+				border-bottom: 0;
+			}
+
+			.arrow{
+				position: absolute;
+				top: 10px;
+				right: 0;
+				border-right: 6px solid transparent;
+				border-top: 5px solid transparent;
+				border-bottom: 5px solid transparent;
+			}
+
+			.sub-menu{
+				visibility: hidden;
+				position: absolute;
+				top: 0;
+				left: 68px;
+				list-style: none;
+				margin: 0;
+				border-left: 1px solid white;
+				width: 60px;
+
+				li{
+					font-size: 12px;
+					padding: 5px 10px;
+					background-color: orange;
+					color: white;
+					border-bottom: 1px solid white;
+					cursor: pointer;
+
+					&:hover{
+						background-color: #D35400;
+					}			
+				}
+			}
+
+			&:hover{
+				background-color: #D35400;
+
+				.arrow{
+					border-right-color: orange;
+				}
+
+				.sub-menu{
+					visibility: visible;
+				}
+			}
 		}
 	}
 }
