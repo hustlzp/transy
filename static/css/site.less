@@ -10,8 +10,8 @@
         margin-bottom: 20px;
 
         .btn-add-article{
-        	margin: 0;
-        	float: right;
+            margin: 0;
+            float: right;
         }
     }
 }
@@ -19,170 +19,167 @@
 /* page index
 ----------------------------------------------------*/
 #page-index{
-	.article-item{
-		padding-bottom: 5px;
-		margin-bottom: 10px;
-		border-bottom: 1px solid lightgray;
-	}
+    .article-item{
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid lightgray;
+    }
 }
 
 /* page article
 ----------------------------------------------------*/
 #page-article{
-	.title{
-		margin-bottom: 15px;
-	}
+    .title{
+        margin-bottom: 15px;
+    }
 
-	.url-wap,
-	.abstract-wap{
-		margin-bottom: 10px;
+    .url-wap,
+    .abstract-wap{
+        margin-bottom: 10px;
 
-		.label{
-			margin-right: 10px;
-		}
-	}
-	.abstract-wap{
-		border-bottom: 1px solid lightgray;
-		padding-bottom: 15px;		
-	}
+        .label{
+            margin-right: 10px;
+        }
+    }
+    .abstract-wap{
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 15px;       
+    }
 
-	.para-list{
-		text-align: justify;
-	}
+    .para-list{
+        text-align: justify;
+    }
 }
 
 /* page edit article
 ----------------------------------------------------*/
 #page-edit-article{
-	
-	[contenteditable]{
-		outline: none;
-	}
+    
+    [contenteditable]{
+        outline: none;
+    }
 
-	.title{
-		margin-bottom: 5px;
+    .title{
+        margin-bottom: 5px;
 
-		.cn-title,
-		.en-title{
-			// padding: 10px 0px;
-			margin: 0;
-			display: inline-block;
-			outline: none;
-			min-width: 50px;
-		}
+        .cn-title,
+        .en-title{
+            // padding: 10px 0px;
+            margin: 0;
+            display: inline-block;
+            outline: none;
+            min-width: 50px;
+        }
 
-		.title-divider{
-			display: inline-block;
-			padding: 0 15px;
-		}		
-	}
+        .title-divider{
+            display: inline-block;
+            padding: 0 15px;
+        }
+    }
 
-	.url-wap,
-	.abstract-wap{
-		margin-bottom: 10px;
+    .url-wap,
+    .abstract-wap{
+        margin-bottom: 10px;
 
-		.label{
-			margin-right: 10px;
-		}
-	}
-	.abstract-wap{
-		border-bottom: 1px solid lightgray;
-		padding-bottom: 15px;
-		margin-bottom: 15px;
-	}
+        .label{
+            margin-right: 10px;
+        }
+    }
+    .abstract-wap{
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
 
-	.para-list{
-		margin-bottom: 5px;
+    .para{
+        margin-bottom: 5px;
 
-		.en,
-		.cn{
-			display: inline-block;
-			vertical-align: text-top;
-			text-align: justify;
- 		}
+        .en,
+        .cn{
+            display: inline-block;
+            vertical-align: text-top;
+            text-align: justify;
+        }
 
- 		.en{
- 			width: 515px;
- 			margin-bottom: 15px;
- 		}
- 		.cn{
- 			width: 375px;
- 		}
+        .en{
+            width: 515px;
+            // margin-bottom: 15px;
+        }
+        .cn{
+            width: 375px;
+        }
 
-		.ec-divider{
-			display: inline-block;
-			width: 10px;
-			margin-left: 20px;
-			margin-right: 20px;
-			vertical-align: text-top;
-			background-color: #aaa;
-			cursor: pointer;
-		}
-	}
+        .ec-divider{
+            display: inline-block;
+            width: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+            vertical-align: text-top;
+            background-color: #aaa;
+            cursor: pointer;
+        }
+    }
 
-	.context-menu{
-		margin: 0;
-		display: none;
-		list-style: none;
-		position: fixed;
+    .context-menu{
+        margin: 0;
+        display: none;
+        list-style: none;
+        position: fixed;
 
-		& > li{
-			font-size: 12px;
-			padding: 5px 10px;
-			background-color: orange;
-			color: white;
-			border-bottom: 1px solid white;
-			cursor: pointer;
-			position: relative;
+        & > li{
+            font-size: 12px;
+            padding: 5px 10px;
+            background-color: #2b5797;
+            color: white;
+            border-bottom: 1px solid white;
+            cursor: pointer;
+            position: relative;
 
-			&:last-child{
-				border-bottom: 0;
-			}
+            &:last-child{
+                border-bottom: 0;
+            }
 
-			.arrow{
-				position: absolute;
-				top: 10px;
-				right: 0;
-				border-right: 6px solid transparent;
-				border-top: 5px solid transparent;
-				border-bottom: 5px solid transparent;
-			}
+            .sub-menu{
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 68px;
+                list-style: none;
+                margin: 0;
+                border-left: 1px solid white;
+                width: 60px;
 
-			.sub-menu{
-				visibility: hidden;
-				position: absolute;
-				top: 0;
-				left: 68px;
-				list-style: none;
-				margin: 0;
-				border-left: 1px solid white;
-				width: 60px;
+                li{
+                    font-size: 12px;
+                    padding: 5px 10px;
+                    background-color: #2b5797;
+                    color: white;
+                    border-bottom: 1px solid white;
+                    cursor: pointer;
 
-				li{
-					font-size: 12px;
-					padding: 5px 10px;
-					background-color: orange;
-					color: white;
-					border-bottom: 1px solid white;
-					cursor: pointer;
+                    &:hover{
+                        background-color: rgb(252, 100, 0);
+                        background-color: #2d89ef;
+                    }           
+                }
+            }
 
-					&:hover{
-						background-color: #D35400;
-					}			
-				}
-			}
+            &:hover{
+                background-color: #2d89ef;
 
-			&:hover{
-				background-color: #D35400;
+                .sub-menu{
+                    visibility: visible;
+                }
+            }
+        }
+    }
 
-				.arrow{
-					border-right-color: orange;
-				}
-
-				.sub-menu{
-					visibility: visible;
-				}
-			}
-		}
-	}
+    .add-content-wap{
+        border: 1px #bababa solid;
+        width: 100%;
+        padding: 5px;
+        background-color: #fff;
+        outline: 0;
+        margin: 10px 0 15px 0;
+    }
 }

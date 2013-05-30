@@ -1207,7 +1207,7 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   display: inline-block;
   line-height: inherit;
   font-size: .75em;
-  font-weight: bold;
+  /*font-weight: bold;*/
   padding: 2px 4px;
   background-color: #d5e7ec !important;
   color: #4d4d4d;

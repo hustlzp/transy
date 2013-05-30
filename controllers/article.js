@@ -44,7 +44,7 @@ exports.add = function(req, res){
     article.paraList.push({
       en: paras[i],
       cn: '',
-      type: 'para',
+      type: 'text',
       state: false
     });
   }
