@@ -19,7 +19,7 @@ saveArticle = function() {
       en: $(this).find('.en').text().trim(),
       cn: $(this).find('.cn').text().trim(),
       type: $(this).data('type'),
-      state: false
+      state: $(this).find('.ec-divider').attr('data-state') === 'true' ? true : false
     });
   });
   articleId = $('.title').data('article-id');
@@ -44,12 +44,10 @@ Dynamic change the height of the divider bar
 
 adjustHeight = function(para) {
   var cnHeight, dvHeight, enHeight;
-  enHeight = para.find('.en').height();
-  cnHeight = para.find('.cn').height();
+  enHeight = para.find('.en').innerHeight();
+  cnHeight = para.find('.cn').innerHeight();
   dvHeight = enHeight > cnHeight ? enHeight : cnHeight;
-  return para.find('.ec-divider').css({
-    height: dvHeight + 15 + 'px'
-  });
+  return para.find('.ec-divider').css('height', dvHeight + 15 + 'px');
 };
 
 $(function() {
@@ -59,6 +57,33 @@ $(function() {
   });
   $('.en, .cn').keyup(function() {
     return adjustHeight($(this).parent());
+  });
+  $('.en, .cn').blur(function() {
+    return adjustHeight($(this).parent());
+  });
+  $('.en, .cn').focus(function() {
+    $('.focus-flag').css('visibility', 'hidden');
+    return $(this).parent().find('.focus-flag').css('visibility', 'visible');
+  });
+  $('.ec-divider').click(function() {
+    $('.focus-flag').css('visibility', 'hidden');
+    return $(this).find('.focus-flag').css('visibility', 'visible');
+  });
+  $('.para').mouseover(function() {
+    $('.focus-flag').css('visibility', 'hidden');
+    return $(this).find('.focus-flag').css('visibility', 'visible');
+  });
+  $('.ec-divider').click(function() {
+    if ($(this).hasClass('state-true')) {
+      $(this).removeClass('state-true').addClass('state-false');
+      return $(this).attr('data-state', 'false');
+    } else if ($(this).hasClass('state-false')) {
+      $(this).removeClass('state-false').addClass('state-true');
+      return $(this).attr('data-state', 'true');
+    } else {
+      $(this).addClass('state-false');
+      return $(this).attr('data-state', 'false');
+    }
   });
   $('.btn-save').click(saveArticle);
   clickItem = null;
@@ -89,18 +114,14 @@ $(function() {
         $(clickItem).removeClass(classList).addClass("type-" + c);
         return $(clickItem).attr('data-type', c);
       case 'add-para':
-        $(clickItem).after("<textarea class='add-content-wap' rows=5></textarea>");
+        $(clickItem).after("<textarea class='add-content-wap' rows=4></textarea>");
         return $('.add-content-wap').focus().blur(function() {
-          var a, addContent, html, _i, _len;
-          addContent = $(this).val().split('\n');
-          html = "";
-          for (_i = 0, _len = addContent.length; _i < _len; _i++) {
-            a = addContent[_i];
-            if (a !== "") {
-              html += "<div data-type='text' class='para type-text'>\n  <div class='en' contenteditable=true>" + a + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable=true></div>\n</div>";
-            }
+          var addContent;
+          addContent = $(this).val();
+          if (addContent !== "") {
+            $(clickItem).after("<div data-type='text' class='para clearfix type-text'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
+            adjustHeight($(clickItem).next());
           }
-          $(clickItem).after(html);
           $(this).detach();
           return adjustHeight($(clickItem).next());
         });
