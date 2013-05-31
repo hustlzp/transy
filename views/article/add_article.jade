@@ -2,15 +2,14 @@ extends ../layout
 
 block content
   h2 添加原文
-  form.span8(action='/article/add', method='post')
-    div.input-control.text
+  form(action='/article/add', method='post')
+    div.input-control.text.span6
       input(type='text', name='title', placeholder='标题')
 
-    div.input-control.text
+    div.input-control.text.span6
       input(type='text', name='url', placeholder='链接')
 
-    div.input-control.textarea
+    div.input-control.textarea.span10
       textarea(name='content', placeholder='正文', rows='20')
 
     input(type='submit', value='创建')
-      

@@ -1,6 +1,7 @@
 .metrouicss .page{width:940px;margin:auto;}
 .metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .btn-add-article{margin:0;float:right;}
-#page-index .article-item{padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid lightgray;position:relative;}#page-index .article-item .completion-info{position:absolute;top:5px;right:0;}#page-index .article-item .completion-info .progress-bar{width:100px;background-color:#ddd;}
+#page-index .article-item{padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid lightgray;position:relative;}#page-index .article-item .abstract{color:#333;}
+#page-index .article-item .completion-info{position:absolute;top:5px;right:0;}#page-index .article-item .completion-info .progress-bar{width:100px;background-color:#ddd;}
 #page-index .article-item .completion-info .completion-num{text-align:right;}
 #page-article .span8{position:relative;}
 #page-article .title{margin-bottom:15px;}

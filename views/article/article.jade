@@ -1,30 +1,25 @@
 extends ../layout
 
 block content
-  script
-    $(function(){
-      $('.btn-delete').click(function(){
-        if(!confirm('Really to delete this article?')){
-          return false;
-        }
-      });
 
-      // select view mode
-      $('.btn-sel-ec').click(function(){
-        $('.en').show();
-        $('.cn').show();
-      });
+  :coffeescript
+    $ ->
+      $('.btn-delete').click ->
+        if not confirm('Really to delete this article?')
+          false
 
-      $('.btn-sel-en').click(function(){
-        $('.en').show();
-        $('.cn').hide();
-      });
+      # select view mode
+      $('.btn-sel-ec').click ->
+        $('.en').show()
+        $('.cn').show()
 
-      $('.btn-sel-cn').click(function(){
-        $('.en').hide();
-        $('.cn').show();
-      });
-    });
+      $('.btn-sel-en').click ->
+        $('.en').show()
+        $('.cn').hide()
+
+      $('.btn-sel-cn').click ->
+        $('.en').hide()
+        $('.cn').show()
 
   div.row
     div.span8
@@ -35,9 +30,9 @@ block content
       //- div.completion-wap
       //-   span.label.warning 进度
       //-   div.progress-bar
-      //-     div.bar.bg-color-green(style='width: #{a.completion*100}%')
-      //-   span #{a.completion*100}%
-      span.completion #{a.completion*100}%
+      //-     div.bar.bg-color-green(style='width: #{a.completion*100%')
+      //-   span #{a.completion*100%
+      span.completion #{article.completion*100}%
 
       p.url-wap
         span.label.warning 链接
@@ -49,20 +44,23 @@ block content
 
       each p in article.paraList
         div.para-list
-          if p.type == 'mheader'
+          if p.type === 'mheader'
             h3.en #{p.en}
-            h3.cn #{p.cn}
-          else if p.type == 'mheader'
+            if p.cn !== ''
+              h3.cn #{p.cn}
+          else if p.type === 'mheader' 
             h4.en #{p.en}
-            h4.cn #{p.cn}
-          else if p.type == 'text'
+            if p.cn !== ''
+              h4.cn #{p.cn}
+          else if p.type === 'text'
             p.en #{p.en}
-            p.cn #{p.cn}
-          else if p.type == 'quote'
+            if p.cn !== ''
+              p.cn #{p.cn}
+          else if p.type === 'quote'
             blockquote.en #{p.en}
-            blockquote.cn #{p.cn}
+            if p.cn !== ''
+              blockquote.cn #{p.cn}
 
-    
     div.span4
       div.button-set.place-right(data-role='button-set')
         button.btn-sel-cn 中
@@ -81,4 +79,3 @@ block content
         a.button.place-right(href='/article/#{article.id}/edit')
           i.icon-pencil
           | 编辑
-

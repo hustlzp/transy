@@ -17,7 +17,7 @@ block content
   div.abstract-wap
     span.label.warning 摘要
     span.abstract(contenteditable='true') #{article.abstract}
-
+    
   each p in article.paraList
     div.clearfix.para(data-type='#{p.type}')
       div.en(contenteditable="true") #{p.en}
@@ -37,7 +37,6 @@ block content
         li.sheader 子标题
         li.text 正文
         li.quote 引用
-        //- li.code 代码 
     li.add-para 增加段落
     li.remove-para 删除段落
 
