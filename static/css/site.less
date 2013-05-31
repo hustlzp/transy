@@ -131,16 +131,14 @@
                 visibility: hidden;
                 z-index: 10000;
             }
-        }
-        .state-true{
-            background-color: #00a300;
-            background-color: #2d89ef;
-        }
-        .state-false{
+
+            &[data-state='true']{
+                background-color: #2d89ef;        
+            }
         }
     }
 
-    .type-mheader{
+    .para[data-type="mheader"]{
         .en,
         .cn{
             font-size: 20px;
@@ -148,15 +146,15 @@
         }
         
     }
-    .type-sheader{
+    .para[data-type="sheader"]{
         .en,
         .cn{
             font-weight: bold;
         }
     }
-    .type-text{
+    .para[data-type="text"]{
     }
-    .type-quote{
+    .para[data-type="quote"]{
         .en,
         .cn{
             border-left: 4px solid #bbb;

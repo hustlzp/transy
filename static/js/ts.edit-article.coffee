@@ -49,29 +49,16 @@ $ ->
   $('.en, .cn').blur ->
     adjustHeight($(this).parent())
 
-  # show and hide the focus flag currectly
-  $('.en, .cn').focus ->
-    $('.focus-flag').css('visibility', 'hidden')
-    $(this).parent().find('.focus-flag').css('visibility', 'visible')
-
-  $('.ec-divider').click ->
-    $('.focus-flag').css('visibility', 'hidden')
-    $(this).find('.focus-flag').css('visibility', 'visible')
-
+  # show the focus flag when hover
   $('.para').mouseover ->
     $('.focus-flag').css('visibility', 'hidden')
     $(this).find('.focus-flag').css('visibility', 'visible')
 
-  # toggle translate state: finish or not
+  # toggle translate state: true or false
   $('.ec-divider').click ->
-    if $(this).hasClass('state-true')
-      $(this).removeClass('state-true').addClass('state-false')
-      $(this).attr('data-state', 'false')
-    else if $(this).hasClass('state-false')
-      $(this).removeClass('state-false').addClass('state-true')
+    if $(this).attr('data-state') == 'false'
       $(this).attr('data-state', 'true')
     else
-      $(this).addClass('state-false')
       $(this).attr('data-state', 'false')      
 
   # save when press save button
@@ -82,7 +69,6 @@ $ ->
   
   # global var, save the item be clicked
   clickItem = null
-  classList = "type-mheader type-sheader type-text type-quote type-code"
 
   # context menu handle
   $('.para').each ->
@@ -106,8 +92,9 @@ $ ->
     c = $(e.target).attr('class')
     switch c
       when 'mheader', 'sheader', 'text', 'quote', 'code'
-        $(clickItem).removeClass(classList).addClass("type-#{c}")
         $(clickItem).attr('data-type', c)
+        # ajust height
+        adjustHeight($(clickItem))
       when 'add-para'
         # $(clickItem).after("<div class='add-content-wap' contenteditable=true></div>")
         $(clickItem).after("<textarea class='add-content-wap' rows=4></textarea>")

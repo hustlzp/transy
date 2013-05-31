@@ -19,9 +19,9 @@ block content
     span.abstract(contenteditable='true') #{article.abstract}
 
   each p in article.paraList
-    div.clearfix(class='para type-#{p.type}', data-type='#{p.type}')
+    div.clearfix.para(data-type='#{p.type}')
       div.en(contenteditable="true") #{p.en}
-      div(class='ec-divider state-#{p.state}', data-state='#{p.state}')
+      div.ec-divider(data-state='#{p.state}')
         div.focus-flag
       div.cn(contenteditable="true") #{p.cn}
 

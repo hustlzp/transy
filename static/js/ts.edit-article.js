@@ -51,7 +51,7 @@ adjustHeight = function(para) {
 };
 
 $(function() {
-  var classList, clickItem;
+  var clickItem;
   $('.para').each(function() {
     return adjustHeight($(this));
   });
@@ -61,33 +61,19 @@ $(function() {
   $('.en, .cn').blur(function() {
     return adjustHeight($(this).parent());
   });
-  $('.en, .cn').focus(function() {
-    $('.focus-flag').css('visibility', 'hidden');
-    return $(this).parent().find('.focus-flag').css('visibility', 'visible');
-  });
-  $('.ec-divider').click(function() {
-    $('.focus-flag').css('visibility', 'hidden');
-    return $(this).find('.focus-flag').css('visibility', 'visible');
-  });
   $('.para').mouseover(function() {
     $('.focus-flag').css('visibility', 'hidden');
     return $(this).find('.focus-flag').css('visibility', 'visible');
   });
   $('.ec-divider').click(function() {
-    if ($(this).hasClass('state-true')) {
-      $(this).removeClass('state-true').addClass('state-false');
-      return $(this).attr('data-state', 'false');
-    } else if ($(this).hasClass('state-false')) {
-      $(this).removeClass('state-false').addClass('state-true');
+    if ($(this).attr('data-state') === 'false') {
       return $(this).attr('data-state', 'true');
     } else {
-      $(this).addClass('state-false');
       return $(this).attr('data-state', 'false');
     }
   });
   $('.btn-save').click(saveArticle);
   clickItem = null;
-  classList = "type-mheader type-sheader type-text type-quote type-code";
   $('.para').each(function() {
     return $(this)[0].oncontextmenu = function(e) {
       clickItem = $(e.target).parents('.para').first()[0];
@@ -111,8 +97,8 @@ $(function() {
       case 'text':
       case 'quote':
       case 'code':
-        $(clickItem).removeClass(classList).addClass("type-" + c);
-        return $(clickItem).attr('data-type', c);
+        $(clickItem).attr('data-type', c);
+        return adjustHeight($(clickItem));
       case 'add-para':
         $(clickItem).after("<textarea class='add-content-wap' rows=4></textarea>");
         return $('.add-content-wap').focus().blur(function() {
