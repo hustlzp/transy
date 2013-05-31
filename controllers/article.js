@@ -71,12 +71,13 @@ exports.showEdit = function(req, res){
 
 exports.edit = function(req, res){
   Article.findById(req.params.id, function(err, data){
-    data.enTitle = req.body.article.enTitle;
-    data.cnTitle = req.body.article.cnTitle;
-    data.url = req.body.article.url;
-    data.abstract = req.body.article.abstract;
-    console.log(data.abstract);
-    data.paraList = req.body.article.paraList;
+    a = req.body.article;
+    data.enTitle = a.enTitle;
+    data.cnTitle = a.cnTitle;
+    data.url = a.url;
+    data.abstract = a.abstract;
+    data.completion = a.completion;
+    data.paraList = a.paraList;
 
     data.save(function(err){
       if(!err){

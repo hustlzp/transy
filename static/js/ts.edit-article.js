@@ -6,7 +6,7 @@ Save article, triggle when click the save btn, or press Ctrl-S
 var adjustHeight, saveArticle;
 
 saveArticle = function() {
-  var article, articleId;
+  var article, articleId, completeNum, p, _i, _len, _ref;
   article = {
     enTitle: $('.en-title').text(),
     cnTitle: $('.cn-title').text(),
@@ -22,6 +22,15 @@ saveArticle = function() {
       state: $(this).find('.ec-divider').attr('data-state') === 'true' ? true : false
     });
   });
+  completeNum = 0;
+  _ref = article.paraList;
+  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+    p = _ref[_i];
+    if (p.state === true) {
+      completeNum++;
+    }
+  }
+  article.completion = (completeNum / article.paraList.length).toFixed(2);
   articleId = $('.title').data('article-id');
   return $.ajax({
     url: "/article/" + articleId + "/edit",
@@ -74,16 +83,18 @@ $(function() {
   });
   $('.btn-save').click(saveArticle);
   clickItem = null;
-  $('.para').each(function() {
-    return $(this)[0].oncontextmenu = function(e) {
+  $(document).on('contextmenu', '.para', function(e) {
+    if ($(e.target).hasClass('para')) {
+      clickItem = e.target;
+    } else {
       clickItem = $(e.target).parents('.para').first()[0];
-      e.preventDefault();
-      return $('.context-menu').css({
-        top: e.clientY + 2 + 'px',
-        left: e.clientX + 2 + 'px',
-        display: 'block'
-      });
-    };
+    }
+    e.preventDefault();
+    return $('.context-menu').css({
+      top: e.clientY + 2 + 'px',
+      left: e.clientX + 2 + 'px',
+      display: 'block'
+    });
   });
   $(document).click(function() {
     return $('.context-menu').hide();

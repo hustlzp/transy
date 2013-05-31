@@ -17,9 +17,14 @@ saveArticle = ->
       type: $(this).data('type')
       state: if $(this).find('.ec-divider').attr('data-state') == 'true' then true else false
 
+  # compute completion
+  completeNum = 0
+  for p in article.paraList when p.state == true
+    completeNum++
+  article.completion = (completeNum / article.paraList.length).toFixed(2)
+
   # post
   articleId = $('.title').data('article-id')
-
   $.ajax
     url: "/article/#{articleId}/edit"
     method: 'POST'
@@ -39,17 +44,18 @@ adjustHeight = (para)->
   para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
 
 $ ->
+  # init divider's height
   $('.para').each ->
     adjustHeight($(this))
 
-  # dynamic change the height of divider
+  # dynamic change divider's height
   $('.en, .cn').keyup ->
     adjustHeight($(this).parent())
 
   $('.en, .cn').blur ->
     adjustHeight($(this).parent())
 
-  # show the focus flag when hover
+  # show the focus-flag when hover
   $('.para').mouseover ->
     $('.focus-flag').css('visibility', 'hidden')
     $(this).find('.focus-flag').css('visibility', 'visible')
@@ -70,19 +76,21 @@ $ ->
   # global var, save the item be clicked
   clickItem = null
 
-  # context menu handle
-  $('.para').each ->
-    $(this)[0].oncontextmenu = (e)->
-      # pass target to global var
+  # handle context menu event by delegate
+  $(document).on 'contextmenu', '.para', (e)->
+    # find the .para element
+    if $(e.target).hasClass('para')
+      clickItem = e.target
+    else
       clickItem = $(e.target).parents('.para').first()[0]
 
-      # prevent the browser's context menu
-      e.preventDefault()
+    # prevent the browser's context menu
+    e.preventDefault()
 
-      $('.context-menu').css
-        top: e.clientY + 2 + 'px'
-        left: e.clientX + 2 + 'px'
-        display: 'block'
+    $('.context-menu').css
+      top: e.clientY + 2 + 'px'
+      left: e.clientX + 2 + 'px'
+      display: 'block'
 
   # context menu hide when click
   $(document).click ->
