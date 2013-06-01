@@ -1,6 +1,14 @@
+###
+Route Rules
+###
+
 site = require('./controllers/site')
 article = require('./controllers/article')
 
+###
+Apply route rules to app object
+@param {app object} app - the app
+###
 module.exports = (app)->
   # site
   # home page

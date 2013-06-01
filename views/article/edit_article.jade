@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+  script(src='/js/jquery.imagesLoaded.js')
   script(src='/js/ts.edit-article.js')
 
   a(href="/article/#{article.id}").back-button.place-right
@@ -20,10 +21,18 @@ block content
     
   each p in article.paraList
     div.clearfix.para(data-type='#{p.type}')
-      div.en(contenteditable="true") #{p.en}
-      div.ec-divider(data-state='#{p.state}')
-        div.focus-flag
-      div.cn(contenteditable="true") #{p.cn}
+      if p.type == 'image'
+        div.en
+          img(src='#{p.en}')
+        div.ec-divider(data-state='#{p.state}')
+          div.focus-flag
+        div.cn
+          img(src='#{p.cn}')
+      else
+        div.en(contenteditable='true') #{p.en}
+        div.ec-divider(data-state='#{p.state}')
+          div.focus-flag
+        div.cn(contenteditable='true') #{p.cn}
 
   button.btn-save.place-right
     i.icon-save
@@ -31,7 +40,7 @@ block content
 
   //- context menu
   ul.context-menu
-    li 格式
+    li.only-for-text 格式
       ul.sub-menu
         li.mheader 主标题
         li.sheader 子标题

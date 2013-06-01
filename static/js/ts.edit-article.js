@@ -15,11 +15,25 @@ saveArticle = function() {
     paraList: []
   };
   $('.para').each(function() {
+    var cn, en, state, type;
+    type = $(this).attr('data-type');
+    if (type === 'image') {
+      en = $(this).find('.en img').attr('src');
+      cn = en;
+    } else {
+      en = $(this).find('.en').text().trim();
+      cn = $(this).find('.cn').text().trim();
+    }
+    if ($(this).find('.ec-divider').attr('data-state') === 'true') {
+      state = true;
+    } else {
+      state = false;
+    }
     return article.paraList.push({
-      en: $(this).find('.en').text().trim(),
-      cn: $(this).find('.cn').text().trim(),
-      type: $(this).data('type'),
-      state: $(this).find('.ec-divider').attr('data-state') === 'true' ? true : false
+      en: en,
+      cn: cn,
+      type: type,
+      state: state
     });
   });
   completeNum = 0;
@@ -48,6 +62,8 @@ saveArticle = function() {
 
 /*
 Dynamic change the height of the divider bar
+@method adjustHeight
+@param {DOM Div Element} para - the div element has class 'para'
 */
 
 
@@ -70,6 +86,9 @@ $(function() {
   $('.en, .cn').blur(function() {
     return adjustHeight($(this).parent());
   });
+  imagesLoaded($('.para')).on('progress', function(instance, image) {
+    return adjustHeight($(image.img).parents('.para'));
+  });
   $('.para').mouseover(function() {
     $('.focus-flag').css('visibility', 'hidden');
     return $(this).find('.focus-flag').css('visibility', 'visible');
@@ -88,6 +107,11 @@ $(function() {
       clickItem = e.target;
     } else {
       clickItem = $(e.target).parents('.para').first()[0];
+    }
+    if ($(clickItem).attr('data-type') === 'image') {
+      $('.context-menu').find('.only-for-text').hide();
+    } else {
+      $('.context-menu').find('.only-for-text').show();
     }
     e.preventDefault();
     return $('.context-menu').css({
@@ -111,13 +135,20 @@ $(function() {
         $(clickItem).attr('data-type', c);
         return adjustHeight($(clickItem));
       case 'add-para':
-        $(clickItem).after("<textarea class='add-content-wap' rows=4></textarea>");
+        $(clickItem).after("<textarea class='add-content-wap' placeholder='文本、图片地址' rows=4></textarea>");
         return $('.add-content-wap').focus().blur(function() {
           var addContent;
-          addContent = $(this).val();
+          addContent = $(this).val().trim();
           if (addContent !== "") {
-            $(clickItem).after("<div data-type='text' class='para clearfix type-text'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
-            adjustHeight($(clickItem).next());
+            if (addContent.match(/\b(http:\/\/)/) && addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)) {
+              $(clickItem).after("<div data-type='image' class='para clearfix'>\n  <div class='en'>\n    <img src='" + addContent + "' /></div\n  ><div class='ec-divider' data-state='true'></div\n  ><div class='cn'>\n    <img src='" + addContent + "' />\n  </div>\n</div>");
+              imagesLoaded($(clickItem).next(), function() {
+                return adjustHeight($(clickItem).next());
+              });
+            } else {
+              $(clickItem).after("<div data-type='text' class='para clearfix'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
+              adjustHeight($(clickItem).next());
+            }
           }
           $(this).detach();
           return adjustHeight($(clickItem).next());

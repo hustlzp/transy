@@ -1,5 +1,5 @@
 ###
-  Article related
+Article Controller
 ###
 
 Article = require('../models/article')
@@ -78,7 +78,7 @@ exports.edit = (req, res)->
 
 # delete article
 exports.delete = (req, res)->
-  Article.remove( _id: req.params.id , (err)->
+  Article.remove(_id: req.params.id , (err)->
     if(!err)
       res.redirect('/')
     else

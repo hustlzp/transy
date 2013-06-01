@@ -1,5 +1,5 @@
 ###
-  Home page
+Site Controller
 ###
 
 Article = require('../models/article')

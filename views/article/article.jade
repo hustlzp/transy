@@ -60,6 +60,8 @@ block content
             blockquote.en #{p.en}
             if p.cn !== ''
               blockquote.cn #{p.cn}
+          else if p.type === 'image'
+            img(src='#{p.en}')
 
     div.span4
       div.button-set.place-right(data-role='button-set')

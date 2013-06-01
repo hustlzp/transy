@@ -86,7 +86,7 @@
         position: absolute;
         top: 10px;
         right: 10px;
-        color: gray;
+        color: #333;
     }
     
     .abstract-wap{
@@ -102,7 +102,7 @@
             font-size: 20px;
             font-weight: bold;
             color: black;
-            margin-bottom: 15px;
+
         }
         h4{
             font-weight: bold;
@@ -117,6 +117,10 @@
             border-left: 4px solid #bbb;
             padding: 5px 20px; 
             background-color: rgba(204, 204, 204, 0.1);
+        }
+        img{
+            margin-bottom: 10px;
+            max-width: 100%;
         }
     }
 }
@@ -199,7 +203,7 @@
                 left: 0;
                 background-color: black;
                 visibility: hidden;
-                z-index: 10000;
+                z-index: 100;
             }
 
             &[data-state='true']{
@@ -231,12 +235,18 @@
             background-color: rgba(204, 204, 204, 0.1);
         }
     }
+    .para[data-type="image"]{
+        img{
+            max-width: 375px;
+        }
+    }
 
     .context-menu{
         margin: 0;
         display: none;
         list-style: none;
         position: fixed;
+        z-index: 10000;
 
         & > li{
             font-size: 12px;
