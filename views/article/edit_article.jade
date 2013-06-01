@@ -4,7 +4,7 @@ block content
   script(src='/js/jquery.imagesLoaded.js')
   script(src='/js/ts.edit-article.js')
 
-  a(href="/article/#{article.id}").back-button.place-right
+  //- a(href="/article/#{article.id}").back-button.place-right
 
   div.title(data-article-id='#{article.id}')
     h2.en-title(contenteditable='true') #{article.enTitle}
@@ -42,8 +42,12 @@ block content
     div.save-state
       img.state-waiting(src='/images/preloader-w8-cycle-white.gif')
       i.icon-checkmark.state-ok
-    button.save-btn
-      | Save
+    //- button.save-btn Save
+    div.toolbar
+      button.save-btn
+        i.icon-save
+      //- button
+      //-   i.
 
   //- context menu
   ul.context-menu

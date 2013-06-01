@@ -1,5 +1,6 @@
 ###
 Save article, triggle when click the save btn, or press Ctrl-S
+@method saveArticle
 ###
 
 saveArticle = ->
@@ -7,7 +8,7 @@ saveArticle = ->
   $('.save-state .state-waiting').show()
   $('.save-state .state-ok').hide()
   $('.save-state').animate
-    right: '90px', 200
+    right: '32px', 200
   
   # build article object
   article = 
