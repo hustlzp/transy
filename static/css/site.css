@@ -14,7 +14,7 @@
 #page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:5px 20px;background-color:rgba(204, 204, 204, 0.1);}
 #page-article .para-list img{margin-bottom:10px;max-width:100%;}
 #page-edit-article [contenteditable]{outline:none;}
-#page-edit-article .title .cn-title,#page-edit-article .title .en-title{padding-bottom:15px;margin:0;float:left outline: none;min-width:50px;}
+#page-edit-article .title .cn-title,#page-edit-article .title .en-title{padding-bottom:15px;margin:0;float:left;outline:none;min-width:50px;}
 #page-edit-article .title .title-divider{float:left;padding:0 15px;margin:0;}
 #page-edit-article .author-wap,#page-edit-article .url-wap,#page-edit-article .abstract-wap{margin-bottom:10px;}#page-edit-article .author-wap .label,#page-edit-article .url-wap .label,#page-edit-article .abstract-wap .label{margin-right:10px;}
 #page-edit-article .author-wap input,#page-edit-article .url-wap input,#page-edit-article .abstract-wap input{border:0;outline:0;min-width:90%;font-family:'Segoe UI','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:300;}
