@@ -5,7 +5,7 @@
 #page-index .article-item .completion-info .completion-num{text-align:right;}
 #page-article .span8{position:relative;}
 #page-article .title{margin-bottom:15px;}
-#page-article .url-wap,#page-article .abstract-wap,#page-article .completion-wap{margin-bottom:10px;}#page-article .url-wap .label,#page-article .abstract-wap .label,#page-article .completion-wap .label{margin-right:10px;}
+#page-article .author-wap,#page-article .url-wap,#page-article .abstract-wap,#page-article .completion-wap{margin-bottom:10px;}#page-article .author-wap .label,#page-article .url-wap .label,#page-article .abstract-wap .label,#page-article .completion-wap .label{margin-right:10px;}
 #page-article .completion{font-size:40px;position:absolute;top:10px;right:10px;color:#333;}
 #page-article .abstract-wap{border-bottom:1px solid lightgray;padding-bottom:15px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:20px;font-weight:bold;color:black;}
@@ -16,7 +16,7 @@
 #page-edit-article [contenteditable]{outline:none;}
 #page-edit-article .title{margin-bottom:5px;}#page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;display:inline-block;outline:none;min-width:50px;}
 #page-edit-article .title .title-divider{display:inline-block;padding:0 15px;}
-#page-edit-article .url-wap,#page-edit-article .abstract-wap{margin-bottom:10px;}#page-edit-article .url-wap .label,#page-edit-article .abstract-wap .label{margin-right:10px;}
+#page-edit-article .author-wap,#page-edit-article .url-wap,#page-edit-article .abstract-wap{margin-bottom:10px;}#page-edit-article .author-wap .label,#page-edit-article .url-wap .label,#page-edit-article .abstract-wap .label{margin-right:10px;}
 #page-edit-article .abstract-wap{border-bottom:1px solid lightgray;padding-bottom:15px;margin-bottom:15px;}
 #page-edit-article .para{margin-bottom:5px;cursor:text;}#page-edit-article .para .en,#page-edit-article .para .cn{float:left;display:inline-block;vertical-align:text-top;text-align:justify;}
 #page-edit-article .para .en{width:515px;}
@@ -31,3 +31,4 @@
 #page-edit-article .context-menu>li .sub-menu{visibility:hidden;position:absolute;top:0;left:68px;list-style:none;margin:0;border-left:1px solid white;width:60px;}#page-edit-article .context-menu>li .sub-menu li{font-size:12px;padding:5px 10px;background-color:#2b5797;color:white;border-bottom:1px solid white;cursor:pointer;}#page-edit-article .context-menu>li .sub-menu li:hover{background-color:#fc6400;background-color:#2d89ef;}
 #page-edit-article .context-menu>li:hover{background-color:#2d89ef;}#page-edit-article .context-menu>li:hover .sub-menu{visibility:visible;}
 #page-edit-article .add-content-wap{border:1px #bababa solid;width:100%;padding:5px;background-color:#fff;outline:0;margin:10px 0 15px 0;}
+#page-edit-article .btn-save{position:fixed;bottom:0;right:0;margin-bottom:8px;margin-right:8px;}

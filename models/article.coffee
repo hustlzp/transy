@@ -15,6 +15,7 @@ Article = new Schema
   enTitle: String
   cnTitle: String
   url: String
+  author: String
   abstract: String
   completion: Number
   createTime: Date

@@ -34,6 +34,10 @@ block content
       //-   span #{a.completion*100%
       span.completion #{article.completion*100}%
 
+      p.author-wap
+        span.label.warning 作者
+        span #{article.author}
+
       p.url-wap
         span.label.warning 链接
         a(href='#{article.url}', target="_blank") #{article.url}

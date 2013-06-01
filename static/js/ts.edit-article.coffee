@@ -3,10 +3,13 @@ Save article, triggle when click the save btn, or press Ctrl-S
 ###
 
 saveArticle = ->
+  $('.btn-save').html("<img style='width:20px;margin-top:2px;' src='/images/preloader-w8-cycle-black.gif' />")
+
   # build article object
   article = 
     enTitle: $('.en-title').text()
     cnTitle: $('.cn-title').text()
+    author: $('.author').text()
     url: $('.url').text()
     abstract: $('.abstract').text()
     paraList: []
@@ -37,7 +40,7 @@ saveArticle = ->
   for p in article.paraList when p.state == true
     completeNum++
   article.completion = (completeNum / article.paraList.length).toFixed(2)
-
+  
   # post
   articleId = $('.title').data('article-id')
   $.ajax
@@ -47,7 +50,8 @@ saveArticle = ->
       article: article
     success: (data)->
       if data.result == 1
-        alert('saved')
+        setTimeout("$('.btn-save').text('保存')", 1900)
+        
 
 
 ###
@@ -61,7 +65,7 @@ adjustHeight = (para)->
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
   para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
 
-$ ->
+$ ->  
   # init divider's height
   $('.para').each ->
     adjustHeight($(this))
@@ -93,26 +97,30 @@ $ ->
   $('.btn-save').click(saveArticle)
 
   # save when press Ctrl-S
-  # todo
+  $(document).keydown (e)->
+    if e.ctrlKey and e.which == 83
+      e.preventDefault()
+      saveArticle()
   
   # global var, save the item be clicked
   clickItem = null
 
-  # handle context menu event by delegate
+  # handle context-menu event by delegate
   $(document).on('contextmenu', '.para', (e)->
+    # prevent the browser's default context-menu
+    e.preventDefault()
+
     # find the .para element
     if $(e.target).hasClass('para')
       clickItem = e.target
     else
       clickItem = $(e.target).parents('.para').first()[0]
 
+    # image para should'n display 'switch type' submenu
     if $(clickItem).attr('data-type') == 'image'
       $('.context-menu').find('.only-for-text').hide()
     else
       $('.context-menu').find('.only-for-text').show()
-
-    # prevent the browser's context menu
-    e.preventDefault()
 
     $('.context-menu').css
       top: e.clientY + 2 + 'px'

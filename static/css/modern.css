@@ -3279,8 +3279,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 .metrouicss .button:active,
 .metrouicss button.default:active,
 .metrouicss .button.default:active {
-  top: 1px;
-  left: 1px;
+/*  top: 1px;
+  left: 1px;*/
 }
 .metrouicss button:disabled,
 .metrouicss .button:disabled,

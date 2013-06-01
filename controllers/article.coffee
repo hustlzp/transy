@@ -26,6 +26,7 @@ exports.add = (req, res)->
   article = new Article
     enTitle: req.body.title
     url: req.body.url
+    author: req.body.author
     completion: 0
     createTime: new Date()
     updateTime: new Date()
@@ -63,6 +64,7 @@ exports.edit = (req, res)->
     a = req.body.article
     data.enTitle = a.enTitle
     data.cnTitle = a.cnTitle
+    data.author = a.author
     data.url = a.url
     data.abstract = a.abstract
     data.completion = a.completion

@@ -7,9 +7,11 @@ var adjustHeight, saveArticle;
 
 saveArticle = function() {
   var article, articleId, completeNum, p, _i, _len, _ref;
+  $('.btn-save').html("<img style='width:20px;margin-top:2px;' src='/images/preloader-w8-cycle-black.gif' />");
   article = {
     enTitle: $('.en-title').text(),
     cnTitle: $('.cn-title').text(),
+    author: $('.author').text(),
     url: $('.url').text(),
     abstract: $('.abstract').text(),
     paraList: []
@@ -54,7 +56,7 @@ saveArticle = function() {
     },
     success: function(data) {
       if (data.result === 1) {
-        return alert('saved');
+        return setTimeout("$('.btn-save').text('保存')", 1900);
       }
     }
   });
@@ -101,6 +103,12 @@ $(function() {
     }
   });
   $('.btn-save').click(saveArticle);
+  $(document).keydown(function(e) {
+    if (e.ctrlKey && e.which === 83) {
+      e.preventDefault();
+      return saveArticle();
+    }
+  });
   clickItem = null;
   $(document).on('contextmenu', '.para', function(e) {
     if ($(e.target).hasClass('para')) {
