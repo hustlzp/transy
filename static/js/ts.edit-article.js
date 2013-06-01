@@ -7,13 +7,17 @@ var adjustHeight, saveArticle;
 
 saveArticle = function() {
   var article, articleId, completeNum, p, _i, _len, _ref;
-  $('.btn-save').html("<img style='width:20px;margin-top:2px;' src='/images/preloader-w8-cycle-black.gif' />");
+  $('.save-state .state-waiting').show();
+  $('.save-state .state-ok').hide();
+  $('.save-state').animate({
+    right: '90px'
+  }, 200);
   article = {
     enTitle: $('.en-title').text(),
     cnTitle: $('.cn-title').text(),
-    author: $('.author').text(),
-    url: $('.url').text(),
-    abstract: $('.abstract').text(),
+    author: $('.author').val(),
+    url: $('.url').val(),
+    abstract: $('.abstract').val(),
     paraList: []
   };
   $('.para').each(function() {
@@ -56,7 +60,9 @@ saveArticle = function() {
     },
     success: function(data) {
       if (data.result === 1) {
-        return setTimeout("$('.btn-save').text('保存')", 1900);
+        $('.save-state .state-waiting').hide();
+        $('.save-state .state-ok').show();
+        return setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000);
       }
     }
   });
@@ -102,7 +108,7 @@ $(function() {
       return $(this).attr('data-state', 'false');
     }
   });
-  $('.btn-save').click(saveArticle);
+  $('.save-btn').click(saveArticle);
   $(document).keydown(function(e) {
     if (e.ctrlKey && e.which === 83) {
       e.preventDefault();
@@ -111,6 +117,7 @@ $(function() {
   });
   clickItem = null;
   $(document).on('contextmenu', '.para', function(e) {
+    e.preventDefault();
     if ($(e.target).hasClass('para')) {
       clickItem = e.target;
     } else {
@@ -121,7 +128,6 @@ $(function() {
     } else {
       $('.context-menu').find('.only-for-text').show();
     }
-    e.preventDefault();
     return $('.context-menu').css({
       top: e.clientY + 2 + 'px',
       left: e.clientX + 2 + 'px',
@@ -143,7 +149,7 @@ $(function() {
         $(clickItem).attr('data-type', c);
         return adjustHeight($(clickItem));
       case 'add-para':
-        $(clickItem).after("<textarea class='add-content-wap' placeholder='文本、图片地址' rows=4></textarea>");
+        $(clickItem).after("<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>");
         return $('.add-content-wap').focus().blur(function() {
           var addContent;
           addContent = $(this).val().trim();

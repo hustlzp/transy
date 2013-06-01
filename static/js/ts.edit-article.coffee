@@ -3,15 +3,19 @@ Save article, triggle when click the save btn, or press Ctrl-S
 ###
 
 saveArticle = ->
-  $('.btn-save').html("<img style='width:20px;margin-top:2px;' src='/images/preloader-w8-cycle-black.gif' />")
-
+  # switch to waiting state, and show the state wap
+  $('.save-state .state-waiting').show()
+  $('.save-state .state-ok').hide()
+  $('.save-state').animate
+    right: '90px', 200
+  
   # build article object
   article = 
     enTitle: $('.en-title').text()
     cnTitle: $('.cn-title').text()
-    author: $('.author').text()
-    url: $('.url').text()
-    abstract: $('.abstract').text()
+    author: $('.author').val()
+    url: $('.url').val()
+    abstract: $('.abstract').val()
     paraList: []
 
   $('.para').each ->
@@ -50,9 +54,10 @@ saveArticle = ->
       article: article
     success: (data)->
       if data.result == 1
-        setTimeout("$('.btn-save').text('保存')", 1900)
-        
-
+        # switch to ok state, keep 1s, and hide the state wap
+        $('.save-state .state-waiting').hide()
+        $('.save-state .state-ok').show()
+        setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)
 
 ###
 Dynamic change the height of the divider bar
@@ -94,7 +99,7 @@ $ ->
       $(this).attr('data-state', 'false')      
 
   # save when press save button
-  $('.btn-save').click(saveArticle)
+  $('.save-btn').click(saveArticle)
 
   # save when press Ctrl-S
   $(document).keydown (e)->
@@ -141,7 +146,7 @@ $ ->
         adjustHeight($(clickItem))
       when 'add-para'
         # $(clickItem).after("<div class='add-content-wap' contenteditable=true></div>")
-        $(clickItem).after("<textarea class='add-content-wap' placeholder='文本、图片地址' rows=4></textarea>")
+        $(clickItem).after("<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>")
         $('.add-content-wap').focus().blur ->
           # addContent = $(this).val().replace(/\n+/g, '<br>')
           addContent = $(this).val().trim()

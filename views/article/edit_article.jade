@@ -13,15 +13,15 @@ block content
 
   div.author-wap
     span.label.warning 作者
-    span.author(contenteditable='true') #{article.author}
+    input.author(value='#{article.author}')
   
   div.url-wap
     span.label.warning 链接
-    span.url(contenteditable='true') #{article.url}
+    input.url(value='#{article.url}')
 
   div.abstract-wap
     span.label.warning 摘要
-    span.abstract(contenteditable='true') #{article.abstract}
+    input.abstract(value='#{article.abstract}')
     
   each p in article.paraList
     div.clearfix.para(data-type='#{p.type}')
@@ -38,9 +38,12 @@ block content
           div.focus-flag
         div.cn(contenteditable='true') #{p.cn}
 
-  button.btn-save
-    //- i.icon-save
-    | 保存
+  div.save-wap
+    div.save-state
+      img.state-waiting(src='/images/preloader-w8-cycle-white.gif')
+      i.icon-checkmark.state-ok
+    button.save-btn
+      | Save
 
   //- context menu
   ul.context-menu
