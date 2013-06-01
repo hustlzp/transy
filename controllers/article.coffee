@@ -28,6 +28,7 @@ exports.add = (req, res)->
     url: req.body.url
     author: req.body.author
     completion: 0
+    abstract: ''
     createTime: new Date()
     updateTime: new Date()
     paraList: []
