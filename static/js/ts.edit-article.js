@@ -51,7 +51,7 @@ saveArticle = function() {
       completeNum++;
     }
   }
-  article.completion = (completeNum / article.paraList.length).toFixed(2);
+  article.completion = parseInt(completeNum / article.paraList.length * 100);
   articleId = $('.title').data('article-id');
   return $.ajax({
     url: "/article/" + articleId + "/edit",

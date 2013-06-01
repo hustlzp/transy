@@ -44,7 +44,7 @@ saveArticle = ->
   completeNum = 0
   for p in article.paraList when p.state == true
     completeNum++
-  article.completion = (completeNum / article.paraList.length).toFixed(2)
+  article.completion = parseInt(completeNum / article.paraList.length * 100)
   
   # post
   articleId = $('.title').data('article-id')
