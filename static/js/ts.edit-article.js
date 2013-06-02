@@ -7,7 +7,7 @@ Save article, triggle when click the save btn, or press Ctrl-S
 var adjustHeight, saveArticle;
 
 saveArticle = function() {
-  var article, articleId, completeNum, p, _i, _len, _ref;
+  var article, articleId, completeChar, p, totalChar, _i, _len, _ref;
   $('.save-state .state-waiting').show();
   $('.save-state .state-ok').hide();
   $('.save-state').animate({
@@ -43,15 +43,17 @@ saveArticle = function() {
       state: state
     });
   });
-  completeNum = 0;
+  totalChar = 0;
+  completeChar = 0;
   _ref = article.paraList;
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     p = _ref[_i];
+    totalChar += p.en.length;
     if (p.state === true) {
-      completeNum++;
+      completeChar += p.en.length;
     }
   }
-  article.completion = parseInt(completeNum / article.paraList.length * 100);
+  article.completion = Math.ceil(completeChar / totalChar * 100);
   articleId = $('.title').data('article-id');
   return $.ajax({
     url: "/article/" + articleId + "/edit",

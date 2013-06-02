@@ -41,10 +41,13 @@ saveArticle = ->
       state: state
 
   # compute completion
-  completeNum = 0
-  for p in article.paraList when p.state == true
-    completeNum++
-  article.completion = parseInt(completeNum / article.paraList.length * 100)
+  totalChar = 0
+  completeChar = 0
+  for p in article.paraList 
+    totalChar += p.en.length
+    if p.state == true
+      completeChar += p.en.length
+  article.completion = Math.ceil(completeChar / totalChar * 100)
   
   # post
   articleId = $('.title').data('article-id')
