@@ -102,16 +102,18 @@ $(function() {
         return $('.add-content-wap').focus().blur(function() {
           var addContent;
           addContent = $(this).val().trim();
-          if (addContent !== "") {
-            if (addContent.match(/\b(http:\/\/)/) && addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)) {
-              $(clickItem).after("<div data-type='image' class='para clearfix'>\n  <div class='en'>\n    <img src='" + addContent + "' /></div\n  ><div class='ec-divider' data-state='true'></div\n  ><div class='cn'>\n    <img src='" + addContent + "' />\n  </div>\n</div>");
-              imagesLoaded($(clickItem).next(), function() {
-                return adjustHeight($(clickItem).next());
-              });
-            } else {
-              $(clickItem).after("<div data-type='text' class='para clearfix'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
-              adjustHeight($(clickItem).next());
-            }
+          if (addContent === "") {
+            $(this).detach();
+            return;
+          }
+          if (addContent.match(/\bhttp:\/\//) && addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)) {
+            $(clickItem).after("<div data-type='image' class='para clearfix'>\n  <div class='en'>\n    <img src='" + addContent + "' /></div\n  ><div class='ec-divider' data-state='true'></div\n  ><div class='cn'>\n    <img src='" + addContent + "' />\n  </div>\n</div>");
+            imagesLoaded($(clickItem).next(), function() {
+              return adjustHeight($(clickItem).next());
+            });
+          } else {
+            $(clickItem).after("<div data-type='text' class='para clearfix'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
+            adjustHeight($(clickItem).next());
           }
           return $(this).detach();
         });
@@ -157,7 +159,7 @@ Whether the two object is equal
 @method isArticleEqual
 @param {Object} articleA - the article Object A
 @param {Object} articleA - the article Object B
-@return {Boolen} true means equal, and false not
+@return {Boolen} true means equal, false not
 */
 
 

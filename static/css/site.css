@@ -22,7 +22,7 @@
 #page-edit-article .para{margin-bottom:5px;cursor:text;}#page-edit-article .para .en,#page-edit-article .para .cn{float:left;display:inline-block;vertical-align:text-top;text-align:justify;}
 #page-edit-article .para .en{width:515px;}
 #page-edit-article .para .cn{width:375px;}
-#page-edit-article .para .ec-divider{float:left;display:inline-block;width:10px;margin-left:20px;margin-right:20px;vertical-align:text-top;background-color:#aaa;cursor:pointer;position:relative;}#page-edit-article .para .ec-divider .focus-flag{width:10px;height:7px;position:absolute;top:0;left:0;background-color:black;visibility:hidden;z-index:100;}
+#page-edit-article .para .ec-divider{float:left;display:inline-block;width:10px;margin-left:20px;margin-right:20px;vertical-align:text-top;background-color:#aaa;cursor:pointer;position:relative;min-height:30px;}#page-edit-article .para .ec-divider .focus-flag{width:10px;height:7px;position:absolute;top:0;left:0;background-color:black;visibility:hidden;z-index:100;}
 #page-edit-article .para .ec-divider[data-state='true']{background-color:#2d89ef;}
 #page-edit-article .para[data-type="mheader"] .en,#page-edit-article .para[data-type="mheader"] .cn{font-size:20px;font-weight:bold;}
 #page-edit-article .para[data-type="sheader"] .en,#page-edit-article .para[data-type="sheader"] .cn{font-weight:bold;}
