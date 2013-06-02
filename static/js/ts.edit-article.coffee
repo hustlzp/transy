@@ -175,7 +175,6 @@ saveArticle = ->
         $('.save-state .state-ok').show()
         setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)
 
-
 ###
 Whether the two object is equal
 @method isArticleEqual
