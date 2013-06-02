@@ -48,21 +48,19 @@ $(function() {
       return "更改尚未保存，";
     }
   });
-  $('.cn').keydown(function(e) {
-    if (e.which === 9) {
-      e.preventDefault();
-      return $(this).parents('.para').next().find('.cn').focus();
-    }
-  });
   $('.para').keydown(function(e) {
     var divider;
     if (e.ctrlKey && e.which === 13) {
       divider = $(this).find('.ec-divider');
       if (divider.attr('data-state') === 'false') {
-        return divider.attr('data-state', 'true');
+        divider.attr('data-state', 'true');
       } else {
-        return divider.attr('data-state', 'false');
+        divider.attr('data-state', 'false');
       }
+    }
+    if (e.which === 9) {
+      e.preventDefault();
+      return $(this).nextAll("[data-type!='image']").first().find('.cn').focus();
     }
   });
   $(document).on('contextmenu', '.para', function(e) {

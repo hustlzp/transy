@@ -61,27 +61,26 @@ $ ->
       return "更改尚未保存，"
   )
 
-  # when press tab in cn area, the next cn foucs
-  $('.cn').keydown (e)->
-    if e.which == 9
-      e.preventDefault()
-      $(this).parents('.para').next().find('.cn').focus()
-
-  # when press Ctrl+Enter in para, switch the state of para
+  # para key event
   $('.para').keydown (e)->
+    # Ctrl+Enter, switch the state of para
     if e.ctrlKey and e.which == 13
       divider = $(this).find('.ec-divider')
       if divider.attr('data-state') == 'false'
         divider.attr('data-state', 'true')
       else
         divider.attr('data-state', 'false')
+    # Tab, the next cn foucs (skip image)
+    if e.which == 9
+      e.preventDefault()
+      $(this).nextAll("[data-type!='image']").first().find('.cn').focus()
 
   # handle context-menu event by delegate
   $(document).on('contextmenu', '.para', (e)->
     # prevent the browser's default context-menu
     e.preventDefault()
 
-    # find the .para element
+    # bind the .para element to global var
     if $(e.target).hasClass('para')
       clickItem = e.target
     else

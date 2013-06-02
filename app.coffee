@@ -20,6 +20,7 @@ mongoose.connect('mongodb://localhost:27017/transy')
 
 # all environments
 app.set('port', process.env.PORT || 3000)
+app.set('ip', '127.0.0.1')
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
 app.use(express.favicon())
@@ -36,6 +37,6 @@ if 'development' == app.get('env')
 # apply route rules
 routes(app)
 
-http.createServer(app).listen(app.get('port'), ->
-  console.log('Express server listening on port ' + app.get('port'))
+http.createServer(app).listen(app.get('port'), app.get('ip'), 511, ->
+  console.log('Express server listening on ' + app.get('ip') + ':' + app.get('port'))
 )
