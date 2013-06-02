@@ -8,22 +8,32 @@ block content
         if not confirm('Really to delete this article?')
           false
 
+      # display mode: ec, cn ,en
+      mode = 'ec'
+      id = $('.title').data('article-id')
+
       # select view mode
       $('.btn-sel-ec').click ->
         $('.en').show()
         $('.cn').show()
+        mode = 'ec'
 
       $('.btn-sel-en').click ->
         $('.en').show()
         $('.cn').hide()
+        mode = 'en'
 
       $('.btn-sel-cn').click ->
         $('.en').hide()
         $('.cn').show()
+        mode = 'cn'
+
+      $('.btn-output').click ->
+        window.open("/article/#{id}/output/#{mode}", "_blank")
 
   div.row
     div.span8
-      div.title
+      div.title(data-article-id='#{article.id}')
         h2.en.enTitle #{article.enTitle}
         h2.cn.cnTitle #{article.cnTitle}
 

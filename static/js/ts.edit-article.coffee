@@ -1,83 +1,26 @@
-###
-Save article, triggle when click the save btn, or press Ctrl-S
-@method saveArticle
-###
+# global var, use to save the item be clicked
+clickItem = null
 
-saveArticle = ->
-  # switch to waiting state, and show the state wap
-  $('.save-state .state-waiting').show()
-  $('.save-state .state-ok').hide()
-  $('.save-state').animate
-    right: '32px', 200
-  
-  # build article object
-  article = 
-    enTitle: $('.en-title').text()
-    cnTitle: $('.cn-title').text()
-    author: $('.author').val()
-    url: $('.url').val()
-    abstract: $('.abstract').val()
-    paraList: []
+# global var, whether the data need save before leave this page
+articleObj = null
 
-  $('.para').each ->
-    type = $(this).attr('data-type')
-    
-    if type == 'image'
-      en = $(this).find('.en img').attr('src')
-      cn = en
-    else
-      en = $(this).find('.en').text().trim()
-      cn = $(this).find('.cn').text().trim()
-
-    if $(this).find('.ec-divider').attr('data-state') == 'true'
-      state = true
-    else
-      state = false
-
-    article.paraList.push
-      en: en
-      cn: cn
-      type: type
-      state: state
-
-  # compute completion
-  totalChar = 0
-  completeChar = 0
-  for p in article.paraList 
-    totalChar += p.en.length
-    if p.state == true
-      completeChar += p.en.length
-  article.completion = Math.ceil(completeChar / totalChar * 100)
-  
-  # post
-  articleId = $('.title').data('article-id')
-  $.ajax
-    url: "/article/#{articleId}/edit"
-    method: 'POST'
-    data:
-      article: article
-    success: (data)->
-      if data.result == 1
-        # switch to ok state, keep 1s, and hide the state wap
-        $('.save-state .state-waiting').hide()
-        $('.save-state .state-ok').show()
-        setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)
-
-###
-Dynamic change the height of the divider bar
-@method adjustHeight
-@param {DOM Div Element} para - the div element has class 'para'
-###
-adjustHeight = (para)->
-  enHeight = para.find('.en').innerHeight()
-  cnHeight = para.find('.cn').innerHeight()
-  dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
-
-$ ->  
+# must use window.onload to adjust again
+# because when document is ready, font resource hasn't been ready
+# so the height of en and cn may not be precise
+# but when window is ready, all resources are ready
+# so the height is precise
+$(window).load ->
   # init divider's height
   $('.para').each ->
     adjustHeight($(this))
+
+$ ->
+  # init divider's height
+  $('.para').each ->
+    adjustHeight($(this))
+
+  # init article objects
+  articleObj = buildArticleObj()
 
   # dynamic change divider's height
   $('.en, .cn').keyup ->
@@ -110,9 +53,27 @@ $ ->
     if e.ctrlKey and e.which == 83
       e.preventDefault()
       saveArticle()
-  
-  # global var, save the item be clicked
-  clickItem = null
+
+  # alarm when window close and changes have not been saved
+  $(window).on('beforeunload', ->
+    if not isArticleEqual(articleObj, buildArticleObj())
+      return "更改尚未保存，"
+  )
+
+  # when press tab in cn area, the next cn foucs
+  $('.cn').keydown (e)->
+    if e.which == 9
+      e.preventDefault()
+      $(this).parents('.para').next().find('.cn').focus()
+
+  # when press Ctrl+Enter in para, switch the state of para
+  $('.para').keydown (e)->
+    if e.ctrlKey and e.which == 13
+      divider = $(this).find('.ec-divider')
+      if divider.attr('data-state') == 'false'
+        divider.attr('data-state', 'true')
+      else
+        divider.attr('data-state', 'false')
 
   # handle context-menu event by delegate
   $(document).on('contextmenu', '.para', (e)->
@@ -146,7 +107,6 @@ $ ->
     switch c
       when 'mheader', 'sheader', 'text', 'quote', 'code'
         $(clickItem).attr('data-type', c)
-        # ajust height
         adjustHeight($(clickItem))
       when 'add-para'
         # $(clickItem).after("<div class='add-content-wap' contenteditable=true></div>")
@@ -195,8 +155,101 @@ $ ->
         #     adjustHeight(now.next())
         #     now = now.next()
         #   $(this).detach()
-
-          # ajust height
-          adjustHeight($(clickItem).next())
       when 'remove-para'
         $(clickItem).detach()
+
+###
+Save article, triggle when click the save btn, or press Ctrl-S
+@method saveArticle
+###
+saveArticle = ->
+  # switch to waiting state, and show the state wap
+  $('.save-state .state-waiting').show()
+  $('.save-state .state-ok').hide()
+  $('.save-state').animate
+    right: '32px', 200
+  
+  # build article object
+  articleObj = buildArticleObj()
+  
+  # post
+  articleId = $('.title').data('article-id')
+  $.ajax
+    url: "/article/#{articleId}/edit"
+    method: 'POST'
+    data:
+      article: articleObj
+    success: (data)->
+      if data.result == 1
+        # switch to ok state, keep 1s, and hide the state wap
+        $('.save-state .state-waiting').hide()
+        $('.save-state .state-ok').show()
+        setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)
+
+
+###
+Whether the two object is equal
+@method isArticleEqual
+@param {Object} articleA - the article Object A
+@param {Object} articleA - the article Object B
+@return {Boolen} true means equal, and false not
+###
+isArticleEqual = (articleA, articleB)->
+  return JSON.stringify(articleA).length == JSON.stringify(articleB).length
+
+###
+Build article object from the page
+@method buildArticleObj
+@return {Object} the article object
+###
+buildArticleObj = ->
+  article = 
+    enTitle: $('.en-title').text().trim()
+    cnTitle: $('.cn-title').text().trim()
+    author: $('.author').val().trim()
+    url: $('.url').val().trim()
+    abstract: $('.abstract').val().trim()
+    paraList: []
+
+  $('.para').each ->
+    type = $(this).attr('data-type')
+    
+    if type == 'image'
+      en = $(this).find('.en img').attr('src')
+      cn = en
+    else
+      en = $(this).find('.en').text().trim()
+      cn = $(this).find('.cn').text().trim()
+
+    if $(this).find('.ec-divider').attr('data-state') == 'true'
+      state = true
+    else
+      state = false
+
+    article.paraList.push
+      en: en
+      cn: cn
+      type: type
+      state: state
+
+  totalChar = 0
+  completeChar = 0
+  for p in article.paraList 
+    totalChar += p.en.length
+    if p.state == true
+      completeChar += p.en.length
+  article.completion = Math.ceil(completeChar / totalChar * 100)
+
+  return article
+
+###
+Dynamic change the height of the divider bar
+@method adjustHeight
+@param {DOM Div Element} para - the div element has class 'para'
+###
+adjustHeight = (para)->
+  enHeight = para.find('.en').innerHeight()
+  cnHeight = para.find('.cn').innerHeight()
+  # alert(enHeight + ',' + cnHeight)
+  dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
+  para.find('.ec-divider').css('height', dvHeight + 15 + 'px')

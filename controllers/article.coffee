@@ -80,10 +80,50 @@ exports.edit = (req, res)->
   )
 
 # delete article
-exports.delete = (req, res)->
-  Article.remove(_id: req.params.id , (err)->
-    if(!err)
-      res.redirect('/')
-    else
-      res.redirect('/article/' + req.params.id)
+# exports.delete = (req, res)->
+#   Article.remove(_id: req.params.id , (err)->
+#     if(!err)
+#       res.redirect('/')
+#     else
+#       res.redirect('/article/' + req.params.id)
+#   )
+
+# output article
+exports.output = (req, res)->
+  Article.findById(req.params.id , (err, data)->
+    html = ''
+    for p in data.paraList
+      switch req.params.mode
+        when 'en'
+          html += outputHTML(p.type, p.en)
+        when 'cn'
+          html += outputHTML(p.type, p.cn)
+        when 'ec'
+          html += outputHTML(p.type, p.en)
+          if p.cn != '' and p.type != 'image'
+            html += '\n'
+            html += outputHTML(p.type, p.cn)
+      html += "\n\n"
+
+    res.set('Content-Type', 'text/plain;charset=utf-8')
+    res.send(200, html)
   )
+
+###
+Output html
+@params {String} type - the type of para
+@params
+###
+outputHTML = (type, content)->
+  switch type
+    when 'mheader'
+      html = "<h3>#{content}</h3>"
+    when 'sheader'
+      html = "<h4>#{content}</h4>"
+    when 'text'
+      html = "<p>#{content}</p>"
+    when 'image'
+      html = "<p><img scr='#{content}' /></p>"
+    when 'quote'
+      html = "<blockquote>#{content}</blockquote>"
+  html
