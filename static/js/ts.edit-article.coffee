@@ -29,6 +29,7 @@ $ ->
   $('.en, .cn').blur ->
     adjustHeight($(this).parent())
 
+  # adjust height when img loaded, use jquery.imageLoaded.js
   imagesLoaded($('.para')).on('progress', (instance, image)->
     adjustHeight($(image.img).parents('.para'))
   )
@@ -98,10 +99,11 @@ $ ->
       display: 'block'
   )
 
-  # context menu hide when click
+  # hide context menu when click
   $(document).click ->
     $('.context-menu').hide()
 
+  # handle context menu click
   $('.context-menu').click (e)->
     c = $(e.target).attr('class')
     switch c
@@ -109,52 +111,39 @@ $ ->
         $(clickItem).attr('data-type', c)
         adjustHeight($(clickItem))
       when 'add-para'
-        # $(clickItem).after("<div class='add-content-wap' contenteditable=true></div>")
         $(clickItem).after("<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>")
+        # add content when textarea blur
         $('.add-content-wap').focus().blur ->
-          # addContent = $(this).val().replace(/\n+/g, '<br>')
           addContent = $(this).val().trim()
-          if addContent != ""
-            # image
-            if addContent.match(/\b(http:\/\/)/) and addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)
-              $(clickItem).after("""
-                <div data-type='image' class='para clearfix'>
-                  <div class='en'>
-                    <img src='#{addContent}' /></div
-                  ><div class='ec-divider' data-state='true'></div
-                  ><div class='cn'>
-                    <img src='#{addContent}' />
-                  </div>
+          if addContent == ""
+            $(this).detach()
+            return
+          # image
+          if addContent.match(/\bhttp:\/\//) and addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)
+            $(clickItem).after("""
+              <div data-type='image' class='para clearfix'>
+                <div class='en'>
+                  <img src='#{addContent}' /></div
+                ><div class='ec-divider' data-state='true'></div
+                ><div class='cn'>
+                  <img src='#{addContent}' />
                 </div>
-              """)
-              imagesLoaded($(clickItem).next(), ->
-                adjustHeight($(clickItem).next())
-              )
-            # text
-            else
-              $(clickItem).after("""
-                <div data-type='text' class='para clearfix'>
-                  <div class='en' contenteditable='true'>#{addContent}</div
-                  ><div class='ec-divider'></div
-                  ><div class='cn' contenteditable='true'></div>
-                </div>
-              """)
+              </div>
+            """)
+            imagesLoaded($(clickItem).next(), ->
               adjustHeight($(clickItem).next())
+            )
+          else  # text
+            $(clickItem).after("""
+              <div data-type='text' class='para clearfix'>
+                <div class='en' contenteditable='true'>#{addContent}</div
+                ><div class='ec-divider'></div
+                ><div class='cn' contenteditable='true'></div>
+              </div>
+            """)
+            adjustHeight($(clickItem).next())
 
-          # close textarea
           $(this).detach()
-        # $('.add-content-wap').focus().blur ->
-        #   addContent = $(this).val().split('\n')
-        #   now = $(clickItem)
-        #   for a in addContent when a != ""
-        #     now.after("""<div data-type='text' class='para type-text'>
-        #         <div class='en' contenteditable=true>#{a}</div
-        #         ><div class='ec-divider'></div
-        #         ><div class='cn' contenteditable=true></div>
-        #       </div>""")
-        #     adjustHeight(now.next())
-        #     now = now.next()
-        #   $(this).detach()
       when 'remove-para'
         $(clickItem).detach()
 
@@ -192,7 +181,7 @@ Whether the two object is equal
 @method isArticleEqual
 @param {Object} articleA - the article Object A
 @param {Object} articleA - the article Object B
-@return {Boolen} true means equal, and false not
+@return {Boolen} true means equal, false not
 ###
 isArticleEqual = (articleA, articleB)->
   return JSON.stringify(articleA).length == JSON.stringify(articleB).length
@@ -250,6 +239,5 @@ Dynamic change the height of the divider bar
 adjustHeight = (para)->
   enHeight = para.find('.en').innerHeight()
   cnHeight = para.find('.cn').innerHeight()
-  # alert(enHeight + ',' + cnHeight)
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
   para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
