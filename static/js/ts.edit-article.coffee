@@ -4,11 +4,10 @@ clickItem = null
 # global var, whether the data need save before leave this page
 articleObj = null
 
-# must use window.onload to adjust again
+# must use window.onload to adjust divider's height again
 # because when document is ready, font resource hasn't been ready
 # so the height of en and cn may not be precise
 # but when window is ready, all resources are ready
-# so the height is precise
 $(window).load ->
   # init divider's height
   $('.para').each ->
