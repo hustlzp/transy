@@ -33,16 +33,14 @@ block content
 
   div.row
     div.span8
-      div.title(data-article-id='#{article.id}')
-        h2.en.enTitle #{article.enTitle}
-        h2.cn.cnTitle #{article.cnTitle}
-
       //- div.completion-wap
       //-   span.label.warning 进度
       //-   div.progress-bar
       //-     div.bar.bg-color-green(style='width: #{a.completion*100%')
       //-   span #{a.completion*100%
-      span.completion #{article.completion}%
+      div.title(data-article-id='#{article.id}')
+        h2.en.enTitle #{article.enTitle}
+        h2.cn.cnTitle #{article.cnTitle}
 
       p.author-wap
         span.label.warning 作者
@@ -78,6 +76,8 @@ block content
             img(src='#{p.en}')
 
     div.span4
+      //- div.completion #{article.completion}%
+      
       div.button-set.place-right(data-role='button-set')
         button.btn-sel-cn 中
         button.btn-sel-ec.active 中 / 英

@@ -22,21 +22,30 @@
     .article-item{
         padding-bottom: 5px;
         margin-bottom: 10px;
+        margin-top: 5px;
         border-bottom: 1px solid lightgray;
         position: relative;
 
+        .title{
+            // padding-right: 120px;
+        }
+
         .abstract{
             color: #333;
+            margin-bottom: 10px;
         }
 
         .completion-info{
             position: absolute;
             top: 5px;
             right: 0;
+            text-align: right;
 
             .progress-bar{
                 width: 100px;
+                // display: inline-block;
                 background-color: #ddd;
+                margin-bottom: 5px;
             }
 
             .completion-num{
@@ -49,12 +58,13 @@
 /* page article
 ----------------------------------------------------*/
 #page-article{
-    .span8{
-        position: relative;
+    .span4{
+        // position: relative;
     }
 
     .title{
         margin-bottom: 15px;
+        // padding-right: 100px;
     }
 
     .author-wap,
@@ -84,12 +94,20 @@
     
     .completion{
         font-size: 40px;
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        text-align: right;
+        margin-bottom: 25px;
+        // position: absolute;
+        // top: 10px;
+        // right: 10px;
         color: #333;
     }
     
+    .url-wap{
+        a{
+            line-height: 160%;
+        }
+    }
+
     .abstract-wap{
         border-bottom: 1px solid lightgray;
         padding-bottom: 15px;       
@@ -116,7 +134,7 @@
         blockquote{
             margin-bottom: 15px;
             border-left: 4px solid #bbb;
-            padding: 5px 20px; 
+            padding: 5px 20px 8px 20px; 
             background-color: rgba(204, 204, 204, 0.1);
         }
         img{
@@ -241,7 +259,7 @@
         .en,
         .cn{
             border-left: 4px solid #bbb;
-            padding: 5px 20px; 
+            padding: 5px 20px 8px 20px; 
             background-color: rgba(204, 204, 204, 0.1);
         }
     }

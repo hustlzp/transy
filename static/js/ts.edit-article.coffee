@@ -70,10 +70,12 @@ $ ->
         divider.attr('data-state', 'true')
       else
         divider.attr('data-state', 'false')
+
     # Tab, the next cn foucs (skip image)
     if e.which == 9
       e.preventDefault()
       $(this).nextAll("[data-type!='image']").first().find('.cn').focus()
+      # moveEnd($(this).nextAll("[data-type!='image']").first().find('.cn')[0])
 
   # handle context-menu event by delegate
   $(document).on('contextmenu', '.para', (e)->
@@ -219,6 +221,7 @@ buildArticleObj = ->
       type: type
       state: state
 
+  # compute translate completion, by char num
   totalChar = 0
   completeChar = 0
   for p in article.paraList 
@@ -239,3 +242,22 @@ adjustHeight = (para)->
   cnHeight = para.find('.cn').innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
   para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
+
+###
+Focus input/textarea/contenteditable, and move blink to the end
+@method moveEnd
+@params {DOM Element} obj - input/textarea/contenteditable DOM Element
+###
+moveEnd = (obj)->
+  obj.focus()
+  len = obj.innerHTML.length
+  alert(len)
+
+  if document.selection
+    sel = obj.createTextRange()
+    sel.moveStart('character', len)
+    sel.collapse()
+    sel.select()
+  else if typeof obj.selectionStart == 'number' and typeof obj.selectionEnd == 'number'
+    obj.selectionStart = len
+    obj.selectionEnd = len
