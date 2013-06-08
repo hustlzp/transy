@@ -2,8 +2,13 @@
 Route Rules
 ###
 
+# Form Validator
+validator = require('./validator')
+
+# Controller
 site = require('./controllers/site')
 article = require('./controllers/article')
+sign = require('./controllers/sign')
 
 ###
 Apply route rules to app object
@@ -14,10 +19,21 @@ module.exports = (app)->
   # home page
   app.get('/', site.index)
 
+  # sign
+  # signup
+  app.get('/signup', sign.showSignup)
+  app.post('/signup', validator.signupForm, sign.signup)
+  # signin
+  app.get('/signin', sign.showSignin)
+  app.post('/signin', validator.signinForm, sign.signin)
+  # signout
+  app.get('/signout', sign.signout)
+  # active
+
   # article
   # new
   app.get('/article/add', article.showAdd)
-  app.post('/article/add', article.add)
+  app.post('/article/add', validator.addArticleForm, article.add)
   # edit
   app.get('/article/:id/edit', article.showEdit)
   app.post('/article/:id/edit', article.edit)
@@ -27,3 +43,5 @@ module.exports = (app)->
   app.get('/article/:id/output/:mode', article.output)
     # single article
   app.get('/article/:id', article.article)
+
+

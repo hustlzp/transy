@@ -1,0 +1,27 @@
+//- error list
+mixin errors()
+  if typeof form !== "undefined"
+    ul.error-list
+      for e in form.errors
+        li #{e}
+
+//- text field
+mixin input(name, placeholder)
+  -var value = ''
+  if typeof form !== "undefined" && form[name] && form.getErrors(name).length == 0
+    value = form[name]
+  input(type="text", placeholder="#{placeholder}", name='#{name}', value='#{value}')
+
+//- password field
+mixin password(name, placeholder)
+  -var value = ''
+  if typeof form !== "undefined" && form[name] && form.getErrors(name).length == 0
+    value = form[name]
+  input(type="password", placeholder="#{placeholder}", name='#{name}', value='#{value}')
+
+//- textarea field
+mixin textarea(name, placeholder, rows)
+  -var value = ''
+  if typeof form !== "undefined" && form[name] && form.getErrors(name).length == 0
+    value = form[name]
+  textarea(name='content', placeholder='正文', rows='#{rows}') #{value}

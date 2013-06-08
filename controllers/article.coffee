@@ -8,53 +8,51 @@ Article = require('../models/article')
 exports.article = (req, res)->
   Article.findById(req.params.id, (err, data)->
     res.render("article/article",
-      title: 'Article'
-      page: 'page-article'
       article: data 
     )
   )
 
 # show add article page
 exports.showAdd = (req, res)->
-  res.render('article/add_article', 
-    title: 'Add article'
-    page: 'page-add-article'
-  )
+  res.render('article/add_article')
 
 # new article
 exports.add = (req, res)->
-  article = new Article
-    enTitle: req.body.title
-    url: req.body.url
-    author: req.body.author
-    completion: 0
-    abstract: ''
-    createTime: new Date()
-    updateTime: new Date()
-    paraList: []
+  if req.form.isValid
+    article = new Article
+      enTitle: req.body.title
+      url: req.body.url
+      author: req.body.author
+      completion: 0
+      abstract: ''
+      createTime: new Date()
+      updateTime: new Date()
+      paraList: []
 
-  # slice the paragraph by \n
-  paras = req.body.content.split('\n')
-  for p in paras when p.trim() != ''
-    article.paraList.push
-      en: p.trim()
-      cn: ''
-      type: 'text'
-      state: false
+    # slice the paragraph by \n
+    paras = req.body.content.split('\n')
+    for p in paras when p.trim() != ''
+      article.paraList.push
+        en: p.trim()
+        cn: ''
+        type: 'text'
+        state: false
 
-  article.save((err)->
-    if(!err)
-      res.redirect('/')
-    else
-      res.redirect('/article/add')
-  )
+    article.save((err)->
+      if(!err)
+        res.redirect('/')
+      else
+        res.redirect('/article/add')
+    )
+  else
+    res.render('article/add_article',
+      form: req.form
+    )
 
 # show edit page
 exports.showEdit = (req, res)->
   Article.findById(req.params.id, (err, data)->
-    res.render("article/edit_article",  
-      title: 'Edit article'
-      page: 'page-edit-article'
+    res.render("article/edit_article",
       article: data 
     )
   )
@@ -80,13 +78,13 @@ exports.edit = (req, res)->
   )
 
 # delete article
-# exports.delete = (req, res)->
-#   Article.remove(_id: req.params.id , (err)->
-#     if(!err)
-#       res.redirect('/')
-#     else
-#       res.redirect('/article/' + req.params.id)
-#   )
+exports.delete = (req, res)->
+  Article.remove(_id: req.params.id , (err)->
+    if(!err)
+      res.redirect('/')
+    else
+      res.redirect('/article/' + req.params.id)
+  )
 
 # output article
 exports.output = (req, res)->

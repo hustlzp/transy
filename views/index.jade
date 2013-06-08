@@ -1,7 +1,11 @@
 extends layout
 
+block vars
+  -var title='Transy'
+  -var page='page-index'
+
 block content
-  div.row
+  div.row.page-index
     div.span8
       each a in articles
         div.article-item

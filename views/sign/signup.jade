@@ -1,0 +1,27 @@
+extends ../layout
+include ../mixin/form
+
+block vars
+  -var title = '注册'
+  -var page = 'page-signup'
+
+block content
+  form(action='/signup', method='post').span6
+    h2 注册
+
+    mixin errors()
+
+    div.input-control.text
+      mixin input('email', '邮箱')
+
+    div.input-control.text
+      mixin input('name', '用户名')
+
+    div.input-control.text
+      mixin password('pwd', '密码')
+
+    div.input-control.text
+      mixin password('repwd', '确认密码')
+
+    input(type='submit', value='注册')
+

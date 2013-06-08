@@ -1,18 +1,26 @@
 extends ../layout
+include ../mixin/form
+
+block vars
+  -var title='添加原文'
+  -var page='page-add-article'
 
 block content
   h2 添加原文
+
+  mixin errors()
+
   form(action='/article/add', method='post')
     div.input-control.text.span6
-      input(type='text', name='title', placeholder='标题')
+      mixin input('title', '标题')
 
     div.input-control.text.span6
-      input(type='text', name='author', placeholder='作者')
+      mixin input('author', '作者')
 
     div.input-control.text.span6
-      input(type='text', name='url', placeholder='链接')
+      mixin input('url', '链接')
 
     div.input-control.textarea.span10
-      textarea(name='content', placeholder='正文', rows='20')
+      mixin textarea('content', '正文', 20)
 
     input(type='submit', value='创建')
