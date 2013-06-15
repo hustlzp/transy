@@ -3,6 +3,8 @@ Sign
 ###
 
 User = require('../models/user')
+mongoose = require('mongoose')
+ObjectId = mongoose.Types.ObjectId
 
 # signup page
 exports.showSignup = (req, res)->
@@ -29,7 +31,7 @@ exports.signup = (req, res)->
           else
             # add user
             user = new User()
-            user._id = ObjectId()
+            user._id = new ObjectId()
             user.name = req.form.name
             user.email = req.form.email
             user.pwd = req.form.pwd

@@ -13,13 +13,12 @@ Para = new Schema
   state: Boolean
 
 Article = new Schema
+  _id: ObjectId
+  creatorId: ObjectId
   enTitle: String
   cnTitle: String
-  userId: Object
   url: String
-  creatorId: ObjectId
   author: String
-  # abstract: String
   completion: Number
   createTime: Date
   updateTime: Date

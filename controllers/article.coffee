@@ -3,6 +3,8 @@ Article Controller
 ###
 
 Article = require('../models/article')
+mongoose = require('mongoose')
+ObjectId = mongoose.Types.ObjectId
 
 # show single article
 exports.article = (req, res)->
@@ -27,8 +29,9 @@ exports.showAdd = (req, res)->
 exports.add = (req, res)->
   if req.form.isValid
     article = new Article
-      enTitle: req.body.title
+      _id: ObjectId()
       creatorId: req.cookies.user.id
+      enTitle: req.body.title
       url: req.body.url
       author: req.body.author
       completion: 0
@@ -48,7 +51,7 @@ exports.add = (req, res)->
 
     article.save((err)->
       if(!err)
-        res.redirect('/')
+        res.redirect("/article/#{article.id}")
       else
         res.redirect('/article/add')
     )
@@ -89,7 +92,7 @@ exports.edit = (req, res)->
 exports.delete = (req, res)->
   Article.remove(_id: req.params.id , (err)->
     if(!err)
-      res.redirect('/')
+      res.redirect('/my')
     else
       res.redirect('/article/' + req.params.id)
   )
