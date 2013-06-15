@@ -43,6 +43,8 @@ module.exports = (app)->
   app.get('/article/:id/output/:mode', article.output)
   # single article
   app.get('/article/:id', article.article)
-  # my article
-  app.get('/my', article.my)
+  # my articles
+  app.get('/my/articles', article.my)
+  # my love articles
+  app.get('/my/love', article.mylove)
 

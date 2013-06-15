@@ -26,13 +26,13 @@ html
           ul.menu
             li
               a(href="/") 主页
-            li
-              a(href="/") 精选
+            //- li
+            //-   a(href="/select") 精选
             if locals.cookies.user
               li
-                a(href="/my") 我的译文
+                a(href="/my/articles") 我的译文
               li
-                a(href="/collection") 收藏
+                a(href="/my/love") 收藏
 
           ul.menu.place-right
             if locals.cookies.user
@@ -42,7 +42,7 @@ html
                 a(href='#') #{locals.cookies.user.name}
                 ul.dropdown-menu
                   li
-                    a(href="/setting") 设置
+                    a(href="/my/setting") 设置
                   li
                     a(href="/signout") 登出
             else

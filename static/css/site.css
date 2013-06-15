@@ -1,19 +1,19 @@
 .metrouicss .page{width:940px;margin:auto;}
 .metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .nav-bar-inner>.divider{margin-left:10px;margin-right:10px;}
-.metrouicss .page-header{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:15px;}
+.metrouicss .page-header{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:10px;}
 #page-index .article-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee;}#page-index .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
 #page-index .article-item .cn-title{margin-bottom:8px;font-weight:normal;color:#666;}
 #page-index .article-item .info-wap{color:#666;position:relative;}#page-index .article-item .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-index .article-item .info-wap .completion{position:absolute;bottom:0;right:5px;}
 #page-article .en-title{margin-bottom:10px;}
 #page-article .cn-title{margin-bottom:10px;}
-#page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:15px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
+#page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:10px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:18px;font-weight:bold;color:black;margin-bottom:15px;}
 #page-article .para-list p{margin-bottom:15px;}
 #page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:5px 20px 8px 20px;background-color:rgba(204, 204, 204, 0.1);}
 #page-article .para-list img{margin-bottom:10px;max-width:100%;}
-#page-my-article .article-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid lightgray;}#page-my-article .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
+#page-my-article .article-item{padding-bottom:10px;margin-bottom:15px;border-bottom:1px solid #eee;}#page-my-article .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
 #page-my-article .article-item .cn-title{margin-bottom:8px;font-weight:normal;color:#666;}
 #page-my-article .article-item .info-wap{color:#666;position:relative;}#page-my-article .article-item .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-my-article .article-item .info-wap .completion{position:absolute;bottom:0;right:5px;}

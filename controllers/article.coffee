@@ -13,11 +13,16 @@ exports.article = (req, res)->
   .populate('creator')
   .exec (err, data)->
     res.render("article/article", { article: data })
-      
+
+# my articles
 exports.my = (req, res)->
   Article.find({ creator: req.cookies.user.id }, (err, data)->
     res.render('article/my_article', { articles: data })
   )
+
+# my love articles
+exports.mylove = (req, res)->
+  res.send('1')
 
 # show add article page
 exports.showAdd = (req, res)->
