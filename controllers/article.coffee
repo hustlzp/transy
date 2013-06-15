@@ -8,17 +8,15 @@ ObjectId = mongoose.Types.ObjectId
 
 # show single article
 exports.article = (req, res)->
-  Article.findById(req.params.id, (err, data)->
-    res.render("article/article",
-      article: data 
-    )
-  )
-
+  Article
+  .findById(req.params.id)
+  .populate('creator')
+  .exec (err, data)->
+    res.render("article/article", { article: data })
+      
 exports.my = (req, res)->
   Article.find({ creator: req.cookies.user.id }, (err, data)->
-    res.render('article/my_article',
-      articles: data
-    )
+    res.render('article/my_article', { articles: data })
   )
 
 # show add article page

@@ -12,18 +12,16 @@ block content
           a(href='/article/#{a.id}')
             h3.en-title #{a.enTitle}
 
-          a(href='/article/#{a.id}')
-            h4.cn-title #{a.cnTitle}
+          h4.cn-title #{a.cnTitle}
 
           div.info-wap
             span By&nbsp;
             span
-              a(href='#{a.creator.name}') #{a.creator.name}
+              a(href='/u/#{a.creator.name}') #{a.creator.name}
 
-            span.divider
+            //- span.divider
 
-            span 进度：
-            span #{a.completion}%
+            span.completion #{a.completion}%
     
     div.span4
       //- h3 近期热门

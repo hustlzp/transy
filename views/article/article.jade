@@ -39,15 +39,22 @@ block content
   h2.cn-title #{article.cnTitle}
 
   div.info-wap
-    span.label.warning 作者
+    span By&nbsp;
+    span
+      a(href='/u/#{article.creator.name}') #{article.creator.name}
+
+    span.divider
+    
+    span 作者：
     span #{article.author}
 
-    span.label.warning 链接
+    span.divider
+
+    span 原文链接：
     a(href='#{article.url}', target="_blank")
       i.icon-link
 
-    span.label.warning 进度
-    span #{article.completion}%
+    span.completion #{article.completion}%
 
   div.row
     div.span8
@@ -79,7 +86,7 @@ block content
           i.icon-printer
           | 导出
 
-        if locals.cookies.user && locals.cookies.user.id == article.creator
+        if locals.cookies.user && locals.cookies.user.id == article.creator._id
           a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
             i.icon-remove
             | 删除
