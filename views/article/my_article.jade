@@ -7,6 +7,8 @@ block vars
 block content
   div.row
     div.span8
+      h2.page-header 我的译文
+
       each a in articles
         div.article-item
           a(href='/article/#{a.id}')
@@ -20,7 +22,7 @@ block content
 
             span.divider
 
-            span 原文链接：
+            span 来源：
             a(href='#{a.url}', target="_blank")
               i.icon-link
 

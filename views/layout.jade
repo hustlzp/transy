@@ -26,9 +26,13 @@ html
           ul.menu
             li
               a(href="/") 主页
+            li
+              a(href="/") 精选
             if locals.cookies.user
               li
                 a(href="/my") 我的译文
+              li
+                a(href="/collection") 收藏
 
           ul.menu.place-right
             if locals.cookies.user

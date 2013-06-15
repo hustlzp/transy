@@ -7,12 +7,14 @@ block vars
 block content
   div.row
     div.span8
+      h2.page-header 最新译文
+
       each a in articles
         div.article-item
           a(href='/article/#{a.id}')
-            h3.en-title #{a.enTitle}
+            h3.en-title #{a.cnTitle}
 
-          h4.cn-title #{a.cnTitle}
+          //- h4.cn-title #{a.enTitle}
 
           div.info-wap
             span By&nbsp;
