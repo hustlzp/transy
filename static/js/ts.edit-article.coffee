@@ -196,7 +196,6 @@ buildArticleObj = ->
     cnTitle: $('.cn-title').val().trim()
     author: $('.author').val().trim()
     url: $('.url').val().trim()
-    # abstract: $('.abstract').val().trim()
     paraList: []
 
   $('.para').each ->
