@@ -79,7 +79,7 @@ block content
           i.icon-printer
           | 导出
 
-        if locals.cookies.user && locals.cookies.user.id == article.creatorId
+        if locals.cookies.user && locals.cookies.user.id == article.creator
           a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
             i.icon-remove
             | 删除
