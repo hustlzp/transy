@@ -86,15 +86,16 @@ block content
           i.icon-printer
           | 导出
 
-        if locals.cookies.user && locals.cookies.user.id == article.creator._id
-          a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
-            i.icon-remove
-            | 删除
+        if locals.cookies.user
+            a.button.place-right(href='/article/#{article.id}/edit')
+              i.icon-heart
+              | 收藏
 
-          a.button.place-right(href='/article/#{article.id}/edit')
-            i.icon-pencil
-            | 编辑
-        else
-          a.button.place-right(href='/article/#{article.id}/edit')
-            i.icon-heart
-            | 收藏
+            if locals.cookies.user.id == article.creator._id
+              a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
+                i.icon-remove
+                | 删除
+
+              a.button.place-right(href='/article/#{article.id}/edit')
+                i.icon-pencil
+                | 编辑
