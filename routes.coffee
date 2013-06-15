@@ -38,10 +38,11 @@ module.exports = (app)->
   app.get('/article/:id/edit', article.showEdit)
   app.post('/article/:id/edit', article.edit)
   # delete
-  # app.get('/article/:id/delete', article.delete)
+  app.get('/article/:id/delete', article.delete)
   # output
   app.get('/article/:id/output/:mode', article.output)
-    # single article
+  # single article
   app.get('/article/:id', article.article)
-
+  # my article
+  app.get('/my', article.my)
 

@@ -12,6 +12,13 @@ exports.article = (req, res)->
     )
   )
 
+exports.my = (req, res)->
+  Article.find({ creatorId: req.cookies.user.id }, (err, data)->
+    res.render('article/my_article',
+      articles: data
+    )
+  )
+
 # show add article page
 exports.showAdd = (req, res)->
   res.render('article/add_article')
@@ -21,6 +28,7 @@ exports.add = (req, res)->
   if req.form.isValid
     article = new Article
       enTitle: req.body.title
+      creatorId: req.cookies.user.id
       url: req.body.url
       author: req.body.author
       completion: 0
@@ -114,10 +122,8 @@ Output html
 ###
 outputHTML = (type, content)->
   switch type
-    when 'mheader'
+    when 'header'
       html = "<h3>#{content}</h3>"
-    when 'sheader'
-      html = "<h4>#{content}</h4>"
     when 'text'
       html = "<p>#{content}</p>"
     when 'image'

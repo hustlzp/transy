@@ -4,8 +4,10 @@ User Model
 
 mongoose = require('mongoose')
 Schema = mongoose.Schema
+ObjectId = Schema.ObjectId
 
 User = new Schema
+  _id: ObjectId
   name: { type: String, index: true }
   email: { type: String, unique: true }
   pwd: String

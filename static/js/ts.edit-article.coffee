@@ -107,7 +107,7 @@ $ ->
   $('.context-menu').click (e)->
     c = $(e.target).attr('class')
     switch c
-      when 'mheader', 'sheader', 'text', 'quote', 'code'
+      when 'header', 'text', 'quote', 'code'
         $(clickItem).attr('data-type', c)
         adjustHeight($(clickItem))
       when 'add-para'
@@ -192,11 +192,11 @@ Build article object from the page
 ###
 buildArticleObj = ->
   article = 
-    enTitle: $('.en-title').text().trim()
-    cnTitle: $('.cn-title').text().trim()
+    enTitle: $('.en-title').val().trim()
+    cnTitle: $('.cn-title').val().trim()
     author: $('.author').val().trim()
     url: $('.url').val().trim()
-    abstract: $('.abstract').val().trim()
+    # abstract: $('.abstract').val().trim()
     paraList: []
 
   $('.para').each ->

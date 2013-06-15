@@ -88,8 +88,7 @@ $(function() {
     var c;
     c = $(e.target).attr('class');
     switch (c) {
-      case 'mheader':
-      case 'sheader':
+      case 'header':
       case 'text':
       case 'quote':
       case 'code':
@@ -175,11 +174,10 @@ Build article object from the page
 buildArticleObj = function() {
   var article, completeChar, p, totalChar, _i, _len, _ref;
   article = {
-    enTitle: $('.en-title').text().trim(),
-    cnTitle: $('.cn-title').text().trim(),
+    enTitle: $('.en-title').val().trim(),
+    cnTitle: $('.cn-title').val().trim(),
     author: $('.author').val().trim(),
     url: $('.url').val().trim(),
-    abstract: $('.abstract').val().trim(),
     paraList: []
   };
   $('.para').each(function() {

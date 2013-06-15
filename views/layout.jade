@@ -26,18 +26,19 @@ html
           ul.menu
             li
               a(href="/") 主页
-            li
-              a(href="/") 个人空间
+            if locals.cookies.user
+              li
+                a(href="/my") 我的译文
 
           ul.menu.place-right
-            if locals.cookies.username
+            if locals.cookies.user
               li
                 a(href='/article/add') 添加原文
               li(data-role="dropdown")
-                a(href='#') #{locals.cookies.username}
+                a(href='#') #{locals.cookies.user.name}
                 ul.dropdown-menu
-                  li
-                    a(href="/setting") 设置
+                  //- li
+                  //-   a(href="/setting") 设置
                   li
                     a(href="/signout") 登出
             else

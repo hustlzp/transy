@@ -35,39 +35,28 @@ block content
       $('.btn-output').click ->
         window.open("/article/#{id}/output/#{mode}", "_blank")
 
+  h2.en-title #{article.enTitle}
+  h2.cn-title #{article.cnTitle}
+
+  div.info-wap
+    span.label.warning 作者
+    span #{article.author}
+
+    span.label.warning 链接
+    a(href='#{article.url}', target="_blank")
+      i.icon-link
+
+    span.label.warning 进度
+    span #{article.completion}%
+
   div.row
     div.span8
-      //- div.completion-wap
-      //-   span.label.warning 进度
-      //-   div.progress-bar
-      //-     div.bar.bg-color-green(style='width: #{a.completion*100%')
-      //-   span #{a.completion*100%
-      div.title(data-article-id='#{article.id}')
-        h2.en.enTitle #{article.enTitle}
-        h2.cn.cnTitle #{article.cnTitle}
-
-      p.author-wap
-        span.label.warning 作者
-        span #{article.author}
-
-      p.url-wap
-        span.label.warning 链接
-        a(href='#{article.url}', target="_blank") #{article.url}
-
-      p.abstract-wap
-        span.label.warning 摘要
-        span #{article.abstract}
-
       each p in article.paraList
         div.para-list
-          if p.type === 'mheader'
+          if p.type === 'header'
             h3.en #{p.en}
             if p.cn !== ''
               h3.cn #{p.cn}
-          else if p.type === 'mheader' 
-            h4.en #{p.en}
-            if p.cn !== ''
-              h4.cn #{p.cn}
           else if p.type === 'text'
             p.en #{p.en}
             if p.cn !== ''
@@ -80,22 +69,25 @@ block content
             img(src='#{p.en}')
 
     div.span4
-      //- div.completion #{article.completion}%
-      
       div.button-set.place-right(data-role='button-set')
         button.btn-sel-cn 中
         button.btn-sel-ec.active 中 / 英
         button.btn-sel-en 英
 
       div.button-set.clearfix
-        //- a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
-        //-   i.icon-remove
-        //-   | 删除
-
         a.button.btn-output.place-right
           i.icon-printer
           | 导出
 
-        a.button.place-right(href='/article/#{article.id}/edit')
-          i.icon-pencil
-          | 编辑
+        if locals.cookies.user && locals.cookies.user.id == article.creatorId
+          a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
+            i.icon-remove
+            | 删除
+
+          a.button.place-right(href='/article/#{article.id}/edit')
+            i.icon-pencil
+            | 编辑
+        else
+          a.button.place-right(href='/article/#{article.id}/edit')
+            i.icon-heart
+            | 收藏
