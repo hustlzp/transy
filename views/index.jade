@@ -16,14 +16,9 @@ block content
             h4.cn-title #{a.cnTitle}
 
           div.info-wap
-            span 作者：
-            span #{a.author}
-
-            span.divider
-
-            span 链接：
-            a(href='#{a.url}', target="_blank")
-              i.icon-link
+            span By&nbsp;
+            span
+              a(href='#{a.creator.name}') #{a.creator.name}
 
             span.divider
 

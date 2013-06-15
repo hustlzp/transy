@@ -14,7 +14,7 @@ Para = new Schema
 
 Article = new Schema
   _id: ObjectId
-  creatorId: ObjectId
+  creator: { type: ObjectId, ref: 'User' }
   enTitle: String
   cnTitle: String
   url: String

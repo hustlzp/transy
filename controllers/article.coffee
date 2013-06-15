@@ -15,7 +15,7 @@ exports.article = (req, res)->
   )
 
 exports.my = (req, res)->
-  Article.find({ creatorId: req.cookies.user.id }, (err, data)->
+  Article.find({ creator: req.cookies.user.id }, (err, data)->
     res.render('article/my_article',
       articles: data
     )
@@ -30,7 +30,7 @@ exports.add = (req, res)->
   if req.form.isValid
     article = new Article
       _id: ObjectId()
-      creatorId: req.cookies.user.id
+      creator: req.cookies.user.id
       enTitle: req.body.title
       url: req.body.url
       author: req.body.author
