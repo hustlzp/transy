@@ -16,14 +16,18 @@ block content
             h4.cn-title #{a.cnTitle}
 
           div.info-wap
-            span.label.warning 作者
+            span 作者：
             span #{a.author}
 
-            span.label.warning 链接
+            span.divider
+
+            span 链接：
             a(href='#{a.url}', target="_blank")
               i.icon-link
 
-            span.label.warning 进度
+            span.divider
+
+            span 进度：
             span #{a.completion}%
     
     div.span4

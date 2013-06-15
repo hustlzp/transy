@@ -1,8 +1,8 @@
 .metrouicss .page{width:940px;margin:auto;}
 .metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .btn-add-article{margin:0;float:right;}
-#page-index .article-item{padding-bottom:15px;margin-bottom:10px;border-bottom:1px solid lightgray;}#page-index .article-item .en-title{margin-bottom:8px;}
-#page-index .article-item .cn-title{margin-bottom:12px;font-weight:200;}
-#page-index .article-item .info-wap .label{margin-right:10px;}#page-index .article-item .info-wap .label:not(:first-child){margin-left:15px;}
+#page-index .article-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid lightgray;}#page-index .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
+#page-index .article-item .cn-title{margin-bottom:8px;font-weight:normal;color:#333;}
+#page-index .article-item .info-wap{color:#666;}#page-index .article-item .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-index .article-item .info-wap .icon-link{color:#666;}#page-index .article-item .info-wap .icon-link:hover{color:#333;}
 #page-article .en-title{margin-bottom:10px;}
 #page-article .cn-title{margin-bottom:15px;}
@@ -12,9 +12,9 @@
 #page-article .para-list p{margin-bottom:15px;}
 #page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:5px 20px 8px 20px;background-color:rgba(204, 204, 204, 0.1);}
 #page-article .para-list img{margin-bottom:10px;max-width:100%;}
-#page-my-article .article-item{padding-bottom:15px;margin-bottom:10px;border-bottom:1px solid lightgray;}#page-my-article .article-item .en-title{margin-bottom:8px;}
-#page-my-article .article-item .cn-title{margin-bottom:12px;font-weight:200;}
-#page-my-article .article-item .info-wap .label{margin-right:10px;}#page-my-article .article-item .info-wap .label:not(:first-child){margin-left:15px;}
+#page-my-article .article-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid lightgray;}#page-my-article .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
+#page-my-article .article-item .cn-title{margin-bottom:8px;font-weight:normal;color:#333;}
+#page-my-article .article-item .info-wap{color:#666;}#page-my-article .article-item .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-my-article .article-item .info-wap .icon-link{color:#666;}#page-my-article .article-item .info-wap .icon-link:hover{color:#333;}
 #page-edit-article [contenteditable]{outline:none;}
 #page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;padding:0;display:block;border:none;outline:none;width:100%;font-family:'Segoe UI Light','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:200;font-size:20pt;line-height:22pt;}
