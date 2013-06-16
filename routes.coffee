@@ -47,4 +47,6 @@ module.exports = (app)->
   app.get('/my/articles', article.my)
   # my love articles
   app.get('/my/love', article.mylove)
+  # article collections
+  app.get('/collections', article.collections)
 

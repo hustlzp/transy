@@ -23,7 +23,7 @@ block content
             span.divider
 
             span 来源：
-            a(href='#{a.url}', target="_blank")
-              i.icon-link
+            a(href='#{a.url}', target="_blank") #{a.urlHost}
+              //- i.icon-link
 
             span.completion #{a.completion}%

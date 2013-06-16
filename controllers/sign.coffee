@@ -2,6 +2,7 @@
 Sign
 ###
 
+crypto = require('crypto')
 User = require('../models/user')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
@@ -34,12 +35,11 @@ exports.signup = (req, res)->
             user._id = new ObjectId()
             user.name = req.form.name
             user.email = req.form.email
-            user.pwd = req.form.pwd
+            user.pwd = md5(req.form.pwd)
             user.isActive = false
             user.save (err)->
               if err
                 return next(err)
-              # res.cookie('username', req.form.name, { maxAge: 1000*3600*24*7 })
               gene_cookie(res, user)
               res.redirect('/')
             # res.render 'message',
@@ -66,7 +66,7 @@ exports.signin = (req, res)->
         # check if password is correct
         User
         .findOne({ email: req.form.email })
-        .where('pwd').equals(req.form.pwd)
+        .where('pwd').equals(md5(req.form.pwd))
         .exec (err, data)->
           if err
             return next(err)
@@ -85,12 +85,26 @@ exports.signout = (req, res)->
   res.clearCookie('user')
   res.redirect('/')
 
+###
+Generate cookie of user name, id, email for 7 days
+@method gene_cookie
+@params {Object} res - Response Object
+@params {Object} user - User Object, contain name, id, email
+###
 gene_cookie = (res, user)->
   res.cookie('user',
     'id': user._id
     'name': user.name
     'email': user.email
   , { maxAge: 1000*3600*24*7 })
-  # res.cookie('username', user.name, { maxAge: 1000*3600*24*7 })
-  # res.cookie('userid', user._id, { maxAge: 1000*3600*24*7 })
-  # res.cookie('useremail', user.email, { maxAge: 1000*3600*24*7 })
+
+###
+Get md5 value of a string
+@method md5
+@params {String} str - The string to be md5
+@return {String} md5 value of the string
+###
+md5 = (str)->
+  hash = crypto.createHash('md5')
+  hash.update(str)
+  hash.digest('hex')

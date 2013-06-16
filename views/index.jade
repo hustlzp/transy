@@ -14,27 +14,17 @@ block content
           a(href='/article/#{a.id}')
             h3.en-title #{a.cnTitle}
 
-          //- h4.cn-title #{a.enTitle}
-
           div.info-wap
             span By&nbsp;
             span
               a(href='/u/#{a.creator.name}') #{a.creator.name}
 
             span.divider
-            
-            span 作者：
-            span #{a.author}
 
-            //- span.divider
+            span 来源：
+            a(href='#{a.url}', target="_blank") #{a.urlHost}
+              //- i.icon-link
 
-            //- span 原文链接：
-            //- a(href='#{a.url}', target="_blank")
-            //-   i.icon-link
-
-            span.completion #{a.completion}%
-
-      h2.page-header 精选集
 
     
     div.span4

@@ -2,9 +2,11 @@
 Article Controller
 ###
 
+url = require('url')
 Article = require('../models/article')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
+
 
 # show single article
 exports.article = (req, res)->
@@ -36,6 +38,7 @@ exports.add = (req, res)->
       creator: req.cookies.user.id
       enTitle: req.body.title
       url: req.body.url
+      urlHost: url.parse(req.body.url).hostname
       author: req.body.author
       completion: 0
       abstract: ''
@@ -79,6 +82,7 @@ exports.edit = (req, res)->
     data.cnTitle = a.cnTitle
     data.author = a.author
     data.url = a.url
+    data.urlHost = url.parse(a.url).hostname
     data.abstract = a.abstract
     data.completion = a.completion
     data.paraList = a.paraList
@@ -120,6 +124,9 @@ exports.output = (req, res)->
     res.set('Content-Type', 'text/plain;charset=utf-8')
     res.send(200, html)
   )
+
+exports.collections = (req, res)->
+  res.render('article/collections')
 
 ###
 Output html
