@@ -1,8 +1,8 @@
 extends ../layout
 
 block vars
-  -var title='我的译文'
-  -var page='page-my-article'
+  -var title='我'
+  -var page='page-me'
 
 block content
   div.row
@@ -24,6 +24,16 @@ block content
 
             span 来源：
             a(href='#{a.url}', target="_blank") #{a.urlHost}
-              //- i.icon-link
 
             span.completion #{a.completion}%
+
+    div.span4
+      div.button-set.place-right(data-role='button-set')
+        a.button.active(href='/me')
+          | 译文
+
+        a.button(href='/my/love')
+          | 收藏
+
+        a.button(href='/my/collections')
+          | 选集

@@ -16,16 +16,6 @@ exports.article = (req, res)->
   .exec (err, data)->
     res.render("article/article", { article: data })
 
-# my articles
-exports.my = (req, res)->
-  Article.find({ creator: req.cookies.user.id }, (err, data)->
-    res.render('article/my_article', { articles: data })
-  )
-
-# my love articles
-exports.mylove = (req, res)->
-  res.send('1')
-
 # show add article page
 exports.showAdd = (req, res)->
   res.render('article/add_article')
@@ -124,9 +114,6 @@ exports.output = (req, res)->
     res.set('Content-Type', 'text/plain;charset=utf-8')
     res.send(200, html)
   )
-
-exports.collections = (req, res)->
-  res.render('article/collections')
 
 ###
 Output html

@@ -14,18 +14,15 @@ block content
           a(href='/article/#{a.id}')
             h3.en-title #{a.cnTitle}
 
-          div.info-wap
-            span By&nbsp;
-            span
-              a(href='/u/#{a.creator.name}') #{a.creator.name}
+          div.info-wap            
+            a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
+            span 发表在&nbsp;
+            a(href='#{a.url}', target="_blank") 教育
 
-            span.divider
+            //- span.divider
 
-            span 来源：
-            a(href='#{a.url}', target="_blank") #{a.urlHost}
-              //- i.icon-link
-
-
+            //- span 来源：
+            //- a(href='#{a.url}', target="_blank") #{a.urlHost}
     
     div.span4
       h4 近期热门

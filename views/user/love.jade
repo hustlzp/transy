@@ -1,0 +1,39 @@
+extends ../layout
+
+block vars
+  -var title='我的收藏'
+  -var page='page-my-love'
+
+block content
+  div.row
+    div.span8
+      h2.page-header 我的收藏
+
+      //- each a in articles
+      //-   div.article-item
+      //-     a(href='/article/#{a.id}')
+      //-       h3.en-title #{a.enTitle}
+
+      //-     h4.cn-title #{a.cnTitle}
+
+      //-     div.info-wap
+      //-       span 作者：
+      //-       span #{a.author}
+
+      //-       span.divider
+
+      //-       span 来源：
+      //-       a(href='#{a.url}', target="_blank") #{a.urlHost}
+
+      //-       span.completion #{a.completion}%
+
+    div.span4
+      div.button-set.place-right(data-role='button-set')
+        a.button(href='/me')
+          | 译文
+
+        a.button.active(href='/my/love')
+          | 收藏
+
+        a.button(href='/my/collections')
+          | 选集

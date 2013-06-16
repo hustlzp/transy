@@ -1,0 +1,21 @@
+extends ../layout
+
+block vars
+  -var title='我的选集'
+  -var page='page-my-collections'
+
+block content
+  div.row
+    div.span8
+      h2.page-header 我的选集
+
+    div.span4
+      div.button-set.place-right(data-role='button-set')
+        a.button(href='/me')
+          | 译文
+
+        a.button(href='/my/love')
+          | 收藏
+
+        a.button.active(href='/my/collections')
+          | 选集

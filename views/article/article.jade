@@ -39,9 +39,14 @@ block content
   h2.cn-title #{article.cnTitle}
 
   div.info-wap
-    span By&nbsp;
-    span
-      a(href='/u/#{article.creator.name}') #{article.creator.name}
+    //- span By&nbsp;
+    //- span
+    a(href='/u/#{article.creator.name}') #{article.creator.name}&nbsp;
+
+    //- span.divider
+
+    span.fg-color-gray 发表在&nbsp;
+    a(href='#{article.url}', target="_blank") 教育
 
     span.divider
     
@@ -50,9 +55,10 @@ block content
 
     span.divider
 
-    span 来源：
-    a(href='#{article.url}', target="_blank") #{article.urlHost}
-      //- i.icon-link
+    span 链接：
+    a(href='#{article.url}', target="_blank") 
+      //- #{article.urlHost}
+      i.icon-link
 
     span.completion #{article.completion}%
 

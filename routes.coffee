@@ -7,8 +7,10 @@ validator = require('./validator')
 
 # Controller
 site = require('./controllers/site')
-article = require('./controllers/article')
 sign = require('./controllers/sign')
+user = require('./controllers/user')
+article = require('./controllers/article')
+collection = require('./controllers/collection')
 
 ###
 Apply route rules to app object
@@ -43,10 +45,17 @@ module.exports = (app)->
   app.get('/article/:id/output/:mode', article.output)
   # single article
   app.get('/article/:id', article.article)
-  # my articles
-  app.get('/my/articles', article.my)
-  # my love articles
-  app.get('/my/love', article.mylove)
-  # article collections
-  app.get('/collections', article.collections)
+
+
+  # collection
+  # collections
+  app.get('/collections', collection.collections)
+
+  # user
+  # personal page
+  app.get('/me', user.me)
+  # loves
+  app.get('/my/love', user.love)
+  #collections
+  app.get('/my/collections', user.collections)
 
