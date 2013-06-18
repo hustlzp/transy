@@ -35,7 +35,7 @@ module.exports = (app)->
   # article
   # new
   app.get('/article/add/:cid', article.showAdd)
-  app.post('/article/add/:cid', validator.addArticle, article.add)
+  app.post('/article/add/:cid', validator.article, article.add)
   # edit
   app.get('/article/:id/edit', article.showEdit)
   app.post('/article/:id/edit', article.edit)
@@ -50,10 +50,10 @@ module.exports = (app)->
   # collection
   # add
   app.get('/collection/add', collection.showAdd)
-  app.post('/collection/add', validator.addCollection, collection.add)
+  app.post('/collection/add', validator.collection, collection.add)
   # edit
   app.get('/collection/:id/edit', collection.edit)
-  app.post('/collection/:id/edit', validator.addCollection, collection.edit)
+  app.post('/collection/:id/edit', validator.collection, collection.edit)
   # delete
   app.get('/collection/:id/delete', collection.delete)
   # single collection

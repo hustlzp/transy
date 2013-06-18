@@ -19,16 +19,16 @@ exports.signup = form(
   field('repwd', '重复密码').trim().required().equals('field::pwd', '两次输入密码不一致')
 )
 
-# add article form validator
-exports.addArticle = form(
+# article form validator
+exports.article = form(
   field('title', '标题').trim().required(),
   field('author', '作者').trim().required(),
   field('url', '链接').trim().required().isUrl(),
   field('content', '正文').trim().required()
 )
 
-# add collection form validator
-exports.addCollection = form(
+# collection form validator
+exports.collection = form(
   field('type', '类别').trim().required(),
   field('title', '标题').trim().required(),
   field('intro', '描述').trim().required(),
