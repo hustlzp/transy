@@ -8,8 +8,11 @@ ObjectId = Schema.ObjectId
 
 Collection = new Schema
   _id: ObjectId
-  name: String
-  desc: String
-  articles: [{ type: ObjectId, ref: 'Article' }]
+  creator: { type: ObjectId, ref: 'User' }
+  articleCount: { type: Number, default: 0 }
+  type: String
+  title: String
+  intro: String
+  image: String
 
 module.exports = mongoose.model('Collection', Collection)

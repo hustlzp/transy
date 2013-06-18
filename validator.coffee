@@ -6,13 +6,13 @@ form = require('express-form')
 field = form.field
 
 # signin form validator
-exports.signinForm = form(
+exports.signin = form(
   field('email', '邮箱').trim().required().isEmail(),
   field('pwd', '密码').trim().required()
 )
 
 # signup form validator
-exports.signupForm = form(
+exports.signup = form(
   field('email', '邮箱').trim().required().isEmail(),
   field('name', '用户名').trim().required(),
   field('pwd', '密码').trim().required(),
@@ -20,9 +20,17 @@ exports.signupForm = form(
 )
 
 # add article form validator
-exports.addArticleForm = form(
+exports.addArticle = form(
   field('title', '标题').trim().required(),
   field('author', '作者').trim().required(),
   field('url', '链接').trim().required().isUrl(),
   field('content', '正文').trim().required()
+)
+
+# add collection form validator
+exports.addCollection = form(
+  field('type', '类别').trim().required(),
+  field('title', '标题').trim().required(),
+  field('intro', '描述').trim().required(),
+  field('image', '图片').trim().required()
 )

@@ -19,56 +19,31 @@
         border-bottom: 1px solid lightgray;
         padding-bottom: 10px;
         margin-bottom: 10px;
+        clear: both;
     }
 
     .fg-color-gray{
         color: #666;
+    }
+
+    .mb10{
+        margin-bottom: 10px;
+    }
+    .mb15{
+        margin-bottom: 15px;
+    }
+    .mb20{
+        margin-bottom: 20px;
+    }
+
+    .clear{
+        clear: both;
     }
 }
 
 /* page index
 ----------------------------------------------------*/
 #page-index{
-    .article-item{
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #eee;
-
-        .en-title{
-            margin-bottom: 8px;
-            font-weight: normal;
-            color: #333;
-        }
-
-        .cn-title{
-            margin-bottom: 8px;
-            font-weight: normal;
-            color: #666;
-        }
-
-        .info-wap{
-            color: #666;
-            position: relative;
-
-            .divider{
-                display: inline-block;
-                margin-left: 15px;
-            }
-
-            .icon-link{
-                // color: #666;
-                // &:hover{
-                //     color: #333;
-                // }
-            }
-
-            .completion{
-                position: absolute;
-                bottom: 0;
-                right: 5px;
-            }
-        }
-    }
 }
 
 /* page article
@@ -135,7 +110,7 @@
 #page-me{
     .article-item{
         padding-bottom: 10px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         border-bottom: 1px solid #eee;
 
         .en-title{
@@ -399,5 +374,42 @@
                 margin: 0;
             }            
         }
+    }
+}
+
+/* page collection
+----------------------------------------------------*/
+#page-collection{
+    .c-header{
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid lightgray;
+        position: relative;
+
+        .c-image{
+            width: 60px;
+            height: 60px;
+            float: left;
+        }
+
+        .c-info-wap{
+            margin-left: 75px;
+        }
+
+        .a-count{
+            position: absolute;
+            bottom: 15px;
+            right: 5px;
+        }
+    }
+
+}
+
+/* page collections
+----------------------------------------------------*/
+#page-collections{
+    .c-type{
+        clear: left;
+        margin-bottom: 15px;
     }
 }

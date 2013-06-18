@@ -10,7 +10,7 @@ block content
 
   mixin errors()
 
-  form(action='/article/add', method='post')
+  form(action='/article/add/#{cid}', method='post')
     div.input-control.text.span6
       mixin input('title', '标题')
 

@@ -1,0 +1,32 @@
+extends ../layout
+include ../mixin/article
+
+block vars
+  -var title=c.title
+  -var page='page-collection'
+
+block content
+  div.row
+    div.span8
+      div.c-header
+        img.c-image(src='#{c.image}')
+        div.c-info-wap
+          h2 #{c.title}
+          p.c-intro #{c.intro}
+        div.a-count #{c.articleCount}篇
+
+      mixin article(articles)
+
+    div.span4
+      div.button-set
+        a.button.place-right(href='/collection/#{c.id}/delete')
+          i.icon-remove
+          | 删除
+
+        a.button.place-right(href='/collection/#{c.id}/edit')
+          i.icon-pencil
+          | 编辑
+
+        a.button.btn-add-article.place-right(href='/article/add/#{c.id}')
+          i.icon-copy
+          | 添加原文

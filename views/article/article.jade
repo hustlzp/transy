@@ -41,7 +41,7 @@ block content
   div.info-wap
     a(href='/u/#{article.creator.name}') #{article.creator.name}&nbsp;
     span.fg-color-gray 发表在&nbsp;
-    a(href='#{article.url}', target="_blank") 教育
+    a(href='/collection/#{article.col.id}') #{article.col.title}
 
     span.divider
     
@@ -98,5 +98,5 @@ block content
               | 编辑
           else
             a.button.place-right(href='/article/#{article.id}/edit')
-              i.icon-heart
+              i.icon-heart-2
               | 收藏

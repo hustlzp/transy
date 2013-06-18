@@ -15,6 +15,7 @@ Para = new Schema
 Article = new Schema
   _id: ObjectId
   creator: { type: ObjectId, ref: 'User' }
+  col: { type: ObjectId, ref: 'Collection' }
   enTitle: String
   cnTitle: String
   url: String

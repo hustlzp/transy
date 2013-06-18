@@ -1,6 +1,6 @@
 //- error list
 mixin errors()
-  if typeof form !== "undefined"
+  if typeof form !== "undefined" && form.errors
     ul.error-list
       for e in form.errors
         li #{e}
@@ -26,3 +26,8 @@ mixin textarea(name, placeholder, rows)
   if typeof form !== "undefined" && form[name]
     value = form[name]
   textarea(name='#{name}', placeholder='#{placeholder}', rows='#{rows}') #{value}
+
+mixin select(name, options, defaultValue)
+  select(name='#{name}')
+    for o in options
+      option(value='#{o.key}') #{o.value}

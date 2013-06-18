@@ -1,4 +1,5 @@
 extends layout
+include mixin/article
 
 block vars
   -var title='Transy'
@@ -7,25 +8,26 @@ block vars
 block content
   div.row
     div.span8
-      h2.page-header 最新译文
+      h2.page-header 最新
 
-      each a in articles
-        div.article-item
-          a(href='/article/#{a.id}')
-            h3.en-title #{a.cnTitle}
+      mixin article(articles)
+      //- each a in articles
+      //-   div.article-item
+      //-     a(href='/article/#{a.id}')
+      //-       h3.cn-title #{a.cnTitle}
 
-          div.info-wap            
-            a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
-            span 发表在&nbsp;
-            a(href='#{a.url}', target="_blank") 教育
+      //-     div.info-wap            
+      //-       a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
+      //-       span 发表在&nbsp;
+      //-       a(href='/collection/#{a.col.id}') #{a.col.title}
 
-            span.divider
+      //-       span.divider
 
-            span 作者：
-            span #{a.author}
+      //-       span 作者：
+      //-       span #{a.author}
 
             //- span 来源：
             //- a(href='#{a.url}', target="_blank") #{a.urlHost}
     
     div.span4
-      h4 近期热门
+      h4 一周热门

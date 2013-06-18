@@ -1,20 +1,23 @@
 extends ../layout
+include ../mixin/article
 
 block vars
-  -var title='我的收藏'
-  -var page='page-my-love'
+  -var title='我'
+  -var page='page-me'
 
 block content
   div.row
     div.span8
-      h2.page-header 我的收藏
+      h2.page-header 我的译文
+
+      mixin article(articles)
 
     div.span4
       div.button-set.place-right(data-role='button-set')
-        a.button(href='/u/#{u.name}')
+        a.button.active(href='/u/#{u.name}')
           | 译文
 
-        a.button.active(href='/u/#{u.name}/love')
+        a.button(href='/u/#{u.name}/love')
           | 收藏
 
         a.button(href='/u/#{u.name}/collections')

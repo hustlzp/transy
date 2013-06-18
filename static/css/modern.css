@@ -3825,12 +3825,14 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   background-color: transparent;
 }
 .metrouicss .button-set a {
-  padding: 5px 0;
+  /* by hustlzp: change padding-left and padding-right to 12px */
+  padding: 5px 15px;
 }
 .metrouicss .button-set button.active {
   background-color: #008287;
   color: #fff;
 }
+/* by hustlzp: make a.active effective */
 .metrouicss .button-set a.active {
   background-color: #008287;
   color: #fff;

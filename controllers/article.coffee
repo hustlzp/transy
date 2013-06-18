@@ -4,21 +4,22 @@ Article Controller
 
 url = require('url')
 Article = require('../models/article')
+Collection = require('../models/collection')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
-
 
 # show single article
 exports.article = (req, res)->
   Article
   .findById(req.params.id)
   .populate('creator')
+  .populate('col')
   .exec (err, data)->
     res.render("article/article", { article: data })
 
 # show add article page
 exports.showAdd = (req, res)->
-  res.render('article/add_article')
+  res.render('article/add_article', { cid: req.params.cid })
 
 # new article
 exports.add = (req, res)->
@@ -26,7 +27,9 @@ exports.add = (req, res)->
     article = new Article
       _id: ObjectId()
       creator: req.cookies.user.id
+      col: req.params.cid
       enTitle: req.body.title
+      cnTitle: ''
       url: req.body.url
       urlHost: url.parse(req.body.url).hostname
       author: req.body.author
@@ -46,8 +49,13 @@ exports.add = (req, res)->
         state: false
 
     article.save((err)->
-      if(!err)
-        res.redirect("/article/#{article.id}")
+      if not err
+        Collection
+        .findById(article.col)
+        .exec (err, c)->
+          c.articleCount = c.articleCount + 1
+          c.save (err)->
+            res.redirect("/article/#{article.id}")
       else
         res.redirect('/article/add')
     )
@@ -77,22 +85,30 @@ exports.edit = (req, res)->
     data.completion = a.completion
     data.paraList = a.paraList
 
-    data.save((err)->
-      if(!err)
+    data.save (err)->
+      if not err
         res.send(200,  result: 1 )
       else
         res.send(500,  result: 0 )
-    )
   )
 
 # delete article
 exports.delete = (req, res)->
   Article.remove(_id: req.params.id , (err)->
-    if(!err)
-      res.redirect('/my')
+    if not err
+      res.redirect('/me')
     else
       res.redirect('/article/' + req.params.id)
   )
+
+# love article
+exports.love = (req, res)->
+  # Article.findById(req.params.id , (err, article)->
+  #   article.
+  #     res.redirect('/me')
+  #   else
+  #     res.redirect('/article/' + req.params.id)
+  # )
 
 # output article
 exports.output = (req, res)->

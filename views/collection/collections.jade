@@ -1,16 +1,21 @@
 extends ../layout
+include ../mixin/collection
 
 block vars
   -var title='选集'
-  -var page='page-collection'
+  -var page='page-collections'
 
 block content
   div.row
-    div.span8
-      h2.page-header 文化
+    div.span12
+      h2.c-type 文化
+      mixin tcollection(cols, 'culture')
 
-      h2.page-header 生活
+      h2.c-type 生活
+      mixin tcollection(cols, 'life')
 
-      h2.page-header 科技
+      h2.c-type 科技
+      mixin tcollection(cols, 'tech')
 
-      h2.page-header 趣味
+      h2.c-type 趣味
+      mixin tcollection(cols, 'fun')

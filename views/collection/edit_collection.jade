@@ -1,0 +1,30 @@
+extends ../layout
+include ../mixin/form
+
+block vars
+  -var title='编辑选集'
+  -var page='page-edit-collection'
+
+block content
+  h2 编辑选集
+
+  mixin errors()
+
+  form(action='/collection/#{cid}/edit', method='post')
+    div.input-control.select.span2
+      select(name='type')
+        option(value='culture') 文化
+        option(value='life') 生活
+        option(value='tech') 科技
+        option(value='fun') 趣味
+
+    div.input-control.text.span6
+      mixin input('title', '标题')
+
+    div.input-control.text.span6
+      mixin textarea('intro', '描述', 5)
+
+    div.input-control.text.span6
+      mixin input('image', '图片')
+
+    input(type='submit', value='提交')

@@ -7,6 +7,7 @@ html
     link(href="/css/modern.css", rel="stylesheet")
     //- link(href="/css/modern-responsive.css", rel='stylesheet')
     link(href='/css/site.css', rel='stylesheet')
+    link(href='/css/component.css', rel='stylesheet')
     script(src='/js/jquery.min.js')
     script(src='/js/buttonset.js')
     script(src='/js/dropdown.js')
@@ -30,7 +31,7 @@ html
               a(href="/collections") 选集
             if locals.cookies.user
               li
-                a(href="/me") 我
+                a(href="/u/#{locals.cookies.user.name}") 我
               //- li
               //-   a(href="/my/love") 收藏
 
