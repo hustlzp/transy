@@ -8,7 +8,6 @@ mixin errors()
 //- text field
 mixin input(name, placeholder)
   -var value = ''
-  //- if typeof form !== "undefined" && form[name] && form.getErrors(name).length == 0
   if typeof form !== "undefined" && form[name]
     value = form[name]
   input(type="text", placeholder="#{placeholder}", name='#{name}', value='#{value}')
@@ -27,7 +26,11 @@ mixin textarea(name, placeholder, rows)
     value = form[name]
   textarea(name='#{name}', placeholder='#{placeholder}', rows='#{rows}') #{value}
 
-mixin select(name, options, defaultValue)
+//- select
+mixin select(name, options)
   select(name='#{name}')
-    for o in options
-      option(value='#{o.key}') #{o.value}
+    each val, key in options
+      if typeof form !== "undefined" && form[name] && form[name] === key
+        option(value='#{key}', selected='selected') #{val}
+      else
+        option(value='#{key}') #{val}

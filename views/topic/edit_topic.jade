@@ -12,11 +12,7 @@ block content
 
   form(action='/topic/#{tid}/edit', method='post')
     div.input-control.select.span2
-      select(name='type')
-        option(value='culture') 文化
-        option(value='life') 生活
-        option(value='tech') 科技
-        option(value='fun') 趣味
+      mixin select('type', { 'culture': '文化', 'life': '生活', 'tech': '科技', 'fun': '趣味'})
 
     div.input-control.text.span6
       mixin input('title', '标题')
