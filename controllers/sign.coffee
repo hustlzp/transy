@@ -4,6 +4,7 @@ Sign
 
 crypto = require('crypto')
 User = require('../models/user')
+mail = require('../service/mail')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
 

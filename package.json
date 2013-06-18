@@ -9,6 +9,7 @@
     "express": "3.2.5",
     "jade": "0.30.0",
     "mongoose": "3.6.11",
-    "coffee-script": "1.6.2"
+    "coffee-script": "1.6.2",
+    "nodemailer": "0.4.4"
   }
 }
