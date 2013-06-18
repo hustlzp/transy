@@ -10,7 +10,7 @@ site = require('./controllers/site')
 sign = require('./controllers/sign')
 user = require('./controllers/user')
 article = require('./controllers/article')
-collection = require('./controllers/collection')
+topic = require('./controllers/topic')
 
 ###
 Apply route rules to app object
@@ -34,8 +34,8 @@ module.exports = (app)->
 
   # article
   # new
-  app.get('/article/add/:cid', article.showAdd)
-  app.post('/article/add/:cid', validator.article, article.add)
+  app.get('/article/add/:tid', article.showAdd)
+  app.post('/article/add/:tid', validator.article, article.add)
   # edit
   app.get('/article/:id/edit', article.showEdit)
   app.post('/article/:id/edit', article.edit)
@@ -47,25 +47,25 @@ module.exports = (app)->
   app.get('/article/:id', article.article)
 
 
-  # collection
+  # topic
   # add
-  app.get('/collection/add', collection.showAdd)
-  app.post('/collection/add', validator.collection, collection.add)
+  app.get('/topic/add', topic.showAdd)
+  app.post('/topic/add', validator.topic, topic.add)
   # edit
-  app.get('/collection/:id/edit', collection.edit)
-  app.post('/collection/:id/edit', validator.collection, collection.edit)
+  app.get('/topic/:id/edit', topic.edit)
+  app.post('/topic/:id/edit', validator.topic, topic.edit)
   # delete
-  app.get('/collection/:id/delete', collection.delete)
-  # single collection
-  app.get('/collection/:id', collection.collection)
+  app.get('/topic/:id/delete', topic.delete)
+  # single topic
+  app.get('/topic/:id', topic.topic)
   # collections
-  app.get('/collections', collection.collections)
+  app.get('/topics', topic.topics)
 
   # user
   # personal page
   app.get('/u/:user', user.articles)
   # loves
-  app.get('/u/:user/love', user.love)
+  app.get('/u/:user/collect', user.collect)
   # collections
-  app.get('/u/:user/collections', user.collections)
+  app.get('/u/:user/topics', user.topics)
 

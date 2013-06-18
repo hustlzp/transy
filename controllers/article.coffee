@@ -4,7 +4,7 @@ Article Controller
 
 url = require('url')
 Article = require('../models/article')
-Collection = require('../models/collection')
+Topic = require('../models/topic')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
 
@@ -13,13 +13,13 @@ exports.article = (req, res)->
   Article
   .findById(req.params.id)
   .populate('creator')
-  .populate('col')
+  .populate('topic')
   .exec (err, data)->
     res.render("article/article", { article: data })
 
 # show add article page
 exports.showAdd = (req, res)->
-  res.render('article/add_article', { cid: req.params.cid })
+  res.render('article/add_article', { tid: req.params.tid })
 
 # new article
 exports.add = (req, res)->
@@ -27,7 +27,7 @@ exports.add = (req, res)->
     article = new Article
       _id: ObjectId()
       creator: req.cookies.user.id
-      col: req.params.cid
+      topic: req.params.tid
       enTitle: req.body.title
       cnTitle: ''
       url: req.body.url
@@ -50,19 +50,18 @@ exports.add = (req, res)->
 
     article.save((err)->
       if not err
-        Collection
-        .findById(article.col)
+        # topic's article count + 1
+        Topic
+        .findById(article.topic)
         .exec (err, c)->
-          c.articleCount = c.articleCount + 1
+          c.articleCount += 1
           c.save (err)->
             res.redirect("/article/#{article.id}")
       else
         res.redirect('/article/add')
     )
   else
-    res.render('article/add_article',
-      form: req.form
-    )
+    res.render('article/add_article', { form: req.form })
 
 # show edit page
 exports.showEdit = (req, res)->
@@ -96,19 +95,16 @@ exports.edit = (req, res)->
 exports.delete = (req, res)->
   Article.remove(_id: req.params.id , (err)->
     if not err
-      res.redirect('/me')
+      # topic's article count - 1
+      Topic
+      .findById(article.topic)
+      .exec (err, c)->
+        c.articleCount -= 1
+        c.save (err)->
+          res.redirect("/user/#{req.cookies.user.name}")
     else
       res.redirect('/article/' + req.params.id)
   )
-
-# love article
-exports.love = (req, res)->
-  # Article.findById(req.params.id , (err, article)->
-  #   article.
-  #     res.redirect('/me')
-  #   else
-  #     res.redirect('/article/' + req.params.id)
-  # )
 
 # output article
 exports.output = (req, res)->
@@ -130,6 +126,18 @@ exports.output = (req, res)->
     res.set('Content-Type', 'text/plain;charset=utf-8')
     res.send(200, html)
   )
+
+# collect article
+exports.collect = (req, res)->
+  # add item into ArticleCollect
+  # article collect count + 1 in User
+  # collect count + 1 in Article
+
+# dis collect article
+exports.disCollect = (req, res)->
+  # remove item into ArticleCollect
+  # article collect count - 1 in User 
+  # collect count - 1 in Article
 
 ###
 Output html

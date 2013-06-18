@@ -1,12 +1,12 @@
 ###
-Article Collection Model
+Topic Model
 ###
 
 mongoose = require('mongoose')
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
 
-Collection = new Schema
+Topic = new Schema
   _id: ObjectId
   creator: { type: ObjectId, ref: 'User' }
   articleCount: { type: Number, default: 0 }
@@ -15,4 +15,4 @@ Collection = new Schema
   intro: String
   image: String
 
-module.exports = mongoose.model('Collection', Collection)
+module.exports = mongoose.model('Topic', Topic)

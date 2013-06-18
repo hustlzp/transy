@@ -1,0 +1,21 @@
+extends ../layout
+include ../mixin/topic
+
+block vars
+  -var title='选集'
+  -var page='page-topics'
+
+block content
+  div.row
+    div.span12
+      h2.t-type 文化
+      mixin typeTopics(topics, 'culture')
+
+      h2.t-type 生活
+      mixin typeTopics(topics, 'life')
+
+      h2.t-type 科技
+      mixin typeTopics(topics, 'tech')
+
+      h2.t-type 趣味
+      mixin typeTopics(topics, 'fun')

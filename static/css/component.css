@@ -2,5 +2,7 @@
 .metrouicss .article-item .cn-title{margin-bottom:8px;font-weight:normal;color:#666;}
 .metrouicss .article-item .info-wap{color:#666;position:relative;}.metrouicss .article-item .info-wap .divider{display:inline-block;margin-left:15px;}
 .metrouicss .article-item .info-wap .completion{position:absolute;bottom:0;right:5px;}
-.metrouicss .c-item{width:180px;height:180px;margin:0 15px 15px 0;padding:15px 15px;border:1px dashed #aaa;float:left;position:relative;color:#333;}.metrouicss .c-item:hover{color:#333;background-color:#fbfbfb;}
-.metrouicss .c-item .a-count{position:absolute;bottom:15px;right:15px;}
+.metrouicss .t-item{width:285px;margin:0 25px 15px 0;padding:15px 15px;border:1px solid #ddd;float:left;position:relative;color:#333;}.metrouicss .t-item img{width:60px;height:60px;float:left;}
+.metrouicss .t-item .t-info-wap{margin-left:75px;}
+.metrouicss .t-item:hover{color:#333;background-color:#fbfbfb;}
+.metrouicss .t-item .t-article-count{position:absolute;bottom:10px;right:10px;color:#666;}

@@ -28,19 +28,15 @@ html
             li
               a(href="/") 主页
             li
-              a(href="/collections") 选集
+              a(href="/topics") 话题
             if locals.cookies.user
               li
                 a(href="/u/#{locals.cookies.user.name}") 我
-              //- li
-              //-   a(href="/my/love") 收藏
 
           ul.menu.place-right
             if locals.cookies.user
               li
-                a(href='/collection/add') 创建选集
-              //- li
-              //-   a(href='/article/add') 添加原文
+                a(href='/topic/add') 创建话题
               li(data-role="dropdown")
                 a(href='#') #{locals.cookies.user.name}
                 ul.dropdown-menu

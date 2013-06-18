@@ -27,8 +27,8 @@ exports.article = form(
   field('content', '正文').trim().required()
 )
 
-# collection form validator
-exports.collection = form(
+# topic form validator
+exports.topic = form(
   field('type', '类别').trim().required(),
   field('title', '标题').trim().required(),
   field('intro', '描述').trim().required(),

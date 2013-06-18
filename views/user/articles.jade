@@ -3,22 +3,22 @@ include ../mixin/article
 
 block vars
   -var title='我'
-  -var page='page-me'
+  -var page='page-user-articles'
 
 block content
   div.row
     div.span8
-      h2.page-header 我的译文
+      h2.page-header #{u.name} / 译文
 
-      mixin article(articles)
+      mixin articles(articles)
 
     div.span4
       div.button-set.place-right(data-role='button-set')
         a.button.active(href='/u/#{u.name}')
           | 译文
 
-        a.button(href='/u/#{u.name}/love')
+        a.button(href='/u/#{u.name}/collect')
           | 收藏
 
-        a.button(href='/u/#{u.name}/collections')
-          | 选集
+        a.button(href='/u/#{u.name}/topics')
+          | 话题

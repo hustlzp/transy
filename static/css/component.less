@@ -43,28 +43,37 @@
     }
 }
 
-/* collection item
+/* topic item
 ----------------------------------------------------*/
-.c-item{
-    width: 180px;
-    height: 180px;
-    margin: 0 15px 15px 0;
+.t-item{
+    width: 285px;
+    margin: 0 25px 15px 0;
     padding: 15px 15px;
-    border: 1px dashed #aaa;
+    border: 1px solid #ddd;
     float: left;
     position: relative;
     color: #333;
 
+    img{
+        width: 60px;
+        height: 60px;
+        float: left;
+    }
+
+    .t-info-wap{
+        margin-left: 75px;
+    }
+
     &:hover{
         color: #333;
         background-color: #fbfbfb;
-        // border: 2px dashed #333;
     }
 
-    .a-count{
+    .t-article-count{
         position: absolute;
-        bottom: 15px;
-        right: 15px;
+        bottom: 10px;
+        right: 10px;
+        color: #666;
     }
 }
 

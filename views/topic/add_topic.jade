@@ -2,16 +2,22 @@ extends ../layout
 include ../mixin/form
 
 block vars
-  -var title='编辑选集'
-  -var page='page-edit-collection'
+  -var title='创建选集'
+  -var page='page-add-collection'
 
 block content
-  h2 编辑选集
+  h2 创建话题
 
   mixin errors()
 
-  form(action='/collection/#{cid}/edit', method='post')
+  form(action='/topic/add', method='post')
     div.input-control.select.span2
+      //- mixin select('type', {
+      //-   'culture': '文化',
+      //-   'life': '生活',
+      //-   'tech': '科技',
+      //-   'fun': '趣味'
+      //- })
       select(name='type')
         option(value='culture') 文化
         option(value='life') 生活
@@ -27,4 +33,4 @@ block content
     div.input-control.text.span6
       mixin input('image', '图片')
 
-    input(type='submit', value='提交')
+    input(type='submit', value='创建')

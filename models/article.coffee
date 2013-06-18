@@ -15,7 +15,7 @@ Para = new Schema
 Article = new Schema
   _id: ObjectId
   creator: { type: ObjectId, ref: 'User' }
-  col: { type: ObjectId, ref: 'Collection' }
+  topic: { type: ObjectId, ref: 'Topic' }
   enTitle: String
   cnTitle: String
   url: String
@@ -26,5 +26,6 @@ Article = new Schema
   updateTime: Date
   paraList: [Para]
   commentList: [String]
+  collectCount: { Type: Number, default: 0 }
 
 module.exports = mongoose.model('Article', Article)

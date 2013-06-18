@@ -5,7 +5,7 @@ User Controller
 url = require('url')
 User = require('../models/user')
 Article = require('../models/article')
-Collection = require('../models/collection')
+Topic = require('../models/topic')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
 
@@ -17,23 +17,23 @@ exports.articles = (req, res)->
     Article
     .find({ creator: u.id })
     .populate('creator')
-    .populate('col')
+    .populate('topic')
     .exec (err, articles)->
       res.render('user/articles', { u: u, articles: articles })
 
 # my love articles
-exports.love = (req, res)->
+exports.collect = (req, res)->
   User
   .findOne({ name: req.params.user })
   .exec (err, u)->
-    res.render('user/love', { u: u })
+    res.render('user/collect', { u: u })
 
-# my collections
-exports.collections = (req, res)->
+# my topics
+exports.topics = (req, res)->
   User
   .findOne({ name: req.params.user })
   .exec (err, u)->
-    Collection
+    Topic
     .find({ creator: u.id })
     .exec (err, cols)->
-      res.render('user/collections', { u: u, cols: cols })
+      res.render('user/topics', { u: u, cols: cols })

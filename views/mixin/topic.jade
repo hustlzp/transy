@@ -1,0 +1,19 @@
+//- topic item
+mixin topic(t)
+  a.t-item(href='/topic/#{t.id}')
+    img.t-image(src='#{t.image}')
+    div.t-info-wap
+      h3 #{t.title}
+      p #{t.intro}
+
+    div.t-article-count #{t.articleCount}篇
+
+//- topics
+mixin topics(ts)
+  for t in ts
+    mixin topic(t)
+
+mixin typeTopics(ts, type)
+  for t in ts
+    if t.type === type
+      mixin topic(t)

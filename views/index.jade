@@ -10,24 +10,7 @@ block content
     div.span8
       h2.page-header 最新
 
-      mixin article(articles)
-      //- each a in articles
-      //-   div.article-item
-      //-     a(href='/article/#{a.id}')
-      //-       h3.cn-title #{a.cnTitle}
-
-      //-     div.info-wap            
-      //-       a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
-      //-       span 发表在&nbsp;
-      //-       a(href='/collection/#{a.col.id}') #{a.col.title}
-
-      //-       span.divider
-
-      //-       span 作者：
-      //-       span #{a.author}
-
-            //- span 来源：
-            //- a(href='#{a.url}', target="_blank") #{a.urlHost}
+      mixin articles(articles)
     
     div.span4
       h4 一周热门

@@ -2,20 +2,20 @@ extends ../layout
 
 block vars
   -var title='我的收藏'
-  -var page='page-my-love'
+  -var page='page-user-collect'
 
 block content
   div.row
     div.span8
-      h2.page-header 我的收藏
+      h2.page-header #{u.name} / 收藏
 
     div.span4
       div.button-set.place-right(data-role='button-set')
         a.button(href='/u/#{u.name}')
           | 译文
 
-        a.button.active(href='/u/#{u.name}/love')
+        a.button.active(href='/u/#{u.name}/collect')
           | 收藏
 
-        a.button(href='/u/#{u.name}/collections')
-          | 选集
+        a.button(href='/u/#{u.name}/topics')
+          | 话题
