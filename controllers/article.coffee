@@ -36,7 +36,7 @@ exports.add = (req, res)->
       creator: req.cookies.user.id
       topic: req.params.tid
       enTitle: req.body.title
-      cnTitle: '待译中文标题'
+      cnTitle: '待译标题'
       url: req.body.url
       urlHost: url.parse(req.body.url).hostname
       author: req.body.author
