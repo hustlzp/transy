@@ -31,6 +31,7 @@ module.exports = (app)->
   # signout
   app.get('/signout', sign.signout)
   # active
+  # todo
 
   # article
   # new
@@ -43,6 +44,9 @@ module.exports = (app)->
   app.get('/article/:id/delete', article.delete)
   # output
   app.get('/article/:id/output/:mode', article.output)
+  # collect & discollect
+  app.get('/article/:id/collect', article.collect)
+  app.get('/article/:id/discollect', article.discollect)
   # single article
   app.get('/article/:id', article.article)
 
@@ -70,5 +74,3 @@ module.exports = (app)->
   app.get('/u/:user/collect', user.collect)
   # collections
   app.get('/u/:user/topics', user.topics)
-
-

@@ -97,6 +97,12 @@ block content
               i.icon-pencil
               | 编辑
           else
-            a.button.place-right(href='/article/#{article.id}/edit')
-              i.icon-heart-2
-              | 收藏
+            if isCollect
+              a.button.place-right(href='/article/#{article.id}/discollect')
+                i.icon-heart
+                | 取消收藏
+            else
+              a.button.place-right(href='/article/#{article.id}/collect')
+                i.icon-heart-2
+                | 收藏
+

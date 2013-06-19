@@ -5,6 +5,8 @@ Article Controller
 url = require('url')
 Article = require('../models/article')
 Topic = require('../models/topic')
+User = require('../models/user')
+Collect = require('../models/collect')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
 
@@ -14,8 +16,13 @@ exports.article = (req, res)->
   .findById(req.params.id)
   .populate('creator')
   .populate('topic')
-  .exec (err, data)->
-    res.render("article/article", { article: data })
+  .exec (err, article)->
+    Collect.findOne { user: req.cookies.user.id, article: req.params.id }, (err, collect)->
+      if collect
+        isCollect = true
+      else
+        isCollect = false
+      res.render("article/article", { article: article, isCollect: isCollect })
 
 # show add article page
 exports.showAdd = (req, res)->
@@ -56,6 +63,12 @@ exports.add = (req, res)->
         .exec (err, c)->
           c.articleCount += 1
           c.save (err)->
+            # user's article count + 1
+            User
+            .findById(article.creator)
+            .exec (err, u)->
+              u.articleCount += 1
+              u.save (err)->
             res.redirect("/article/#{article.id}")
       else
         res.redirect('/article/add')
@@ -93,18 +106,21 @@ exports.edit = (req, res)->
 
 # delete article
 exports.delete = (req, res)->
-  Article.remove(_id: req.params.id , (err)->
-    if not err
-      # topic's article count - 1
-      Topic
-      .findById(article.topic)
-      .exec (err, c)->
-        c.articleCount -= 1
-        c.save (err)->
-          res.redirect("/user/#{req.cookies.user.name}")
-    else
-      res.redirect('/article/' + req.params.id)
-  )
+  Article.findById req.params.id , (err, article)->
+    article.remove()
+    # topic's article count - 1
+    Topic
+    .findById(article.topic)
+    .exec (err, c)->
+      c.articleCount -= 1
+      c.save (err)->
+        # user's article count - 1
+        User
+        .findById(article.creator)
+        .exec (err, u)->
+          u.articleCount -= 1
+          u.save (err)->
+            res.redirect("/u/#{req.cookies.user.name}")
 
 # output article
 exports.output = (req, res)->
@@ -129,15 +145,36 @@ exports.output = (req, res)->
 
 # collect article
 exports.collect = (req, res)->
-  # add item into ArticleCollect
-  # article collect count + 1 in User
-  # collect count + 1 in Article
+  # add item into Collect
+  collect = new Collect
+    user: req.cookies.user.id
+    article: req.params.id
+    createTime: new Date()
+  collect.save (err)->
+    # collect count + 1 in User
+    User.findById collect.user, (err, user)->
+      # user.collectCount = parseInt(user.collectCount) + 1
+      user.collectCount += 1
+      user.save (err)->
+        # collect count + 1 in Article
+        Article.findById collect.article, (err, article)->
+          article.collectCount += 1
+          article.save (err)->
+            res.redirect("/article/#{article.id}")
 
 # dis collect article
-exports.disCollect = (req, res)->
-  # remove item into ArticleCollect
-  # article collect count - 1 in User 
-  # collect count - 1 in Article
+exports.discollect = (req, res)->
+  # remove item into Collect
+  Collect.remove { user: req.cookies.user.id, article: req.params.id }, (err)->
+    # collect count - 1 in User 
+    User.findById req.cookies.user.id, (err, user)->
+      user.collectCount -= 1
+      user.save (err)->
+        # collect count - 1 in Article
+        Article.findById req.params.id, (err, article)->
+          article.collectCount -= 1
+          article.save (err)->
+            res.redirect("/article/#{article.id}")
 
 ###
 Output html

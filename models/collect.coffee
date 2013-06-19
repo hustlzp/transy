@@ -8,8 +8,8 @@ ObjectId = Schema.ObjectId
 
 Collect = new Schema
   _id: ObjectId
-  user: { Type: ObjectId, ref: 'User' }
-  article: { Type: ObjectId, ref: 'Article' }
+  user: { type: ObjectId, ref: 'User' }
+  article: { type: ObjectId, ref: 'Article' }
   createTime: Date
 
 module.exports = mongoose.model('Collect', Collect)

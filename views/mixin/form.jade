@@ -8,23 +8,33 @@ mixin errors()
 //- text field
 mixin text(name, placeholder)
   -var value = ''
-  //- if this filed has value and no error, then display the value
-  if typeof form !== "undefined" && form[name] && form.getErrors && form.getErrors(name).length === 0
-    value = form[name]
+  //- if this filed has value
+  if typeof form !== "undefined" && form[name]
+    //- if post and no error, then display the value
+    if form.getErrors && form.getErrors(name).length === 0
+      value = form[name]
+    else  //- if get
+      value = form[name]
   input(type="text", placeholder="#{placeholder}", name='#{name}', value='#{value}')
 
 //- password field
 mixin password(name, placeholder)
   -var value = ''
-  if typeof form !== "undefined" && form[name] && form.getErrors && form.getErrors(name).length === 0
-    value = form[name]
+  if typeof form !== "undefined" && form[name]
+    if form.getErrors && form.getErrors(name).length === 0
+      value = form[name]
+    else
+      value = form[name]
   input(type="password", placeholder="#{placeholder}", name='#{name}', value='#{value}')
 
 //- textarea field
 mixin textarea(name, placeholder, rows)
   -var value = ''
-  if typeof form !== "undefined" && form[name] && form.getErrors && form.getErrors(name).length === 0
-    value = form[name]
+  if typeof form !== "undefined" && form[name]
+    if form.getErrors && form.getErrors(name).length === 0
+      value = form[name]
+    else
+      value = form[name]
   textarea(name='#{name}', placeholder='#{placeholder}', rows='#{rows}') #{value}
 
 //- select
