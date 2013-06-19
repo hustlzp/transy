@@ -3,9 +3,9 @@ mixin articles(articles)
   each a in articles
     div.article-item
       a(href='/article/#{a.id}')
-        h3.en-title #{a.enTitle}
+        h3.en-title #{a.cnTitle}
 
-      h4.cn-title #{a.cnTitle}
+      h4.cn-title #{a.enTitle}
       
       div.info-wap            
         a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;

@@ -17,12 +17,12 @@ exports.article = (req, res)->
   .populate('creator')
   .populate('topic')
   .exec (err, article)->
-    Collect.findOne { user: req.cookies.user.id, article: req.params.id }, (err, collect)->
-      if collect
-        isCollect = true
-      else
-        isCollect = false
-      res.render("article/article", { article: article, isCollect: isCollect })
+    if not req.cookies.user
+      res.render("article/article", { article: article, isCollect: false })
+    else
+      Collect.findOne { user: req.cookies.user.id, article: req.params.id }, (err, collect)->
+        isCollect = if collect then true else false
+        res.render("article/article", { article: article, isCollect: isCollect })
 
 # show add article page
 exports.showAdd = (req, res)->
@@ -36,7 +36,7 @@ exports.add = (req, res)->
       creator: req.cookies.user.id
       topic: req.params.tid
       enTitle: req.body.title
-      cnTitle: ''
+      cnTitle: '待译中文标题'
       url: req.body.url
       urlHost: url.parse(req.body.url).hostname
       author: req.body.author
