@@ -13,6 +13,7 @@ mixin topics(ts)
   for t in ts
     mixin topic(t)
 
+//- topics of a certain type
 mixin typeTopics(ts, type)
   for t in ts
     if t.type === type
