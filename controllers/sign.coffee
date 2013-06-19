@@ -49,6 +49,10 @@ exports.signup = (req, res)->
   else
     res.render('sign/signup', { form: req.form })
 
+# active account
+exports.activeAccount = (req, res)->
+
+
 # signin page
 exports.showSignin = (req, res)->
   res.render('sign/signin')

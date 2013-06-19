@@ -2,7 +2,10 @@
 Config
 ###
 
-module.exports = {
+module.exports =
+  # site
+  host: 'http://localhost:3000'
+
   # smtp mail options
   mailOptions:
     host: 'smtp.126.com',
@@ -11,6 +14,3 @@ module.exports = {
     auth:
       user: "transy@126.com",
       pass: "transy2013"
-
-  #
-}
