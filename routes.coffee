@@ -62,10 +62,13 @@ module.exports = (app)->
   app.get('/topics', topic.topics)
 
   # user
+  # user setting
+  app.get('/u/settings', user.settings)
   # personal page
   app.get('/u/:user', user.articles)
   # loves
   app.get('/u/:user/collect', user.collect)
   # collections
   app.get('/u/:user/topics', user.topics)
+
 

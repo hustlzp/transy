@@ -72,15 +72,15 @@ exports.signin = (req, res)->
         User
         .findOne({ email: req.form.email })
         .where('pwd').equals(md5(req.form.pwd))
-        .exec (err, data)->
+        .exec (err, user)->
           if err
             return next(err)
-          if not data
+          if not user
             req.form.pushError('pwd', '密码错误')
             res.render('sign/signin', { form: req.form })
           else
             # set session
-            gene_cookie(res, data)
+            gene_cookie(res, user)
             res.redirect('/')
   else
     res.render('sign/signin', { form: req.form })
