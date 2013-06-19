@@ -1,4 +1,12 @@
-.metrouicss{}.metrouicss .article-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee;}.metrouicss .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
+.metrouicss{}.metrouicss .page{width:940px;margin:auto;}
+.metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .nav-bar-inner>.divider{margin-left:10px;margin-right:10px;}
+.metrouicss .page-header{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:10px;clear:both;}
+.metrouicss .fg-color-gray{color:#666;}
+.metrouicss .mb10{margin-bottom:10px;}
+.metrouicss .mb15{margin-bottom:15px;}
+.metrouicss .mb20{margin-bottom:20px;}
+.metrouicss .clear{clear:both;}
+.metrouicss .article-item{padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #eee;}.metrouicss .article-item .en-title{margin-bottom:8px;font-weight:normal;color:#333;}
 .metrouicss .article-item .cn-title{margin-bottom:8px;font-weight:normal;color:#666;}
 .metrouicss .article-item .info-wap{color:#666;position:relative;}.metrouicss .article-item .info-wap .divider{display:inline-block;margin-left:15px;}
 .metrouicss .article-item .info-wap .completion{position:absolute;bottom:0;right:5px;}

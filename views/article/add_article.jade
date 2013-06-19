@@ -12,13 +12,13 @@ block content
 
   form(action='/article/add/#{tid}', method='post')
     div.input-control.text.span6
-      mixin input('title', '标题')
+      mixin text('title', '标题')
 
     div.input-control.text.span6
-      mixin input('author', '作者')
+      mixin text('author', '作者')
 
     div.input-control.text.span6
-      mixin input('url', '链接')
+      mixin text('url', '链接')
 
     div.input-control.textarea.span10
       mixin textarea('content', '正文', 20)

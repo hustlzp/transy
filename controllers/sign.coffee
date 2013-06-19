@@ -13,14 +13,14 @@ exports.showSignup = (req, res)->
   res.render('sign/signup')
 
 # signup
-exports.signup = (req, res)->
+exports.signup = (req, res, next)->
   if req.form.isValid
     # check if username exist
     User.find { name: req.form.name }, (err, data)->
       if err
         return next(err)
       if data.length != 0
-        req.form.errors.push('用户名已存在')
+        req.form.pushError('name', '用户名已存在')
         res.render('sign/signup', { form: req.form })
       else
         # check if email exist
@@ -28,7 +28,7 @@ exports.signup = (req, res)->
           if err
             return next(err)
           if data.length != 0
-            req.form.errors.push('邮箱已存在')
+            req.form.pushError('email', '邮箱已存在')
             res.render('sign/signup', { form: req.form })
           else
             # add user
@@ -47,6 +47,8 @@ exports.signup = (req, res)->
             #   header: 'Success'
             #   text: '欢迎加入Transy！激活链接已发送到您的注册邮箱，请登陆邮箱完成激活。'
   else
+    # console.log(req.form)
+    # console.log(req.form.errorsMap)
     res.render('sign/signup', { form: req.form })
 
 # active account
@@ -65,7 +67,7 @@ exports.signin = (req, res)->
       if err
         return next(err)
       if data.length == 0
-        req.form.errors.push('帐号不存在')
+        req.form.pushError('email', '帐号不存在')
         res.render('sign/signin', { form: req.form })
       else
         # check if password is correct
@@ -76,7 +78,7 @@ exports.signin = (req, res)->
           if err
             return next(err)
           if not data
-            req.form.errors.push('密码错误')
+            req.form.pushError('pwd', '密码错误')
             res.render('sign/signin', { form: req.form })
           else
             # set session

@@ -15,12 +15,12 @@ block content
       mixin select('type', { 'culture': '文化', 'life': '生活', 'tech': '科技', 'fun': '趣味'})
 
     div.input-control.text.span6
-      mixin input('title', '标题')
+      mixin text('title', '标题')
 
     div.input-control.text.span6
       mixin textarea('intro', '描述', 5)
 
     div.input-control.text.span6
-      mixin input('image', '图片')
+      mixin text('image', '图片')
 
     input(type='submit', value='提交')
