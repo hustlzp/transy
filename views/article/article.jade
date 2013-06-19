@@ -76,6 +76,12 @@ block content
           else if p.type === 'image'
             img(src='#{p.en}')
 
+      //- comment form
+      form(action='/article/#{article.id}/reply', method='post')
+        div.input-control.text
+          textarea(name='comment', placeholder='评论')
+        input(type='submit', value='提交')
+
     div.span4
       div.button-set.place-right(data-role='button-set')
         button.btn-sel-cn 中

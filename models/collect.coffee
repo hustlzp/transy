@@ -1,5 +1,5 @@
 ###
-Collect Model
+Article Collect Model
 ###
 
 mongoose = require('mongoose')

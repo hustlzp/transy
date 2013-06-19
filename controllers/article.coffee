@@ -143,6 +143,18 @@ exports.output = (req, res)->
     res.send(200, html)
   )
 
+# add comment
+exports.comment = (req, res)->
+  # add comment into Comment
+    # comment count + 1 in Article
+      # comment count + 1 in User
+
+# remove comment
+exports.discomment = (req, res)->
+  # remove comment from Comment
+    # comment count - 1 in Article
+      # comment count - 1 in User
+
 # collect article
 exports.collect = (req, res)->
   # add item into Collect

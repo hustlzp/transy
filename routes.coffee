@@ -44,6 +44,9 @@ module.exports = (app)->
   app.get('/article/:id/delete', article.delete)
   # output
   app.get('/article/:id/output/:mode', article.output)
+  # comment & discomment
+  app.post('/article/:id/comment', article.comment)
+  app.get('/comment/:id/remove', article.discomment)
   # collect & discollect
   app.get('/article/:id/collect', article.collect)
   app.get('/article/:id/discollect', article.discollect)
@@ -67,7 +70,7 @@ module.exports = (app)->
 
   # user
   # user setting
-  app.get('/u/settings', user.settings)
+  app.get('/u/setting', user.setting)
   # personal page
   app.get('/u/:user', user.articles)
   # loves

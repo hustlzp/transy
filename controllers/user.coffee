@@ -51,7 +51,7 @@ exports.topics = (req, res)->
       res.render('user/topics', { u: u, cols: cols })
 
 # user setting
-exports.settings = (req, res)->
+exports.setting = (req, res)->
   User
   .findById(req.cookies.user.id)
   .exec (err, u)->

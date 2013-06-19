@@ -1,16 +1,15 @@
 ###
-Article Comment Model
+Message Model
 ###
 
 mongoose = require('mongoose')
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
 
-Comment = new Schema
+Message = new Schema
   _id: ObjectId
   user: { type: ObjectId, ref: 'User' }
-  article: { type: ObjectId, ref: 'Article' }
   content: String
   createTime: Date
 
-module.exports = mongoose.model('Comment', Comment)
+module.exports = mongoose.model('Message', Message)
