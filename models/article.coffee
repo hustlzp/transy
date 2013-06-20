@@ -26,7 +26,7 @@ Article = new Schema
   updateTime: Date
   paraList: [Para]
   annotationList: [String]
-  collectCount: { type: Number, default: 0 }
-  commentCount: { type: Number, default: 0 }
+  collectCount: { type: Number, default: 0, min: 0 }
+  commentCount: { type: Number, default: 0, min: 0 }
 
 module.exports = mongoose.model('Article', Article)

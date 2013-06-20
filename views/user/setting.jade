@@ -8,3 +8,17 @@ block content
   div.row
     div.span8
       h2.page-header 个人设置
+
+      h3 密码重置
+
+      form(action='/u/change_password', method='post').span6
+        div.input-control.text
+          input(type='text', name='pwd', placeholder='原密码')
+
+        div.input-control.text
+          input(type='text', name='newPwd', placeholder='新密码')
+
+        div.input-control.text    
+          input(type='text', name='reNewPwd', placeholder='重复新密码')
+
+        input(type='submit', value='保存设置')

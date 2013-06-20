@@ -9,7 +9,7 @@ ObjectId = Schema.ObjectId
 Topic = new Schema
   _id: ObjectId
   creator: { type: ObjectId, ref: 'User' }
-  articleCount: { type: Number, default: 0 }
+  articleCount: { type: Number, default: 0, min: 0 }
   type: String
   title: String
   intro: String

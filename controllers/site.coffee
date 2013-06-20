@@ -9,5 +9,12 @@ exports.index = (req, res)->
   .find({ completion: 100 })
   .populate('creator')
   .populate('topic')
-  .exec (err, data)->
-    res.render('index', { articles: data })
+  .sort({ createTime: -1 })
+  .limit(10)
+  .exec (err, articles)->
+    Article
+    .find()
+    .sort({ commentCount: -1, collectCount: -1 })
+    .limit(10)
+    .exec (err, hotArticles)->
+      res.render('index', { articles: articles, hotArticles: hotArticles })

@@ -13,13 +13,13 @@ block content
     div.span4
       div.button-set.place-right(data-role='button-set')
         a.button(href='/u/#{u.name}')
-          | 译文
+          | 译文 #{u.articleCount}
 
         a.button(href='/u/#{u.name}/collects')
-          | 收藏
+          | 收藏 #{u.collectCount}
 
         a.button.active(href='/u/#{u.name}/comments')
-          | 回复
+          | 回复 #{u.commentCount}
   
   div.clear.mb5
 

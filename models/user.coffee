@@ -17,8 +17,8 @@ User = new Schema
   signature: String
   createTime: Date
   isActive: Boolean
-  articleCount: { type: Number, default: 0 }
-  collectCount: { type: Number, default: 0 }
-  commentCount: { type: Number, default: 0 }
+  articleCount: { type: Number, default: 0, min: 0 }
+  collectCount: { type: Number, default: 0, min: 0 }
+  commentCount: { type: Number, default: 0, min: 0 }
 
 module.exports = mongoose.model('User', User)

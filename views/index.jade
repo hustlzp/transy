@@ -14,3 +14,8 @@ block content
     
     div.span4
       h4 一周热门
+
+      ul.hot-articles
+        for a in hotArticles
+          li
+            a(href='/article/#{a.id}') #{a.cnTitle}
