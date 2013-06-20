@@ -2,8 +2,8 @@ extends ../layout
 include ../mixin/article
 
 block vars
-  -var title=u.name
-  -var page='page-user-articles'
+  -var title = u.name
+  -var page = 'page-user-articles'
 
 block content
   div.row
@@ -17,8 +17,8 @@ block content
         a.button.active(href='/u/#{u.name}')
           | 译文
 
-        a.button(href='/u/#{u.name}/collect')
+        a.button(href='/u/#{u.name}/collects')
           | 收藏
 
-        //- a.button(href='/u/#{u.name}/topics')
-        //-   | 话题
+        a.button(href='/u/#{u.name}/comments')
+          | 回复

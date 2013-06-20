@@ -3,10 +3,11 @@ Article Controller
 ###
 
 url = require('url')
-Article = require('../models/article')
-Topic = require('../models/topic')
 User = require('../models/user')
+Topic = require('../models/topic')
+Article = require('../models/article')
 Collect = require('../models/collect')
+Comment = require('../models/comment')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
 
@@ -17,12 +18,16 @@ exports.article = (req, res)->
   .populate('creator')
   .populate('topic')
   .exec (err, article)->
-    if not req.cookies.user
-      res.render("article/article", { article: article, isCollect: false })
-    else
-      Collect.findOne { user: req.cookies.user.id, article: req.params.id }, (err, collect)->
-        isCollect = if collect then true else false
-        res.render("article/article", { article: article, isCollect: isCollect })
+    Comment
+    .find({ article: article.id })
+    .populate('user')
+    .exec (err, comments)->
+      if not req.cookies.user
+        res.render("article/article", { article: article, comments: comments, isCollect: false })
+      else
+        Collect.findOne { user: req.cookies.user.id, article: req.params.id }, (err, collect)->
+          isCollect = if collect then true else false
+          res.render("article/article", { article: article, comments: comments, isCollect: isCollect })
 
 # show add article page
 exports.showAdd = (req, res)->
@@ -55,7 +60,7 @@ exports.add = (req, res)->
         type: 'text'
         state: false
 
-    article.save((err)->
+    article.save (err)->
       if not err
         # topic's article count + 1
         Topic
@@ -72,21 +77,17 @@ exports.add = (req, res)->
             res.redirect("/article/#{article.id}")
       else
         res.redirect('/article/add')
-    )
   else
     res.render('article/add_article', { form: req.form })
 
 # show edit page
 exports.showEdit = (req, res)->
-  Article.findById(req.params.id, (err, data)->
-    res.render("article/edit_article",
-      article: data 
-    )
-  )
+  Article.findById req.params.id, (err, article)->
+    res.render("article/edit_article", { article: article }) 
 
 # update article
 exports.edit = (req, res)->
-  Article.findById(req.params.id, (err, data)->
+  Article.findById req.params.id, (err, data)->
     a = req.body.article
     data.enTitle = a.enTitle
     data.cnTitle = a.cnTitle
@@ -102,7 +103,6 @@ exports.edit = (req, res)->
         res.send(200,  result: 1 )
       else
         res.send(500,  result: 0 )
-  )
 
 # delete article
 exports.delete = (req, res)->
@@ -146,8 +146,21 @@ exports.output = (req, res)->
 # add comment
 exports.comment = (req, res)->
   # add comment into Comment
+  c = new Comment
+    article: req.params.id
+    user: req.cookies.user.id
+    content: req.body.content
+    createTime: new Date()
+  c.save (err)->
     # comment count + 1 in Article
-      # comment count + 1 in User
+    Article.findById(c.article).exec (err, article)->
+      article.commentCount += 1
+      article.save (err)->
+        # comment count + 1 in User
+        User.findById(c.user).exec (err, user)->
+          user.commentCount += 1
+          user.save (err)->
+            res.redirect("/article/#{c.article}")
 
 # remove comment
 exports.discomment = (req, res)->

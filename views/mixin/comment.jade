@@ -1,0 +1,23 @@
+//- comments
+mixin articleComments(commments)
+  for c in comments
+    div.comment-item
+      img.c-user-avatar(src="#{c.user.avatarUrl}")
+      div.c-content-wap
+        div.c-user
+          a(href="/u/#{c.user.name}") #{c.user.name}
+        div.c-content #{c.content}
+        div.c-time #{c.createTime}
+
+mixin userComments(commments)
+  for c in comments
+    div.comment-item
+      img.c-user-avatar(src="#{c.user.avatarUrl}")
+      div.c-content-wap
+        div.c-user
+          //- a(href="/u/#{c.user.name}") #{c.user.name}&nbsp;
+          | 在&nbsp;
+          a(href="/article/#{c.article.id}") #{c.article.cnTitle}&nbsp;
+          | 中回复:
+        div.c-content #{c.content}
+        div.c-time #{c.createTime}

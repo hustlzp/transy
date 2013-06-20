@@ -29,11 +29,13 @@ $(function() {
     $('.focus-flag').css('visibility', 'hidden');
     return $(this).find('.focus-flag').css('visibility', 'visible');
   });
-  $('.ec-divider').click(function() {
-    if ($(this).attr('data-state') === 'false') {
-      return $(this).attr('data-state', 'true');
+  $(document).on('click', '.ec-divider', function(e) {
+    var divider;
+    divider = e.target;
+    if ($(divider).attr('data-state') === 'false') {
+      return $(divider).attr('data-state', 'true');
     } else {
-      return $(this).attr('data-state', 'false');
+      return $(divider).attr('data-state', 'false');
     }
   });
   $('.save-btn').click(saveArticle);
@@ -48,10 +50,15 @@ $(function() {
       return "更改尚未保存，";
     }
   });
-  $('.para').keydown(function(e) {
-    var divider;
+  $(document).on('keydown', '.para', function(e) {
+    var divider, para;
+    if ($(e.target).hasClass('para')) {
+      para = e.target;
+    } else {
+      para = $(e.target).parents('.para').first()[0];
+    }
     if (e.ctrlKey && e.which === 13) {
-      divider = $(this).find('.ec-divider');
+      divider = $(para).find('.ec-divider');
       if (divider.attr('data-state') === 'false') {
         divider.attr('data-state', 'true');
       } else {
@@ -60,7 +67,7 @@ $(function() {
     }
     if (e.which === 9) {
       e.preventDefault();
-      return $(this).nextAll("[data-type!='image']").first().find('.cn').focus();
+      return $(para).nextAll("[data-type!='image']").first().find('.cn').focus();
     }
   });
   $(document).on('contextmenu', '.para', function(e) {
@@ -109,7 +116,7 @@ $(function() {
               return adjustHeight($(clickItem).next());
             });
           } else {
-            $(clickItem).after("<div data-type='text' class='para clearfix'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
+            $(clickItem).after("<div data-type='text' class='para clearfix'>\n  <div class='en' contenteditable='true'>" + addContent + "</div\n  ><div class='ec-divider' data-state='false'></div\n  ><div class='cn' contenteditable='true'></div>\n</div>");
             adjustHeight($(clickItem).next());
           }
           return $(this).detach();

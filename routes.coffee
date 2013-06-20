@@ -73,7 +73,7 @@ module.exports = (app)->
   app.get('/u/setting', user.setting)
   # personal page
   app.get('/u/:user', user.articles)
-  # loves
-  app.get('/u/:user/collect', user.collect)
-  # collections
-  app.get('/u/:user/topics', user.topics)
+  # collects
+  app.get('/u/:user/collects', user.collects)
+  # comments
+  app.get('/u/:user/comments', user.comments)

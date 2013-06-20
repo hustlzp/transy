@@ -1,8 +1,9 @@
 extends ../layout
+include ../mixin/comment
 
 block vars
-  -var title=article.cnTitle
-  -var page='page-article'
+  -var title = article.cnTitle
+  -var page = 'page-article'
 
 block content
 
@@ -76,10 +77,12 @@ block content
           else if p.type === 'image'
             img(src='#{p.en}')
 
+      mixin articleComments(comments)
+
       //- comment form
-      form(action='/article/#{article.id}/reply', method='post')
+      form(action='/article/#{article.id}/comment', method='post')
         div.input-control.text
-          textarea(name='comment', placeholder='评论')
+          textarea(name='content', placeholder='评论')
         input(type='submit', value='提交')
 
     div.span4

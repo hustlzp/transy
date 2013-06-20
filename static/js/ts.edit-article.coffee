@@ -39,11 +39,13 @@ $ ->
     $(this).find('.focus-flag').css('visibility', 'visible')
 
   # toggle translate state: true or false
-  $('.ec-divider').click ->
-    if $(this).attr('data-state') == 'false'
-      $(this).attr('data-state', 'true')
+  $(document).on 'click', '.ec-divider', (e)->
+    divider = e.target
+
+    if $(divider).attr('data-state') == 'false'
+      $(divider).attr('data-state', 'true')
     else
-      $(this).attr('data-state', 'false')      
+      $(divider).attr('data-state', 'false')   
 
   # save when press save button
   $('.save-btn').click(saveArticle)
@@ -55,16 +57,20 @@ $ ->
       saveArticle()
 
   # alarm when window close and changes have not been saved
-  $(window).on('beforeunload', ->
+  $(window).on 'beforeunload', ->
     if not isArticleEqual(articleObj, buildArticleObj())
       return "更改尚未保存，"
-  )
 
   # para key event
-  $('.para').keydown (e)->
+  $(document).on 'keydown', '.para', (e)->
+    if $(e.target).hasClass('para')
+      para = e.target
+    else
+      para = $(e.target).parents('.para').first()[0]
+
     # Ctrl+Enter, switch the state of para
     if e.ctrlKey and e.which == 13
-      divider = $(this).find('.ec-divider')
+      divider = $(para).find('.ec-divider')
       if divider.attr('data-state') == 'false'
         divider.attr('data-state', 'true')
       else
@@ -73,8 +79,7 @@ $ ->
     # Tab, the next cn foucs (skip image)
     if e.which == 9
       e.preventDefault()
-      $(this).nextAll("[data-type!='image']").first().find('.cn').focus()
-      # moveEnd($(this).nextAll("[data-type!='image']").first().find('.cn')[0])
+      $(para).nextAll("[data-type!='image']").first().find('.cn').focus()
 
   # handle context-menu event by delegate
   $(document).on('contextmenu', '.para', (e)->
@@ -137,7 +142,7 @@ $ ->
             $(clickItem).after("""
               <div data-type='text' class='para clearfix'>
                 <div class='en' contenteditable='true'>#{addContent}</div
-                ><div class='ec-divider'></div
+                ><div class='ec-divider' data-state='false'></div
                 ><div class='cn' contenteditable='true'></div>
               </div>
             """)

@@ -8,6 +8,7 @@ User = require('../models/user')
 Article = require('../models/article')
 Topic = require('../models/topic')
 Collect = require('../models/collect')
+Comment = require('../models/comment')
 mongoose = require('mongoose')
 ObjectId = mongoose.Types.ObjectId
 
@@ -24,14 +25,14 @@ exports.articles = (req, res)->
       res.render('user/articles', { u: u, articles: articles })
 
 # my love articles
-exports.collect = (req, res)->
+exports.collects = (req, res)->
   User.findOne { name: req.params.user }, (err, u)->
     Collect
     .find({ user: u.id })
     .exec (err, collects)->
       ep = new EventProxy()
       ep.after 'got_article', collects.length, (articles)->
-        res.render('user/collect', { u: u, articles: articles })
+        res.render('user/collects', { u: u, articles: articles })
       for c in collects
         Article
         .findById(c.article)
@@ -41,14 +42,16 @@ exports.collect = (req, res)->
           ep.emit('got_article', article)
 
 # my topics
-exports.topics = (req, res)->
+exports.comments = (req, res)->
   User
   .findOne({ name: req.params.user })
   .exec (err, u)->
-    Topic
-    .find({ creator: u.id })
-    .exec (err, cols)->
-      res.render('user/topics', { u: u, cols: cols })
+    Comment
+    .find({ user: u.id })
+    .populate('user')
+    .populate('article')
+    .exec (err, comments)->
+      res.render('user/comments', { u: u, comments: comments })
 
 # user setting
 exports.setting = (req, res)->
