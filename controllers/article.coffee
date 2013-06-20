@@ -30,7 +30,7 @@ exports.showAdd = (req, res)->
 exports.add = (req, res)->
   if req.form.isValid
     # new article
-    articleId = ObjectId()
+    articleId = new ObjectId()
     userId = req.cookies.user.id
     topicId = req.params.tid
     enTitle = req.body.title
@@ -100,18 +100,18 @@ exports.collect = (req, res)->
     User.addCollectCount userId, (err)->
       # collect count + 1 in Article
       Article.addCollectCount articleId, (err)->
-        res.redirect("/article/#{article.id}")
+        res.redirect("/article/#{articleId}")
 
 # discollect article
 exports.discollect = (req, res)->
   userId = req.cookies.user.id
   articleId = req.params.id
-  Collect.delete userId, articleId, (err)->
+  Collect.removeByUserAndArticle userId, articleId, (err)->
     # collect count - 1 in User
     User.reduceCollectCount userId, (err)->
       # collect count - 1 in Article
       Article.reduceCollectCount articleId, (err)->
-        res.redirect("/article/#{article.id}")
+        res.redirect("/article/#{articleId}")
 
 # output article
 exports.output = (req, res)->

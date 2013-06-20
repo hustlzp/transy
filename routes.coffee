@@ -59,7 +59,7 @@ module.exports = (app)->
   app.get('/topic/add', topic.showAdd)
   app.post('/topic/add', validator.topic, topic.add)
   # edit
-  app.get('/topic/:id/edit', topic.edit)
+  app.get('/topic/:id/edit', topic.showEdit)
   app.post('/topic/:id/edit', validator.topic, topic.edit)
   # delete
   app.get('/topic/:id/delete', topic.delete)

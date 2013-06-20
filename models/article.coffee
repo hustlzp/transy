@@ -50,9 +50,25 @@ Article.statics.getNew = (num, callback)->
   .exec callback
 
 # get by id
-Article.statics.getById = (id, callback)->
+Article.statics.getById = (articleId, callback)->
   this
-  .findById(id)
+  .findById(articleId)
+  .populate('creator')
+  .populate('topic')
+  .exec callback
+
+# get by user
+Article.statics.getByUser = (userId, callback)->
+  this
+  .find({ creator: userId })
+  .populate('creator')
+  .populate('topic')
+  .exec callback
+
+# get by topic
+Article.statics.getByTopic = (topicId, callback)->
+  this
+  .find({ topic: topicId })
   .populate('creator')
   .populate('topic')
   .exec callback

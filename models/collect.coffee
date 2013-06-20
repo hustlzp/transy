@@ -12,6 +12,11 @@ Collect = new Schema
   article: { type: ObjectId, ref: 'Article' }
   createTime: Date
 
+Collect.statics.getByUser = (userId, callback)->
+  this
+  .find({ user: userId })
+  .exec callback
+
 Collect.statics.check = (userId, articleId, callback)->
   this
   .findOne({ user: userId, article: articleId })
@@ -24,7 +29,7 @@ Collect.statics.add = (userId, articleId, callback)->
     createTime: new Date()
   , callback
 
-Collect.statics.delete = (userId, articleId, callback)->
+Collect.statics.removeByUserAndArticle = (userId, articleId, callback)->
   this.remove { user: userId, article: articleId }, (err)->
 
 module.exports = mongoose.model('Collect', Collect)

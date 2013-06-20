@@ -21,6 +21,11 @@ User = new Schema
   collectCount: { type: Number, default: 0, min: 0 }
   commentCount: { type: Number, default: 0, min: 0 }
 
+User.statics.getByName = (name, callback)->
+  this
+  .findOne({ name: name })
+  .exec callback
+
 # add & reduce article count by 1
 User.statics.addArticleCount = (userId, callback)->
   this.update { _id: userId }, { $inc: { articleCount: 1 }}, callback

@@ -15,6 +15,26 @@ Topic = new Schema
   intro: String
   image: String
 
+# new
+Topic.statics.add = (topicId, userId, type, title, intro, image)->
+  topic = new Topic
+    _id: topicId
+    creator: userId
+    type: type
+    title: title
+    intro: intro
+    image: image
+  topic.save callback
+
+# edit
+Topic.statics.edit = (topicId, type, title, intro, image)->
+  Topic.update { _id: topicId },
+    type: type
+    title: title
+    intro: intro
+    image: image
+  , callback
+
 # add & reduce article count by 1
 Topic.statics.addArticleCount = (topicId, callback)->
   this.update { _id: topicId }, { $inc: { articleCount: 1 }}, callback

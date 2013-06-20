@@ -13,6 +13,13 @@ Comment = new Schema
   content: String
   createTime: Date
 
+Comment.statics.getByUser = (userId, callback)->
+  this
+  .find({ user: userId })
+  .populate('user')
+  .populate('article')
+  .exec callback
+
 # get comments by article id
 Comment.statics.getByArticle = (articleId, callback)->
   this

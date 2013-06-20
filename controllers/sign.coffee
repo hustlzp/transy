@@ -41,9 +41,6 @@ exports.signup = (req, res, next)->
                 return next(err)
               gene_cookie(res, user)
               res.redirect('/')
-            # res.render 'message',
-            #   header: 'Success'
-            #   text: '欢迎加入Transy！激活链接已发送到您的注册邮箱，请登陆邮箱完成激活。'
   else
     res.render('sign/signup', { form: req.form })
 
