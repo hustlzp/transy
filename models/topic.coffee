@@ -15,4 +15,11 @@ Topic = new Schema
   intro: String
   image: String
 
+# add & reduce article count by 1
+Topic.statics.addArticleCount = (topicId, callback)->
+  this.update { _id: topicId }, { $inc: { articleCount: 1 }}, callback
+
+Topic.statics.reduceArticleCount = (topicId, callback)->
+  this.update { _id: topicId }, { $inc: { articleCount: -1 }}, callback
+
 module.exports = mongoose.model('Topic', Topic)

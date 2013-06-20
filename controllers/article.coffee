@@ -13,19 +13,12 @@ ObjectId = mongoose.Types.ObjectId
 
 # show single article
 exports.article = (req, res)->
-  Article
-  .findById(req.params.id)
-  .populate('creator')
-  .populate('topic')
-  .exec (err, article)->
-    Comment
-    .find({ article: article.id })
-    .populate('user')
-    .exec (err, comments)->
+  Article.getById req.params.id, (err, article)->
+    Comment.getByArticle article.id, (err, comments)->
       if not req.cookies.user
         res.render("article/article", { article: article, comments: comments, isCollect: false })
       else
-        Collect.findOne { user: req.cookies.user.id, article: req.params.id }, (err, collect)->
+        Collect.check req.cookies.user.id, req.params.id, (err, collect)->
           isCollect = if collect then true else false
           res.render("article/article", { article: article, comments: comments, isCollect: isCollect })
 
@@ -36,47 +29,20 @@ exports.showAdd = (req, res)->
 # new article
 exports.add = (req, res)->
   if req.form.isValid
-    article = new Article
-      _id: ObjectId()
-      creator: req.cookies.user.id
-      topic: req.params.tid
-      enTitle: req.body.title
-      cnTitle: '待译标题'
-      url: req.body.url
-      urlHost: url.parse(req.body.url).hostname
-      author: req.body.author
-      completion: 0
-      abstract: ''
-      createTime: new Date()
-      updateTime: new Date()
-      paraList: []
-
-    # slice the paragraph by \n
-    paras = req.body.content.split('\n')
-    for p in paras when p.trim() != ''
-      article.paraList.push
-        en: p.trim()
-        cn: ''
-        type: 'text'
-        state: false
-
-    article.save (err)->
-      if not err
-        # topic's article count + 1
-        Topic
-        .findById(article.topic)
-        .exec (err, c)->
-          c.articleCount += 1
-          c.save (err)->
-            # user's article count + 1
-            User
-            .findById(article.creator)
-            .exec (err, u)->
-              u.articleCount += 1
-              u.save (err)->
-            res.redirect("/article/#{article.id}")
-      else
-        res.redirect('/article/add')
+    # new article
+    articleId = ObjectId()
+    userId = req.cookies.user.id
+    topicId = req.params.tid
+    enTitle = req.body.title
+    content = req.body.content
+    url = req.body.url
+    author = req.body.author
+    Article.add articleId, userId, topicId, enTitle, content, url, author, (err)->
+      # article count + 1 in Topic
+      Topic.addArticleCount topicId, (err)->
+        # article count + 1 in User
+        User.addArticleCount userId, (err)->
+          res.redirect("/article/#{articleId}")
   else
     res.render('article/add_article', { form: req.form })
 
@@ -87,44 +53,69 @@ exports.showEdit = (req, res)->
 
 # update article
 exports.edit = (req, res)->
-  Article.findById req.params.id, (err, data)->
-    a = req.body.article
-    data.enTitle = a.enTitle
-    data.cnTitle = a.cnTitle
-    data.author = a.author
-    data.url = a.url
-    data.urlHost = url.parse(a.url).hostname
-    data.abstract = a.abstract
-    data.completion = a.completion
-    data.paraList = a.paraList
-
-    data.save (err)->
-      if not err
-        res.send(200,  result: 1 )
-      else
-        res.send(500,  result: 0 )
+  Article.edit req.params.id, req.body.article, (err)->
+    if not err
+      res.send(200, { result: 1 })
+    else
+      res.send(500, { result: 0 })
 
 # delete article
 exports.delete = (req, res)->
-  Article.findById req.params.id , (err, article)->
-    article.remove()
-    # topic's article count - 1
-    Topic
-    .findById(article.topic)
-    .exec (err, c)->
-      c.articleCount -= 1
-      c.save (err)->
-        # user's article count - 1
-        User
-        .findById(article.creator)
-        .exec (err, u)->
-          u.articleCount -= 1
-          u.save (err)->
-            res.redirect("/u/#{req.cookies.user.name}")
+  Article.findByIdAndRemove req.params.id , (err, article)->
+    # article count - 1 in Topic
+    Topic.reduceArticleCount article.topic, (err)->
+      # article count - 1 in User
+      User.reduceArticleCount article.creator, (err)->
+        res.redirect("/u/#{req.cookies.user.name}")
+
+# add comment
+exports.comment = (req, res)->
+  if req.body.content.trim() == ''
+    return res.redirect("/article/#{req.params.id}")
+
+  articleId = req.params.id
+  userId = req.cookies.user.id
+  Comment.add articleId, userId, req.body.content.trim(), (err)->
+    # comment count + 1 in Article
+    Article.addCommentCount articleId, (err)->
+      # comment count + 1 in User
+      User.addCommentCount userId, (err)->
+        res.redirect("/article/#{articleId}")
+
+# remove comment
+exports.discomment = (req, res)->
+  Comment.findByIdAndRemove req.params.id, (err, comment)->
+    # comment count - 1 in Article
+    Article.reduceCommentCount comment.article, (err)->
+      # comment count - 1 in User
+      User.reduceCommentCount comment.user, (err)->
+        res.redirect("/article/#{article.id}")
+
+# collect article
+exports.collect = (req, res)->
+  userId = req.cookies.user.id
+  articleId = req.params.id
+  Collect.add userId, articleId, (err)->
+    # collect count + 1 in User
+    User.addCollectCount userId, (err)->
+      # collect count + 1 in Article
+      Article.addCollectCount articleId, (err)->
+        res.redirect("/article/#{article.id}")
+
+# discollect article
+exports.discollect = (req, res)->
+  userId = req.cookies.user.id
+  articleId = req.params.id
+  Collect.delete userId, articleId, (err)->
+    # collect count - 1 in User
+    User.reduceCollectCount userId, (err)->
+      # collect count - 1 in Article
+      Article.reduceCollectCount articleId, (err)->
+        res.redirect("/article/#{article.id}")
 
 # output article
 exports.output = (req, res)->
-  Article.findById(req.params.id , (err, data)->
+  Article.findById req.params.id , (err, data)->
     html = ''
     for p in data.paraList
       switch req.params.mode
@@ -141,77 +132,6 @@ exports.output = (req, res)->
 
     res.set('Content-Type', 'text/plain;charset=utf-8')
     res.send(200, html)
-  )
-
-# add comment
-exports.comment = (req, res)->
-  if req.body.content.trim() == ''
-    return res.redirect("/article/#{req.params.id}")
-
-  # add comment into Comment
-  c = new Comment
-    article: req.params.id
-    user: req.cookies.user.id
-    content: req.body.content.trim()
-    createTime: new Date()
-  c.save (err)->
-    # comment count + 1 in Article
-    Article.findById(c.article).exec (err, article)->
-      article.commentCount += 1
-      article.save (err)->
-        # comment count + 1 in User
-        User.findById(c.user).exec (err, user)->
-          user.commentCount += 1
-          user.save (err)->
-            res.redirect("/article/#{c.article}")
-
-# remove comment
-exports.discomment = (req, res)->
-  # remove comment from Comment
-  Comment.findById req.params.id, (err, comment)->
-    comment.remove (err)->
-      # comment count - 1 in Article
-      Article.findById comment.article, (err, article)->
-        article.commentCount -= 1
-        article.save (err)->
-          # comment count - 1 in User
-          User.findById comment.user, (err, user)->
-            user.commentCount -= 1
-            user.save (err)->
-              res.redirect("/article/#{article.id}")
-
-# collect article
-exports.collect = (req, res)->
-  # add item into Collect
-  collect = new Collect
-    user: req.cookies.user.id
-    article: req.params.id
-    createTime: new Date()
-  collect.save (err)->
-    # collect count + 1 in User
-    User.findById collect.user, (err, user)->
-      # user.collectCount = parseInt(user.collectCount) + 1
-      user.collectCount += 1
-      user.save (err)->
-        # collect count + 1 in Article
-        Article.findById collect.article, (err, article)->
-          article.collectCount += 1
-          article.save (err)->
-            res.redirect("/article/#{article.id}")
-
-# dis collect article
-exports.discollect = (req, res)->
-  # remove item into Collect
-  Collect.remove { user: req.cookies.user.id, article: req.params.id }, (err)->
-    # collect count - 1 in User 
-    User.findById req.cookies.user.id, (err, user)->
-      user.collectCount -= 1
-      user.save (err)->
-        # collect count - 1 in Article
-        Article.findById req.params.id, (err, article)->
-          article.collectCount -= 1
-          article.save (err)->
-            res.redirect("/article/#{article.id}")
 
 ###
 Output html

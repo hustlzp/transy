@@ -13,4 +13,20 @@ Comment = new Schema
   content: String
   createTime: Date
 
+# get comments by article id
+Comment.statics.getByArticle = (articleId, callback)->
+  this
+  .find({ article: articleId })
+  .populate('user')
+  .exec callback
+
+# new
+Comment.statics.add = (articleId, userId, content, callback)->
+  this.create
+    article: articleId
+    user: userId
+    content: content
+    createTime: new Date()
+  , callback
+
 module.exports = mongoose.model('Comment', Comment)

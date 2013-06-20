@@ -17,8 +17,6 @@ exports.signup = (req, res, next)->
   if req.form.isValid
     # check if username exist
     User.find { name: req.form.name }, (err, data)->
-      if err
-        return next(err)
       if data.length != 0
         req.form.pushError('name', '用户名已存在')
         res.render('sign/signup', { form: req.form })

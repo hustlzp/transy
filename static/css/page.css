@@ -29,7 +29,7 @@
 #page-edit-article .save-wap{position:fixed;bottom:0;right:0;margin-bottom:8px;margin-right:8px;}#page-edit-article .save-wap .save-state{vertical-align:bottom;display:inline-block;background-color:#2b5797;line-height:0;height:32px;width:32px;position:absolute;top:0;right:0;z-index:-100;}#page-edit-article .save-wap .save-state img{width:16px;height:16px;position:absolute;top:8px;right:8px;}
 #page-edit-article .save-wap .save-state i{color:white;position:absolute;top:8px;right:8px;}
 #page-edit-article .save-wap .toolbar{background-color:white;}#page-edit-article .save-wap .toolbar .save-btn{margin:0;}
-#page-topic .t-header{margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid lightgray;position:relative;}#page-topic .t-header .t-image{width:60px;height:60px;float:left;}
+#page-topic .t-header{margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid lightgray;position:relative;}#page-topic .t-header .t-image{width:60px;height:60px;float:left;}
 #page-topic .t-header .t-info-wap{margin-left:75px;}
 #page-topic .t-header .t-article-count{position:absolute;bottom:15px;right:5px;}
 #page-topics .t-type{clear:left;margin-bottom:15px;}

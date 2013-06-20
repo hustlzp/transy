@@ -12,4 +12,19 @@ Collect = new Schema
   article: { type: ObjectId, ref: 'Article' }
   createTime: Date
 
+Collect.statics.check = (userId, articleId, callback)->
+  this
+  .findOne({ user: userId, article: articleId })
+  .exec callback
+
+Collect.statics.add = (userId, articleId, callback)->
+  this.create
+    user: userId
+    article: articleId
+    createTime: new Date()
+  , callback
+
+Collect.statics.delete = (userId, articleId, callback)->
+  this.remove { user: userId, article: articleId }, (err)->
+
 module.exports = mongoose.model('Collect', Collect)
