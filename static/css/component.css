@@ -14,7 +14,8 @@
 .metrouicss .t-item .t-info-wap{margin-left:75px;}
 .metrouicss .t-item:hover{color:#333;background-color:#fbfbfb;}
 .metrouicss .t-item .t-article-count{position:absolute;bottom:10px;right:10px;color:#666;}
-.metrouicss .comment-item{margin-bottom:10px;padding-bottom:10px;}.metrouicss .comment-item .c-user-avatar{width:60px;height:60px;float:left;}
+.metrouicss .comment-item{margin-bottom:10px;padding-bottom:10px;position:relative;}.metrouicss .comment-item .c-user-avatar{width:60px;height:60px;float:left;}
 .metrouicss .comment-item .c-content-wap{margin-left:75px;}.metrouicss .comment-item .c-content-wap .c-user{display:inline-block;margin-bottom:8px;color:#666;}
 .metrouicss .comment-item .c-content-wap .c-content{margin-bottom:5px;}
 .metrouicss .comment-item .c-content-wap .c-time{font-size:12px;color:#666;}
+.metrouicss .comment-item .btn-remove-comment{position:absolute;top:0;right:0;}

@@ -145,11 +145,14 @@ exports.output = (req, res)->
 
 # add comment
 exports.comment = (req, res)->
+  if req.body.content.trim() == ''
+    return res.redirect("/article/#{req.params.id}")
+
   # add comment into Comment
   c = new Comment
     article: req.params.id
     user: req.cookies.user.id
-    content: req.body.content
+    content: req.body.content.trim()
     createTime: new Date()
   c.save (err)->
     # comment count + 1 in Article
@@ -165,8 +168,17 @@ exports.comment = (req, res)->
 # remove comment
 exports.discomment = (req, res)->
   # remove comment from Comment
-    # comment count - 1 in Article
-      # comment count - 1 in User
+  Comment.findById req.params.id, (err, comment)->
+    comment.remove (err)->
+      # comment count - 1 in Article
+      Article.findById comment.article, (err, article)->
+        article.commentCount -= 1
+        article.save (err)->
+          # comment count - 1 in User
+          User.findById comment.user, (err, user)->
+            user.commentCount -= 1
+            user.save (err)->
+              res.redirect("/article/#{article.id}")
 
 # collect article
 exports.collect = (req, res)->
