@@ -2,7 +2,7 @@
 Sign Controller
 ###
 
-crypto = require('crypto')
+
 User = require('../models/user')
 mail = require('../service/mail')
 mongoose = require('mongoose')
@@ -16,37 +16,31 @@ exports.showSignup = (req, res)->
 exports.signup = (req, res, next)->
   if req.form.isValid
     # check if username exist
-    User.find { name: req.form.name }, (err, data)->
-      if data.length != 0
+    User.getByName req.form.name, (err, user)->
+      if user
         req.form.pushError('name', '用户名已存在')
         res.render('sign/signup', { form: req.form })
       else
         # check if email exist
-        User.find { email: req.form.email }, (err, data)->
-          if err
-            return next(err)
-          if data.length != 0
+        User.getByEmail req.form.email, (err, user)->
+          if user
             req.form.pushError('email', '邮箱已存在')
             res.render('sign/signup', { form: req.form })
           else
             # add user
-            user = new User()
-            user._id = new ObjectId()
-            user.name = req.form.name
-            user.email = req.form.email
-            user.pwd = md5(req.form.pwd)
-            user.isActive = false
-            user.save (err)->
-              if err
-                return next(err)
-              gene_cookie(res, user)
+            userId = new ObjectId()
+            name = req.form.name
+            email = req.form.email
+            pwd = req.form.pwd
+            User.add userId, name, email, pwd, (err)->
+              gene_cookie(res, userId, name, email)
               res.redirect('/')
   else
     res.render('sign/signup', { form: req.form })
 
 # active account
 exports.activeAccount = (req, res)->
-
+  res.send('active')
 
 # signin page
 exports.showSignin = (req, res)->
@@ -56,26 +50,19 @@ exports.showSignin = (req, res)->
 exports.signin = (req, res)->
   if req.form.isValid
     # check if username exist
-    User.find { email: req.form.email }, (err, data)->
-      if err
-        return next(err)
-      if data.length == 0
+    User.getByEmail req.form.email, (err, user)->
+      if not user
         req.form.pushError('email', '帐号不存在')
         res.render('sign/signin', { form: req.form })
       else
         # check if password is correct
-        User
-        .findOne({ email: req.form.email })
-        .where('pwd').equals(md5(req.form.pwd))
-        .exec (err, user)->
-          if err
-            return next(err)
+        User.getByEmailAndPwd req.form.email, req.form.pwd, (err, user)->
           if not user
             req.form.pushError('pwd', '密码错误')
             res.render('sign/signin', { form: req.form })
           else
             # set session
-            gene_cookie(res, user)
+            gene_cookie(res, user.id, user.name, user.email)
             res.redirect('/')
   else
     res.render('sign/signin', { form: req.form })
@@ -89,22 +76,14 @@ exports.signout = (req, res)->
 Generate cookie of user name, id, email for 7 days
 @method gene_cookie
 @params {Object} res - Response Object
-@params {Object} user - User Object, contain name, id, email
+@params {String} userId
+@params {String} name
+@params {String} email
 ###
-gene_cookie = (res, user)->
+gene_cookie = (res, userId, name, email)->
   res.cookie('user',
-    'id': user._id
-    'name': user.name
-    'email': user.email
+    'id': userId
+    'name': name
+    'email': email
   , { maxAge: 1000*3600*24*7 })
 
-###
-Get md5 value of a string
-@method md5
-@params {String} str - The string to be md5
-@return {String} md5 value of the string
-###
-md5 = (str)->
-  hash = crypto.createHash('md5')
-  hash.update(str)
-  hash.digest('hex')

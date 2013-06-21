@@ -21,7 +21,7 @@ exports.articles = (req, res)->
 # user collects
 exports.collects = (req, res)->
   User.getByName req.params.user, (err, u)->
-    Collect.getByUser u.id (err, collects)->
+    Collect.getByUser u.id, (err, collects)->
       # use EventProxy to get articles from collects
       ep = new EventProxy()
       ep.after 'got_article', collects.length, (articles)->

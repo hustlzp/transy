@@ -9,26 +9,26 @@ ObjectId = Schema.ObjectId
 Topic = new Schema
   _id: ObjectId
   creator: { type: ObjectId, ref: 'User' }
-  articleCount: { type: Number, default: 0, min: 0 }
+  articleCount: { type: Number, default: 0 }
   type: String
   title: String
   intro: String
   image: String
 
 # new
-Topic.statics.add = (topicId, userId, type, title, intro, image)->
-  topic = new Topic
+Topic.statics.add = (topicId, userId, type, title, intro, image, callback)->
+  this.create
     _id: topicId
     creator: userId
     type: type
     title: title
     intro: intro
     image: image
-  topic.save callback
+  , callback
 
 # edit
-Topic.statics.edit = (topicId, type, title, intro, image)->
-  Topic.update { _id: topicId },
+Topic.statics.edit = (topicId, type, title, intro, image, callback)->
+  this.update { _id: topicId },
     type: type
     title: title
     intro: intro

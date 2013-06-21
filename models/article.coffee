@@ -2,7 +2,6 @@
 Article Model
 ###
 
-# business = require('../business/article')
 url = require('url')
 mongoose = require('mongoose')
 Schema = mongoose.Schema
@@ -21,20 +20,23 @@ Article = new Schema
   enTitle: String
   cnTitle: String
   url: String
-  urlHost: String
   author: String
-  completion: Number
-  createTime: Date
-  updateTime: Date
+  completion: { type: Number, default: 0, min: 0, max: 100 }
+  createTime: { type: Date, default: new Date() }
+  updateTime: { type: Date, default: new Date() }
   paraList: [Para]
   annotationList: [String]
   collectCount: { type: Number, default: 0, min: 0 }
   commentCount: { type: Number, default: 0, min: 0 }
 
+# virtural - urlHost
+Article.virtual('urlHost').get ()->
+  return url.parse(this.url).hostname
+
 # get hot articles
 Article.statics.getHot = (num, callback)->
   this
-  .find()
+  .find({ completion: 100 })
   .sort({ commentCount: -1, collectCount: -1 })
   .limit(num)
   .exec callback
@@ -82,12 +84,8 @@ Article.statics.add = (articleId, userId, topicId, enTitle, content, articleUrl,
     enTitle: enTitle
     cnTitle: '待译标题'
     url: articleUrl
-    urlHost: url.parse(articleUrl).hostname
     author: author
-    completion: 0
     abstract: ''
-    createTime: new Date()
-    updateTime: new Date()
     paraList: []
 
   # slice the paragraph by \n
@@ -108,7 +106,6 @@ Article.statics.edit = (articleId, article, callback)->
     cnTitle: article.cnTitle
     author: article.author
     url: article.url
-    urlHost: url.parse(article.url).hostname
     abstract: article.abstract
     completion: article.completion
     paraList: article.paraList

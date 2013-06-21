@@ -10,7 +10,7 @@ Collect = new Schema
   _id: ObjectId
   user: { type: ObjectId, ref: 'User' }
   article: { type: ObjectId, ref: 'Article' }
-  createTime: Date
+  createTime: { type: Date, default: new Date() }
 
 Collect.statics.getByUser = (userId, callback)->
   this

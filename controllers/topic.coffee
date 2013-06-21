@@ -15,9 +15,9 @@ exports.topics = (req, res)->
 
 # single topic
 exports.topic = (req, res)->
-  Topic.findById req.params.id, (err, topic)->
+  Topic.findById req.params.id, (err, t)->
     Article.getByTopic req.params.id, (err, articles)->
-      res.render('topic/topic', { topic: topic, articles: articles })
+      res.render('topic/topic', { topic: t, articles: articles })
 
 # add topic page
 exports.showAdd = (req, res)->
@@ -33,24 +33,24 @@ exports.add = (req, res)->
     intro = req.form.intro
     image = req.form.image    
     Topic.add topicId, creator, type, title, intro, image, (err)->
-      res.redirect("/topic/#{topic.id}")
+      res.redirect("/topic/#{topicId}")
   else
     res.render('topic/add_topic', { form: req.form })
 
 # edit topic page
 exports.showEdit = (req, res)->
-  Topic.findById topicId, (err, topic)->
-    res.render('topic/edit_topic', { tid: topicId, form: topic })
+  Topic.findById req.params.id, (err, topic)->
+    res.render('topic/edit_topic', { tid: req.params.id, form: topic })
 
 # edit topic
 exports.edit = (req, res)->
   if req.form.isValid
     topicId = req.params.id
-    type: req.form.type
-    title: req.form.title
-    intro: req.form.intro
-    image: req.form.image
-    Topic.edit topicId, type, intro, image, (err)->
+    type = req.form.type
+    title = req.form.title
+    intro = req.form.intro
+    image = req.form.image
+    Topic.edit topicId, type, title, intro, image, (err)->
       res.redirect("/topic/#{topicId}")
   else
     res.render('topic/edit_topic', { tid: topicId, form: req.form })

@@ -13,12 +13,13 @@ ObjectId = mongoose.Types.ObjectId
 
 # show single article
 exports.article = (req, res)->
-  Article.getById req.params.id, (err, article)->
-    Comment.getByArticle article.id, (err, comments)->
+  articleId = req.params.id
+  Article.getById articleId, (err, article)->
+    Comment.getByArticle articleId, (err, comments)->
       if not req.cookies.user
         res.render("article/article", { article: article, comments: comments, isCollect: false })
       else
-        Collect.check req.cookies.user.id, req.params.id, (err, collect)->
+        Collect.check req.cookies.user.id, articleId, (err, collect)->
           isCollect = if collect then true else false
           res.render("article/article", { article: article, comments: comments, isCollect: isCollect })
 
@@ -48,7 +49,7 @@ exports.add = (req, res)->
 
 # show edit page
 exports.showEdit = (req, res)->
-  Article.findById req.params.id, (err, article)->
+  Article.getById req.params.id, (err, article)->
     res.render("article/edit_article", { article: article }) 
 
 # update article

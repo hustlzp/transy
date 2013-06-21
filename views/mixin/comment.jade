@@ -8,7 +8,7 @@ mixin articleComments(commments)
           a(href="/u/#{c.user.name}") #{c.user.name}
         div.c-content #{c.content}
         div.c-time #{c.createTime}
-      if locals.cookies.user && c.user.id === locals.cookies.user.id
+      if locals.cookies.user && locals.cookies.user.id === c.user.id
         a.button.btn-remove-comment(href='/comment/#{c.id}/remove') 删除评论
 
 mixin userComments(commments)

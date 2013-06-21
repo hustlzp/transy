@@ -11,7 +11,7 @@ Comment = new Schema
   user: { type: ObjectId, ref: 'User' }
   article: { type: ObjectId, ref: 'Article' }
   content: String
-  createTime: Date
+  createTime: { type: Date, default: new Date() }
 
 Comment.statics.getByUser = (userId, callback)->
   this

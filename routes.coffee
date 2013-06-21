@@ -53,7 +53,6 @@ module.exports = (app)->
   # single article
   app.get('/article/:id', article.article)
 
-
   # topic
   # add
   app.get('/topic/add', topic.showAdd)
