@@ -13,7 +13,7 @@ User = new Schema
   email: { type: String, unique: true }
   pwd: String
   url: String
-  avatarUrl: { type: String, default: "/default.png" }
+  avatarUrl: { type: String, default: "/default_user.png" }
   location: String
   signature: String
   createTime: { type: Date, default: new Date() }
@@ -46,7 +46,7 @@ User.statics.add = (userId, name, email, pwd, callback)->
     name: name
     email: email
     pwd: md5(pwd)
-  , callback    
+  , callback
 
 # add & reduce article count by 1
 User.statics.addArticleCount = (userId, callback)->

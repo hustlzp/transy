@@ -30,6 +30,6 @@ Collect.statics.add = (userId, articleId, callback)->
   , callback
 
 Collect.statics.removeByUserAndArticle = (userId, articleId, callback)->
-  this.remove { user: userId, article: articleId }, (err)->
+  this.remove { user: userId, article: articleId }, callback
 
 module.exports = mongoose.model('Collect', Collect)

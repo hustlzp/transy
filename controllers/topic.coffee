@@ -31,8 +31,7 @@ exports.add = (req, res)->
     type = req.form.type
     title = req.form.title
     intro = req.form.intro
-    image = req.form.image    
-    Topic.add topicId, creator, type, title, intro, image, (err)->
+    Topic.add topicId, creator, type, title, intro, (err)->
       res.redirect("/topic/#{topicId}")
   else
     res.render('topic/add_topic', { form: req.form })

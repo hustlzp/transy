@@ -13,17 +13,16 @@ Topic = new Schema
   type: String
   title: String
   intro: String
-  image: String
+  image: { type: String, default: "/default_topic.png" }
 
 # new
-Topic.statics.add = (topicId, userId, type, title, intro, image, callback)->
+Topic.statics.add = (topicId, userId, type, title, intro, callback)->
   this.create
     _id: topicId
     creator: userId
     type: type
     title: title
     intro: intro
-    image: image
   , callback
 
 # edit
