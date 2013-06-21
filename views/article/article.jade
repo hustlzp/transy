@@ -97,7 +97,7 @@ block content
           | 导出
 
         if locals.cookies.user
-          if locals.cookies.user.id == article.creator._id
+          if locals.cookies.user.id === article.creator._id.toString()
             a.button.place-right.btn-delete(href='/article/#{article.id}/delete')
               i.icon-remove
               | 删除

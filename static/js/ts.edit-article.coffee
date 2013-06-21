@@ -4,6 +4,12 @@ clickItem = null
 # global var, whether the data need save before leave this page
 articleObj = null
 
+# global var, time tick create by setTimeout, use to auto save article
+saveTick = 0
+
+# save interval: 1min
+SAVE_INTERVAL = 60000
+
 # must use window.onload to adjust divider's height again
 # because when document is ready, font resource hasn't been ready
 # so the height of en and cn may not be precise
@@ -14,6 +20,9 @@ $(window).load ->
     adjustHeight($(this))
 
 $ ->
+  # init auto save
+  saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
+
   # init divider's height
   $('.para').each ->
     adjustHeight($(this))
@@ -157,15 +166,20 @@ Save article, triggle when click the save btn, or press Ctrl-S
 @method saveArticle
 ###
 saveArticle = ->
-  # switch to waiting state, and show the state wap
-  $('.save-state .state-waiting').show()
-  $('.save-state .state-ok').hide()
-  $('.save-state').animate
-    right: '32px', 200
-  
-  # build article object
-  articleObj = buildArticleObj()
-  
+  clearTimeout(saveTick)
+
+  # if not modify, init the next save, then quit
+  currArticleObj = buildArticleObj()
+  if isArticleEqual(articleObj, currArticleObj)
+    saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
+    showSaveState()
+    hideSaveState()
+    return
+
+  # else save it
+  showSaveState()
+  articleObj = currArticleObj
+
   # post
   articleId = $('.title').data('article-id')
   $.ajax
@@ -175,10 +189,26 @@ saveArticle = ->
       article: articleObj
     success: (data)->
       if data.result == 1
-        # switch to ok state, keep 1s, and hide the state wap
-        $('.save-state .state-waiting').hide()
-        $('.save-state .state-ok').show()
-        setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)
+        hideSaveState()
+        saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
+
+###
+Show save state
+@method showSaveState
+###
+showSaveState = ->
+  $('.save-state .state-waiting').show()
+  $('.save-state .state-ok').hide()
+  $('.save-state').animate({ right: '32px', 200 })
+
+###
+Hide save state
+@method hideSaveState
+###
+hideSaveState = ->
+  $('.save-state .state-waiting').hide()
+  $('.save-state .state-ok').show()
+  setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)  
 
 ###
 Whether the two object is equal
