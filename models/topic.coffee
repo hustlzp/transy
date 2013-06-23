@@ -13,7 +13,7 @@ Topic = new Schema
   type: String
   title: String
   intro: String
-  image: { type: String, default: "/default_topic.png" }
+  image: { type: String, default: "http://placehold.it/60x60" }
 
 # new
 Topic.statics.add = (topicId, userId, type, title, intro, callback)->

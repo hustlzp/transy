@@ -28,7 +28,8 @@ exports.add = (req, res)->
   if req.form.isValid
     topicId = new ObjectId()
     creator = req.cookies.user.id
-    type = req.form.type
+    # type = req.form.type
+    type = 'culture'
     title = req.form.title
     intro = req.form.intro
     Topic.add topicId, creator, type, title, intro, (err)->

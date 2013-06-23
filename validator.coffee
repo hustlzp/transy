@@ -29,7 +29,7 @@ exports.article = form(
 
 # topic form validator
 exports.topic = form(
-  field('type', '类别').trim().required(),
+  field('type', '类别').trim(),
   field('title', '标题').trim().required(),
   field('intro', '描述').trim().required(),
   field('image', '图片').trim()
