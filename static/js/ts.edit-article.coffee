@@ -7,6 +7,9 @@ articleObj = null
 # global var, time tick create by setTimeout, use to auto save article
 saveTick = 0
 
+# global var, the selection object created by mouse
+selectedRange = null
+
 # save interval: 1min
 SAVE_INTERVAL = 60000
 
@@ -101,6 +104,9 @@ $ ->
     else
       clickItem = $(e.target).parents('.para').first()[0]
 
+    # save the selection object
+    selectedRange = document.getSelection().getRangeAt(0)
+
     # image para should'n display 'switch type' submenu
     if $(clickItem).attr('data-type') == 'image'
       $('.context-menu').find('.only-for-text').hide()
@@ -130,8 +136,7 @@ $ ->
         $('.add-content-wap').focus().blur ->
           addContent = $(this).val().trim()
           if addContent == ""
-            $(this).detach()
-            return
+            return $(this).detach()
           # image
           if addContent.match(/\bhttp:\/\//) and addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)
             $(clickItem).after("""
@@ -160,6 +165,12 @@ $ ->
           $(this).detach()
       when 'remove-para'
         $(clickItem).detach()
+      # when 'add-annotation'
+      #   if selectedRange.collapsed
+      #     annotationTag = document.createElement('img')
+      #     annotationTag.className = 'annotation'
+      #     annotationTag.src = 'http://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/chat-128.png'
+      #     selectedRange.insertNode(annotationTag)
 
 ###
 Save article, triggle when click the save btn, or press Ctrl-S
