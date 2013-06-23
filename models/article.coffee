@@ -36,7 +36,8 @@ Article.virtual('urlHost').get ()->
 # get hot articles
 Article.statics.getHot = (num, callback)->
   this
-  .find({ completion: 100 })
+  # .find({ completion: 100 })
+  .find()
   .sort({ commentCount: -1, collectCount: -1 })
   .limit(num)
   .exec callback
@@ -44,7 +45,8 @@ Article.statics.getHot = (num, callback)->
 # get new articles
 Article.statics.getNew = (num, callback)->
   this
-  .find({ completion: 100 })
+  # .find({ completion: 100 })
+  .find()
   .populate('creator')
   .populate('topic')
   .sort({ createTime: -1 })
