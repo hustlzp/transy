@@ -1166,7 +1166,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
   margin: 0 0 10px 0px;
   display: block;
 }
-.metrouicss ul:nth-child(1) {
+/* edit by hustlzp, remove :nth-child(1) */
+.metrouicss ul {
   margin-left: 25px;
 }
 .metrouicss ul ul,

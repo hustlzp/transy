@@ -45,7 +45,7 @@ exports.add = (req, res)->
         User.addArticleCount userId, (err)->
           res.redirect("/article/#{articleId}")
   else
-    res.render('article/add_article', { form: req.form })
+    res.render('article/add_article', { tid: req.params.tid, form: req.form })
 
 # show edit page
 exports.showEdit = (req, res)->

@@ -15,9 +15,9 @@ exports.topics = (req, res)->
 
 # single topic
 exports.topic = (req, res)->
-  Topic.findById req.params.id, (err, t)->
+  Topic.findById req.params.id, (err, topic)->
     Article.getByTopic req.params.id, (err, articles)->
-      res.render('topic/topic', { topic: t, articles: articles })
+      res.render('topic/topic', { topic: topic, articles: articles })
 
 # add topic page
 exports.showAdd = (req, res)->
