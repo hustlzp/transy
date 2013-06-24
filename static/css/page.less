@@ -6,13 +6,11 @@
 /* page article
 ----------------------------------------------------*/
 #page-article{
-    .en-title{
-        margin-bottom: 12px;
-    }
-
     .cn-title{
+        margin-bottom: 8px;
+    }
+    .en-title{
         margin-bottom: 10px;
-        // font-family: '微软雅黑';
     }
 
     .info-wap{
@@ -48,13 +46,22 @@
             margin-bottom: 15px;
         }
         p{
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            font-family: 'Arial', '宋体';
+            &.en{
+                line-height: 19px;
+            }
+            &.cn{
+                line-height: 21px;
+            }
+            
         }
         blockquote{
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             border-left: 4px solid #bbb;
-            padding: 5px 20px 8px 20px; 
+            padding: 10px 15px; 
             background-color: rgba(204, 204, 204, 0.1);
+            font-family: 'Arial', '宋体';
         }
         img{
             margin-bottom: 10px;
@@ -124,6 +131,8 @@
 
         .en,
         .cn{
+            font-family: 'Arial', '宋体';
+            line-height: 20px;
             float: left;
             display: inline-block;
             vertical-align: text-top;
@@ -131,10 +140,10 @@
         }
 
         .en{
-            width: 515px;
+            width: 520px;
         }
         .cn{
-            width: 375px;
+            width: 370px;
         }
 
         .ec-divider{
@@ -174,13 +183,19 @@
         }
     }
     .para[data-type="text"]{
+        .en{
+            color: #333;
+        }
     }
     .para[data-type="quote"]{
         .en,
         .cn{
             border-left: 4px solid #bbb;
-            padding: 5px 20px 8px 20px; 
+            padding: 10px 15px; 
             background-color: rgba(204, 204, 204, 0.1);
+        }
+        .en{
+            color: #333;
         }
     }
     .para[data-type="image"]{

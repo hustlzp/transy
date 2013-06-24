@@ -269,7 +269,7 @@ adjustHeight = function(para) {
   enHeight = para.find('.en').innerHeight();
   cnHeight = para.find('.cn').innerHeight();
   dvHeight = enHeight > cnHeight ? enHeight : cnHeight;
-  return para.find('.ec-divider').css('height', dvHeight + 15 + 'px');
+  return para.find('.ec-divider').css('height', dvHeight + 20 + 'px');
 };
 
 /*

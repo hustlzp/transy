@@ -1,11 +1,12 @@
 
-#page-article .en-title{margin-bottom:12px;}
-#page-article .cn-title{margin-bottom:10px;}
+#page-article .cn-title{margin-bottom:8px;}
+#page-article .en-title{margin-bottom:10px;}
 #page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:12px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:18px;font-weight:bold;color:black;margin-bottom:15px;}
-#page-article .para-list p{margin-bottom:15px;}
-#page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:5px 20px 8px 20px;background-color:rgba(204, 204, 204, 0.1);}
+#page-article .para-list p{margin-bottom:18px;font-family:'Arial','宋体';}#page-article .para-list p.en{line-height:19px;}
+#page-article .para-list p.cn{line-height:21px;}
+#page-article .para-list blockquote{margin-bottom:18px;border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);font-family:'Arial','宋体';}
 #page-article .para-list img{margin-bottom:10px;max-width:100%;}
 #page-edit-article [contenteditable]{outline:none;}
 #page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;padding:0;display:block;border:none;outline:none;width:100%;font-family:'Segoe UI Light','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:200;}
@@ -14,13 +15,15 @@
 #page-edit-article .author-wap,#page-edit-article .url-wap{margin-bottom:10px;}#page-edit-article .author-wap .label,#page-edit-article .url-wap .label{margin-right:10px;}
 #page-edit-article .author-wap input,#page-edit-article .url-wap input{border:0;outline:0;min-width:90%;font-family:'Segoe UI','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:300;}
 #page-edit-article .url-wap{border-bottom:1px solid lightgray;padding-bottom:15px;margin-bottom:15px;}
-#page-edit-article .para{margin-bottom:5px;cursor:text;}#page-edit-article .para .en,#page-edit-article .para .cn{float:left;display:inline-block;vertical-align:text-top;text-align:justify;}
-#page-edit-article .para .en{width:515px;}
-#page-edit-article .para .cn{width:375px;}
+#page-edit-article .para{margin-bottom:5px;cursor:text;}#page-edit-article .para .en,#page-edit-article .para .cn{font-family:'Arial','宋体';line-height:20px;float:left;display:inline-block;vertical-align:text-top;text-align:justify;}
+#page-edit-article .para .en{width:520px;}
+#page-edit-article .para .cn{width:370px;}
 #page-edit-article .para .ec-divider{float:left;display:inline-block;width:10px;margin-left:20px;margin-right:20px;vertical-align:text-top;background-color:#aaa;cursor:pointer;position:relative;min-height:30px;}#page-edit-article .para .ec-divider .focus-flag{width:10px;height:7px;position:absolute;top:0;left:0;background-color:black;visibility:hidden;z-index:100;}
 #page-edit-article .para .ec-divider[data-state='true']{background-color:#2d89ef;}
 #page-edit-article .para[data-type="header"] .en,#page-edit-article .para[data-type="header"] .cn{font-size:20px;font-weight:bold;}
-#page-edit-article .para[data-type="quote"] .en,#page-edit-article .para[data-type="quote"] .cn{border-left:4px solid #bbb;padding:5px 20px 8px 20px;background-color:rgba(204, 204, 204, 0.1);}
+#page-edit-article .para[data-type="text"] .en{color:#333;}
+#page-edit-article .para[data-type="quote"] .en,#page-edit-article .para[data-type="quote"] .cn{border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);}
+#page-edit-article .para[data-type="quote"] .en{color:#333;}
 #page-edit-article .para[data-type="image"] img{max-width:375px;}
 #page-edit-article .annotation{cursor:pointer;width:15px;height:15px;border:0;vertical-align:bottom;background-color:margin: 0 3px;}
 #page-edit-article .context-menu{margin:0;display:none;list-style:none;position:fixed;z-index:10000;}#page-edit-article .context-menu>li{font-size:12px;padding:5px 10px;background-color:#2b5797;color:white;border-bottom:1px solid white;cursor:pointer;position:relative;}#page-edit-article .context-menu>li:last-child{border-bottom:0;}

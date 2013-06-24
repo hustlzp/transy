@@ -288,7 +288,7 @@ adjustHeight = (para)->
   enHeight = para.find('.en').innerHeight()
   cnHeight = para.find('.cn').innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
+  para.find('.ec-divider').css('height', dvHeight + 20 + 'px')
 
 ###
 Focus input/textarea/contenteditable, and move blink to the end
