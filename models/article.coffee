@@ -2,6 +2,7 @@
 Article Model
 ###
 
+moment = require('moment')
 url = require('url')
 mongoose = require('mongoose')
 Schema = mongoose.Schema
@@ -32,6 +33,10 @@ Article = new Schema
 # virtural - urlHost
 Article.virtual('urlHost').get ()->
   return url.parse(this.url).hostname
+
+# Getter of createTime
+Article.path('createTime').get (time)->
+  return moment(time).add('m', 10).format('YYYY/M/D H:mm')
 
 # get hot articles
 Article.statics.getHot = (num, callback)->

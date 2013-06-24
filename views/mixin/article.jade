@@ -3,9 +3,9 @@ mixin articles(articles)
   each a in articles
     div.article-item
       a(href='/article/#{a.id}')
-        h3.en-title #{a.cnTitle}
+        h3.en-title #{a.enTitle}
 
-      h4.cn-title #{a.enTitle}
+      h4.cn-title #{a.cnTitle}
       
       div.info-wap            
         a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
@@ -14,8 +14,9 @@ mixin articles(articles)
 
         span.divider
 
-        span 作者：
-        span #{a.author}
+        //- span 作者：
+        //- span #{a.author}
+        span #{a.createTime}
 
         //- span.divider
 
