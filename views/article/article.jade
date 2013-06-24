@@ -59,22 +59,23 @@ block content
 
   div.row
     div.span8
-      each p in article.paraList
-        div.para-list
-          if p.type === 'header'
-            h3.en #{p.en}
-            if p.cn !== ''
-              h3.cn #{p.cn}
-          else if p.type === 'text'
-            p.en #{p.en}
-            if p.cn !== ''
-              p.cn #{p.cn}
-          else if p.type === 'quote'
-            blockquote.en #{p.en}
-            if p.cn !== ''
-              blockquote.cn #{p.cn}
-          else if p.type === 'image'
-            img(src='#{p.en}')
+      div.mb20
+        each p in article.paraList
+          div.para-list
+            if p.type === 'header'
+              h3.en #{p.en}
+              if p.cn !== ''
+                h3.cn #{p.cn}
+            else if p.type === 'text'
+              p.en #{p.en}
+              if p.cn !== ''
+                p.cn #{p.cn}
+            else if p.type === 'quote'
+              blockquote.en #{p.en}
+              if p.cn !== ''
+                blockquote.cn #{p.cn}
+            else if p.type === 'image'
+              img(src='#{p.en}')
 
       //- h3 评论
       mixin articleComments(comments)
