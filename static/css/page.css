@@ -1,5 +1,5 @@
 
-#page-article .cn-title{margin-bottom:8px;}
+#page-article .cn-title{margin-bottom:8px;font-weight:600;}
 #page-article .en-title{margin-bottom:10px;}
 #page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:12px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
