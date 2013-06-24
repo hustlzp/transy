@@ -9,8 +9,8 @@ block content
   script(src='/js/ts.edit-article.js')
 
   div.title.clearfix(data-article-id='#{article.id}')
+    input.cn-title(value='#{article.cnTitle}', placeholder="待译标题")
     input.en-title(value='#{article.enTitle}') 
-    input.cn-title(value='#{article.cnTitle}', placeholder="中文标题") 
 
   div.author-wap
     span.label.warning 作者

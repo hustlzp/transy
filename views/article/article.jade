@@ -36,8 +36,9 @@ block content
       $('.btn-output').click ->
         window.open("/article/#{id}/output/#{mode}", "_blank")
 
-  h2.en-title(data-article-id="#{article.id}") #{article.enTitle}
   h2.cn-title #{article.cnTitle}
+  h3.en-title(data-article-id="#{article.id}") #{article.enTitle}
+  
 
   div.info-wap
     a(href='/u/#{article.creator.name}') #{article.creator.name}&nbsp;

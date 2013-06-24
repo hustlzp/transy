@@ -1,6 +1,6 @@
 
 #page-article .en-title{margin-bottom:12px;}
-#page-article .cn-title{margin-bottom:12px;}
+#page-article .cn-title{margin-bottom:10px;}
 #page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:10px;margin-bottom:12px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:18px;font-weight:bold;color:black;margin-bottom:15px;}
@@ -8,9 +8,9 @@
 #page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:5px 20px 8px 20px;background-color:rgba(204, 204, 204, 0.1);}
 #page-article .para-list img{margin-bottom:10px;max-width:100%;}
 #page-edit-article [contenteditable]{outline:none;}
-#page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;padding:0;display:block;border:none;outline:none;width:100%;font-family:'Segoe UI Light','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:200;font-size:20pt;line-height:22pt;}
-#page-edit-article .title .en-title{margin-bottom:5px;}
-#page-edit-article .title .cn-title{margin-bottom:10px;}
+#page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;padding:0;display:block;border:none;outline:none;width:100%;font-family:'Segoe UI Light','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:200;}
+#page-edit-article .title .cn-title{font-size:20pt;line-height:20pt;margin-bottom:2px;}
+#page-edit-article .title .en-title{margin-bottom:10px;color:rgba(0, 0, 0, 0.6);font-size:16pt;line-height:16pt;}
 #page-edit-article .author-wap,#page-edit-article .url-wap{margin-bottom:10px;}#page-edit-article .author-wap .label,#page-edit-article .url-wap .label{margin-right:10px;}
 #page-edit-article .author-wap input,#page-edit-article .url-wap input{border:0;outline:0;min-width:90%;font-family:'Segoe UI','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:300;}
 #page-edit-article .url-wap{border-bottom:1px solid lightgray;padding-bottom:15px;margin-bottom:15px;}
