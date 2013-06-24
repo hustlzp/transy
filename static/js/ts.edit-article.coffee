@@ -1,16 +1,19 @@
-# global var, use to save the item be clicked
-clickItem = null
+# global var
+g = {
+  # save the item be clicked
+  clickItem: null 
+  
+  # time tick create by setTimeout, use to auto save article
+  articleObj: null
 
-# global var, whether the data need save before leave this page
-articleObj = null
+  # article object grab from the page
+  saveTick: 0
 
-# global var, time tick create by setTimeout, use to auto save article
-saveTick = 0
+  # the selection object created by mouse
+  # selectedRange: null
+}
 
-# global var, the selection object created by mouse
-selectedRange = null
-
-# save interval: 1min
+# save interval
 SAVE_INTERVAL = 60000
 
 # must use window.onload to adjust divider's height again
@@ -24,14 +27,14 @@ $(window).load ->
 
 $ ->
   # init auto save
-  saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
+  g.saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
 
   # init divider's height
   $('.para').each ->
     adjustHeight($(this))
 
   # init article objects
-  articleObj = buildArticleObj()
+  g.articleObj = buildArticleObj()
 
   # dynamic change divider's height
   $('.en, .cn').keyup ->
@@ -70,7 +73,7 @@ $ ->
 
   # alarm when window close and changes have not been saved
   $(window).on 'beforeunload', ->
-    if not isArticleEqual(articleObj, buildArticleObj())
+    if not isArticleEqual(g.articleObj, buildArticleObj())
       return "更改尚未保存，"
 
   # para key event
@@ -100,15 +103,15 @@ $ ->
 
     # bind the .para element to global var
     if $(e.target).hasClass('para')
-      clickItem = e.target
+      g.clickItem = e.target
     else
-      clickItem = $(e.target).parents('.para').first()[0]
+      g.clickItem = $(e.target).parents('.para').first()[0]
 
     # save the selection object
-    selectedRange = document.getSelection().getRangeAt(0)
+    # g.selectedRange = document.getSelection().getRangeAt(0)
 
     # image para should'n display 'switch type' submenu
-    if $(clickItem).attr('data-type') == 'image'
+    if $(g.clickItem).attr('data-type') == 'image'
       $('.context-menu').find('.only-for-text').hide()
     else
       $('.context-menu').find('.only-for-text').show()
@@ -128,10 +131,10 @@ $ ->
     c = $(e.target).attr('class')
     switch c
       when 'header', 'text', 'quote', 'code'
-        $(clickItem).attr('data-type', c)
-        adjustHeight($(clickItem))
+        $(g.clickItem).attr('data-type', c)
+        adjustHeight($(g.clickItem))
       when 'add-para'
-        $(clickItem).after("<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>")
+        $(g.clickItem).after("<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>")
         # add content when textarea blur
         $('.add-content-wap').focus().blur ->
           addContent = $(this).val().trim()
@@ -139,7 +142,7 @@ $ ->
             return $(this).detach()
           # image
           if addContent.match(/\bhttp:\/\//) and addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)
-            $(clickItem).after("""
+            $(g.clickItem).after("""
               <div data-type='image' class='para clearfix'>
                 <div class='en'>
                   <img src='#{addContent}' /></div
@@ -149,47 +152,47 @@ $ ->
                 </div>
               </div>
             """)
-            imagesLoaded($(clickItem).next(), ->
-              adjustHeight($(clickItem).next())
+            imagesLoaded($(g.clickItem).next(), ->
+              adjustHeight($(g.clickItem).next())
             )
           else  # text
-            $(clickItem).after("""
+            $(g.clickItem).after("""
               <div data-type='text' class='para clearfix'>
                 <div class='en' contenteditable='true'>#{addContent}</div
                 ><div class='ec-divider' data-state='false'></div
                 ><div class='cn' contenteditable='true'></div>
               </div>
             """)
-            adjustHeight($(clickItem).next())
+            adjustHeight($(g.clickItem).next())
 
           $(this).detach()
       when 'remove-para'
-        $(clickItem).detach()
+        $(g.clickItem).detach()
       # when 'add-annotation'
-      #   if selectedRange.collapsed
+      #   if g.selectedRange.collapsed
       #     annotationTag = document.createElement('img')
       #     annotationTag.className = 'annotation'
       #     annotationTag.src = 'http://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/chat-128.png'
-      #     selectedRange.insertNode(annotationTag)
+      #     g.selectedRange.insertNode(annotationTag)
 
 ###
 Save article, triggle when click the save btn, or press Ctrl-S
 @method saveArticle
 ###
 saveArticle = ->
-  clearTimeout(saveTick)
+  clearTimeout(g.saveTick)
 
   # if not modify, init the next save, then quit
   currArticleObj = buildArticleObj()
-  if isArticleEqual(articleObj, currArticleObj)
-    saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
+  if isArticleEqual(g.articleObj, currArticleObj)
+    g.saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
     showSaveState()
     hideSaveState()
     return
 
   # else save it
   showSaveState()
-  articleObj = currArticleObj
+  g.articleObj = currArticleObj
 
   # post
   articleId = $('.title').data('article-id')
@@ -197,11 +200,11 @@ saveArticle = ->
     url: "/article/#{articleId}/edit"
     method: 'POST'
     data:
-      article: articleObj
+      article: g.articleObj
     success: (data)->
       if data.result == 1
         hideSaveState()
-        saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
+        g.saveTick = setTimeout(saveArticle, SAVE_INTERVAL)
 
 ###
 Show save state

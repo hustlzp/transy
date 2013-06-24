@@ -16,7 +16,8 @@ Comment = new Schema
 
 # Getter of createTime
 Comment.path('createTime').get (time)->
-  return moment(time).add('m', 10).format('YYYY/M/D H:mm')
+  # return moment(time).add('m', 10).format('YYYY/M/D H:mm').fromNow()
+  return moment(time).add('m', 10).fromNow()
 
 # get comments by user, sort by time asc
 Comment.statics.getByUser = (userId, callback)->
