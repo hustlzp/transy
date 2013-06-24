@@ -90,7 +90,7 @@ exports.discomment = (req, res)->
     Article.reduceCommentCount comment.article, (err)->
       # comment count - 1 in User
       User.reduceCommentCount comment.user, (err)->
-        res.redirect("/article/#{article.id}")
+        res.redirect("/article/#{comment.article}")
 
 # collect article
 exports.collect = (req, res)->

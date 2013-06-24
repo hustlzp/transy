@@ -13,7 +13,7 @@ User = new Schema
   email: { type: String, unique: true }
   pwd: String
   url: String
-  avatarUrl: { type: String, default: "http://placehold.it/60x60" }
+  avatarUrl: { type: String, default: "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" }
   location: String
   signature: String
   createTime: { type: Date, default: new Date() }

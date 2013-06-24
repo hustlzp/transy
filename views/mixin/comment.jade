@@ -8,7 +8,7 @@ mixin articleComments(commments)
           a(href="/u/#{c.user.name}") #{c.user.name}
         div.c-content #{c.content}
         div.c-time #{c.createTime}
-      if locals.cookies.user && locals.cookies.user.id === c.user.id
+      if locals.cookies.user && locals.cookies.user.id === c.article.creator.toString()
         a.button.btn-remove-comment(href='/comment/#{c.id}/remove') 删除评论
 
 mixin userComments(commments)
@@ -17,7 +17,6 @@ mixin userComments(commments)
       img.c-user-avatar(src="#{c.user.avatarUrl}")
       div.c-content-wap
         div.c-user
-          //- a(href="/u/#{c.user.name}") #{c.user.name}&nbsp;
           | 在&nbsp;
           a(href="/article/#{c.article.id}") #{c.article.cnTitle}&nbsp;
           | 中回复:

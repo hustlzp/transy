@@ -33,6 +33,7 @@ Comment.statics.getByArticle = (articleId, callback)->
   .find({ article: articleId })
   .sort({ createTime: -1 })
   .populate('user')
+  .populate('article')
   .exec callback
 
 # new
