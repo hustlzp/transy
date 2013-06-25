@@ -34,3 +34,10 @@ exports.topic = form(
   field('intro', '描述').trim().required(),
   field('image', '图片').trim()
 )
+
+# setting form validator
+exports.setting = form(
+  field('pwd', '原密码').trim().required(),
+  field('newPwd', '新密码').trim().required(),
+  field('reNewPwd', '重复新密码').trim().required(),
+)

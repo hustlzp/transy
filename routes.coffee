@@ -73,7 +73,8 @@ module.exports = (app)->
 
   # user
   # user setting
-  app.get('/u/setting', user.setting)
+  app.get('/u/setting', user.showSetting)
+  app.post('/u/setting', validator.setting, user.setting)
   # personal page
   app.get('/u/:user', user.articles)
   # collects

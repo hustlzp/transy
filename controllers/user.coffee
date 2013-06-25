@@ -36,7 +36,12 @@ exports.comments = (req, res)->
     Comment.getByUser u.id, (err, comments)->
       res.render('user/comments', { u: u, comments: comments })
 
-# my setting
+# show my setting page
+exports.showSetting = (req, res)->
+  User.findById req.cookies.user.id, (err, u)->
+    res.render('user/setting', { u: u })
+
+# setting
 exports.setting = (req, res)->
   User.findById req.cookies.user.id, (err, u)->
     res.render('user/setting', { u: u })
