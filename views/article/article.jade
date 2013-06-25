@@ -9,13 +9,14 @@ block content
 
   :coffeescript
     $ ->
+      # delete confirm
       $('.btn-delete').click ->
         if not confirm('Really to delete this article?')
-          false
+          false     
 
       # display mode: ec, cn ,en
       mode = 'ec'
-      id = $('.en-title').data('article-id')
+      id = $('.cn-title').data('article-id')
 
       # select view mode
       $('.btn-sel-ec').click ->
@@ -36,10 +37,9 @@ block content
       $('.btn-output').click ->
         window.open("/article/#{id}/output/#{mode}", "_blank")
 
-  h2.cn-title #{article.cnTitle}
-  h3.en-title(data-article-id="#{article.id}") #{article.enTitle}
+  h2.cn-title(data-article-id="#{article.id}") #{article.cnTitle}
+  h3.en-title #{article.enTitle}
   
-
   div.info-wap
     a(href='/u/#{article.creator.name}') #{article.creator.name}&nbsp;
     span.fg-color-gray 发表在&nbsp;
@@ -54,7 +54,6 @@ block content
 
     span 来源：
     a(href='#{article.url}', target="_blank") #{article.urlHost}
-      //- i.icon-link
 
     span.completion #{article.completion}%
 
@@ -78,10 +77,9 @@ block content
             else if p.type === 'image'
               img(src='#{p.en}')
 
-      //- h3 评论
+      //- 评论
       mixin articleComments(comments)
 
-      //- comment form
       form(action='/article/#{article.id}/comment', method='post')
         div.input-control.text
           textarea(name='content', placeholder='评论')
