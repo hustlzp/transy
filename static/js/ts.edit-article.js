@@ -175,7 +175,7 @@ showSaveState = function() {
   $('.save-state .state-waiting').show();
   $('.save-state .state-ok').hide();
   return $('.save-state').animate({
-    right: '32px',
+    left: '-32px',
     200: 200
   });
 };
@@ -189,7 +189,7 @@ Hide save state
 hideSaveState = function() {
   $('.save-state .state-waiting').hide();
   $('.save-state .state-ok').show();
-  return setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000);
+  return setTimeout("$('.save-state').animate({left: '0px'}, 200)", 1000);
 };
 
 /*

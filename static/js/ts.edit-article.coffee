@@ -213,7 +213,7 @@ Show save state
 showSaveState = ->
   $('.save-state .state-waiting').show()
   $('.save-state .state-ok').hide()
-  $('.save-state').animate({ right: '32px', 200 })
+  $('.save-state').animate({ left: '-32px', 200 })
 
 ###
 Hide save state
@@ -222,7 +222,7 @@ Hide save state
 hideSaveState = ->
   $('.save-state .state-waiting').hide()
   $('.save-state .state-ok').show()
-  setTimeout("$('.save-state').animate({right: '0px'}, 200)", 1000)  
+  setTimeout("$('.save-state').animate({left: '0px'}, 200)", 1000)  
 
 ###
 Whether the two object is equal

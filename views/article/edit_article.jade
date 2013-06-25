@@ -40,8 +40,10 @@ block content
       img.state-waiting(src='/images/preloader-w8-cycle-white.gif')
       i.icon-checkmark.state-ok
     div.toolbar
-      button.save-btn
+      button.save-btn(title="保存")
         i.icon-save
+      a(href="/article/#{article.id}", title="浏览")
+        i.icon-arrow-left-3
 
   //- context menu
   ul.context-menu

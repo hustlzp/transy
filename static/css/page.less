@@ -1,6 +1,11 @@
 /* page index
 ----------------------------------------------------*/
 #page-index{
+    .hot-articles{
+        li{
+            margin-bottom: 3px;
+        }
+    }
 }
 
 /* page article
@@ -303,7 +308,7 @@
             width: 32px;
             position: absolute;
             top: 0;
-            right: 0;
+            left: 0;
             z-index: -100;
 
             img{
@@ -325,9 +330,13 @@
         .toolbar{
             background-color: white;
 
-            .save-btn{
+            button, a{
                 margin: 0;
-            }            
+            }
+
+            .save-btn{
+                margin-right: 5px;
+            } 
         }
     }
 }
