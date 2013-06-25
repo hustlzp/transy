@@ -13,7 +13,7 @@ html
     script(src='/js/dropdown.js')
 
   body.metrouicss(id='#{page}')
-    div.page
+    div.page.content
       <!-- nav -->
       div.nav-bar
         div.nav-bar-inner.padding10       
@@ -53,3 +53,10 @@ html
       <!-- content -->
       div.grid
         block content
+
+    div.footer
+      div.copyright ©2013 transy.com, all rights reserved 
+
+      div.links
+        a(href='/about') About
+        a(href='https://github.com/hustlzp/transy', target='_blank') GitHub

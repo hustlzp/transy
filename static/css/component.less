@@ -1,6 +1,10 @@
+html, body{
+    height: 100%;
+}
+
 .metrouicss{
 
-/* public layout
+/* Global styles
 ----------------------------------------------------*/
 .page{
     width: 940px;
@@ -13,6 +17,40 @@
     .nav-bar-inner > .divider{
         margin-left: 10px;
         margin-right: 10px;
+    }
+}
+
+.content{
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 5em;
+}
+
+.footer{
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 2.8em;
+    margin-top: -2.8em;
+    padding-top: 0.5em;
+    text-align: center;
+    border-top: 1px dashed #ddd;
+    width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .copyright{
+        float: left;
+        font-size: 12px;
+    }
+
+    .links{
+        float: right;
+        
+        a{
+            font-size: 12px;
+            margin-left: 15px;
+        }
     }
 }
 

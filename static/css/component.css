@@ -1,5 +1,9 @@
+html,body{height:100%;}
 .metrouicss{}.metrouicss .page{width:940px;margin:auto;}
 .metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .nav-bar-inner>.divider{margin-left:10px;margin-right:10px;}
+.metrouicss .content{height:auto;min-height:100%;padding-bottom:5em;}
+.metrouicss .footer{clear:both;position:relative;z-index:10;height:2.8em;margin-top:-2.8em;padding-top:0.5em;text-align:center;border-top:1px dashed #ddd;width:940px;margin-left:auto;margin-right:auto;}.metrouicss .footer .copyright{float:left;font-size:12px;}
+.metrouicss .footer .links{float:right;}.metrouicss .footer .links a{font-size:12px;margin-left:15px;}
 .metrouicss ul{margin-left:5px;}
 .metrouicss .page-header{border-bottom:1px solid lightgray;padding-bottom:13px;margin-bottom:15px;clear:both;}
 .metrouicss .form-header{margin-bottom:15px;}

@@ -20,6 +20,8 @@ module.exports = (app)->
   # site
   # home page
   app.get('/', site.index)
+  # about page
+  app.get('/about', site.about)
 
   # sign
   # signup
