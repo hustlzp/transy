@@ -11,8 +11,8 @@ block content
     $ ->
       # delete confirm
       $('.btn-delete').click ->
-        if not confirm('Really to delete this article?')
-          false     
+        if not confirm('确认删除此文章？')
+          false
 
       # display mode: ec, cn ,en
       mode = 'ec'

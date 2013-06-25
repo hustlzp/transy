@@ -3,6 +3,7 @@ Article Controller
 ###
 
 url = require('url')
+EventProxy = require('eventproxy')
 User = require('../models/user')
 Topic = require('../models/topic')
 Article = require('../models/article')
@@ -62,12 +63,44 @@ exports.edit = (req, res)->
 
 # delete article
 exports.delete = (req, res)->
-  Article.findByIdAndRemove req.params.id , (err, article)->
+  articleId = req.params.id
+
+  epa = new EventProxy();
+  epa.all 'rm_article', 'rm_comments', 'rm_collects', ->
+    res.redirect("u/#{req.cookies.user.name}")
+
+  # remove article
+  Article.findByIdAndRemove articleId , (err, article)->
     # article count - 1 in Topic
     Topic.reduceArticleCount article.topic, (err)->
       # article count - 1 in User
       User.reduceArticleCount article.creator, (err)->
-        res.redirect("/u/#{req.cookies.user.name}")
+        epa.emit('rm_article')
+
+  # remove comments
+  Comment.getByArticle articleId, (err, comments)->
+    epb = new EventProxy()
+    epb.after 'rm_comment', comments.length, ->
+      epa.emit('rm_comments')
+
+    for c in comments
+      Comment.findByIdAndRemove c.id, (err, c)->
+        # comment count - 1 in User
+        User.reduceCommentCount c.user, (err)->
+          epb.emit('rm_comment')
+
+  # remove collects
+  Collect.getByArticle articleId, (err, collects)->
+    epc = new EventProxy()
+    epc.after 'rm_collect', collects.length, ->
+      epa.emit('rm_collects')
+
+    for c in collects
+      Collect.findByIdAndRemove c.id, (err, c)->
+        # collect count - 1 in User
+        User.reduceCollectCount c.user, (err)->
+          epc.emit('rm_collect')
+
 
 # add comment
 exports.comment = (req, res)->

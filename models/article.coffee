@@ -7,7 +7,10 @@ url = require('url')
 mongoose = require('mongoose')
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
+Topic = require('./topic')
+User= require('./user')
 
+# sub document
 Para = new Schema
   en: String
   cn: String
@@ -30,14 +33,13 @@ Article = new Schema
   collectCount: { type: Number, default: 0, min: 0 }
   commentCount: { type: Number, default: 0, min: 0 }
 
-# virtural - urlHost
+# Virtural - urlHost
 Article.virtual('urlHost').get ()->
   return url.parse(this.url).hostname
 
-# Getter of createTime
+# Getter - createTime
 Article.path('createTime').get (time)->
   # return moment(time).add('m', 10).format('YYYY/M/D H:mm')
-  # if use fromnNow, there is no need to add 10 minutes
   return moment(time).fromNow()
 
 # get hot articles
@@ -119,6 +121,14 @@ Article.statics.edit = (articleId, article, callback)->
     completion: article.completion
     paraList: article.paraList
   , callback
+
+# remove
+# Article.statics.removeById = (articleId, callback)->
+#   this.findByIdAndRemove articleId , (err, article)->
+#     # article count - 1 in Topic
+#     Topic.reduceArticleCount article.topic, (err)->
+#       # article count - 1 in User
+#       User.reduceArticleCount article.creator, callback
 
 Article.statics.addCommentCount = (articleId, callback)->
   this.update { _id: articleId }, { $inc: { commentCount: 1 }}, callback

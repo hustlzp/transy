@@ -17,6 +17,11 @@ Collect.statics.getByUser = (userId, callback)->
   .find({ user: userId })
   .exec callback
 
+Collect.statics.getByArticle = (articleId, callback)->
+  this
+  .find({ article: articleId })
+  .exec callback
+
 Collect.statics.check = (userId, articleId, callback)->
   this
   .findOne({ user: userId, article: articleId })

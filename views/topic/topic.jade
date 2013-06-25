@@ -6,6 +6,12 @@ block vars
   -var page = 'page-topic'
 
 block content
+  :coffeescript
+    $ ->
+      $('.btn-remove').click ->
+        if not confirm('确认删除此话题？')
+          return false     
+
   div.row
     div.span8
       div.t-header
@@ -21,7 +27,7 @@ block content
       div.button-set
         if locals.cookies.user
           if locals.cookies.user.name === 'hustlzp'
-            a.button.place-right(href='/topic/#{topic.id}/delete')
+            a.button.place-right.btn-remove(href='/topic/#{topic.id}/delete')
               i.icon-remove
               | 删除
 

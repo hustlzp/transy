@@ -22,6 +22,8 @@ module.exports = (app)->
   app.get('/', site.index)
   # about page
   app.get('/about', site.about)
+  # message
+  # app.get('/message/:title/:content')
 
   # sign
   # signup

@@ -6,6 +6,8 @@ moment = require('moment')
 mongoose = require('mongoose')
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
+User = require('./user')
+EventProxy = require('eventproxy')
 
 Comment = new Schema
   _id: ObjectId
@@ -45,5 +47,18 @@ Comment.statics.add = (articleId, userId, content, callback)->
     content: content
     createTime: new Date()
   , callback
+
+# Comment.statics.removeByArticle = (articleId, callback)->
+#   Model = this
+
+#   Model.getByArticle articleId, (err, comments)->
+#     ep = new EventProxy()
+#     ep.after 'rm_comment', comments.length, callback
+
+#     for c in comments
+#       Model.findByIdAndRemove c.id, (err, c)->
+#         # comment count - 1 in User
+#         User.reduceCommentCount c.user, (err)->
+#           ep.emit('rm_comment')
 
 module.exports = mongoose.model('Comment', Comment)

@@ -1,5 +1,5 @@
 //- comments
-mixin articleComments(commments)
+mixin articleComments(comments)
   for c in comments
     div.comment-item
       img.c-user-avatar(src="#{c.user.avatarUrl}")
@@ -11,7 +11,7 @@ mixin articleComments(commments)
       if locals.cookies.user && locals.cookies.user.id === c.article.creator.toString()
         a.button.btn-remove-comment(href='/comment/#{c.id}/remove') 删除评论
 
-mixin userComments(commments)
+mixin userComments(comments)
   for c in comments
     div.comment-item
       img.c-user-avatar(src="#{c.user.avatarUrl}")

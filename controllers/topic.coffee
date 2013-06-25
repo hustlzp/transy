@@ -57,5 +57,11 @@ exports.edit = (req, res)->
 
 # delete topic
 exports.delete = (req, res)->
-  Topic.remove { _id: req.params.id }, (err)->
-    res.redirect('/topics')
+  topicId = req.params.id
+
+  Article.getByTopic topicId, (err, articles)->
+    if articles.length != 0 
+      res.render('message', { title: '警告', content: '此话题存在文章，无法删除！' })
+    else
+      Topic.remove { _id: req.params.id }, (err)->
+        res.redirect('/topics')
