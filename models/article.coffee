@@ -37,7 +37,8 @@ Article.virtual('urlHost').get ()->
 # Getter of createTime
 Article.path('createTime').get (time)->
   # return moment(time).add('m', 10).format('YYYY/M/D H:mm')
-  return moment(time).add('m', 10).fromNow()
+  # if use fromnNow, there is no need to add 10 minutes
+  return moment(time).fromNow()
 
 # get hot articles
 Article.statics.getHot = (num, callback)->
