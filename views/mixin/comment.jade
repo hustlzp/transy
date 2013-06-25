@@ -1,5 +1,11 @@
 //- comments
 mixin articleComments(comments)
+  :coffeescript
+    $ ->
+      $('.btn-remove-comment').click ->
+        if not confirm('确认删除此回复？')
+          return false
+
   for c in comments
     div.comment-item
       img.c-user-avatar(src="#{c.user.avatarUrl}")
@@ -8,8 +14,14 @@ mixin articleComments(comments)
           a(href="/u/#{c.user.name}") #{c.user.name}
         div.c-content #{c.content}
         div.c-time #{c.createTime}
-      if locals.cookies.user && locals.cookies.user.id === c.article.creator.toString()
-        a.button.btn-remove-comment(href='/comment/#{c.id}/remove') 删除评论
+      if locals.cookies.user 
+        div.toolbar
+          if locals.cookies.user.id === c.article.creator.toString()
+            a.btn-remove-comment(href='/comment/#{c.id}/remove', title='删除评论')
+              i.icon-remove
+          a.btn-comment-at(title='回复TA')
+            i.icon-comments-4
+
 
 mixin userComments(comments)
   for c in comments
