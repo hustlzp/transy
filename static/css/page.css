@@ -5,9 +5,9 @@
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:18px;font-weight:bold;color:black;margin-bottom:15px;}
 #page-article .para-list p{margin-bottom:18px;font-family:'Arial','宋体';}#page-article .para-list p.en{line-height:20px;color:#333;}
-#page-article .para-list p.cn{line-height:21px;}
+#page-article .para-list p.cn{line-height:22px;}
 #page-article .para-list blockquote{margin-bottom:18px;border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);font-family:'Arial','宋体';}#page-article .para-list blockquote.en{line-height:20px;color:#333;}
-#page-article .para-list blockquote.cn{line-height:21px;}
+#page-article .para-list blockquote.cn{line-height:22px;}
 #page-article .para-list img{margin-bottom:10px;max-width:100%;}
 #page-edit-article [contenteditable]{outline:none;}
 #page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;padding:0;display:block;border:none;outline:none;width:100%;font-family:'Segoe UI Light','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:200;}
