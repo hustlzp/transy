@@ -141,7 +141,7 @@ $ ->
           if addContent == ""
             return $(this).detach()
           # image
-          if addContent.match(/\bhttp:\/\//) and addContent.match(/.(gif|png|jpeg|jpg|bmp)\b/)
+          if addContent.match(/\bhttp:\/\//) and addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)
             $(g.clickItem).after("""
               <div data-type='image' class='para clearfix'>
                 <div class='en'>
@@ -288,7 +288,7 @@ adjustHeight = (para)->
   enHeight = para.find('.en').innerHeight()
   cnHeight = para.find('.cn').innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  para.find('.ec-divider').css('height', dvHeight + 20 + 'px')
+  para.find('.ec-divider').css('height', dvHeight + 10 + 'px')
 
 ###
 Focus input/textarea/contenteditable, and move blink to the end
