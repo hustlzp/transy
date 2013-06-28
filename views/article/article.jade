@@ -57,29 +57,52 @@ block content
 
     span.completion #{article.completion}%
 
+
+
+  mixin article(paraList)
+    - var inList = false
+    - var enListHTML = ""
+    - var cnListHTML = ""
+
+    each p in article.paraList
+      case p.type
+        when 'list'
+          if !inList
+            - inList = true
+            - enListHTML = ""
+            - cnListHTML = ""
+          - enListHTML += "<li>" + p.en + "</li>"
+          if p.cn !== ''
+            - cnListHTML += "<li>" + p.cn + "</li>"
+        when 'header'
+          div.para-list
+            h3.en #{p.en}
+            if p.cn !== ''
+              h3.cn #{p.cn}
+        when 'text'
+          div.para-list
+            p.en #{p.en}
+            if p.cn !== ''
+              p.cn #{p.cn}
+        when 'quote'
+          div.para-list
+            blockquote.en #{p.en}
+            if p.cn !== ''
+              blockquote.cn #{p.cn}            
+        when 'image'
+          div.para-list
+            img(src='#{p.en}')
+
+      if p.type !== 'list' && inList
+        - inList = false
+        div.para-list
+          ul.en !{enListHTML}
+          ul.cn !{cnListHTML}
+
   div.row
     div.span8
       div.mb25
-        each p in article.paraList
-          div.para-list
-            if p.type === 'header'
-              h3.en #{p.en}
-              if p.cn !== ''
-                h3.cn #{p.cn}
-            else if p.type === 'text'
-              p.en #{p.en}
-              if p.cn !== ''
-                p.cn #{p.cn}
-            else if p.type ==='list'
-              li.en #{p.en}
-              if p.cn !== ''
-                li.cn #{p.cn}
-            else if p.type === 'quote'
-              blockquote.en #{p.en}
-              if p.cn !== ''
-                blockquote.cn #{p.cn}
-            else if p.type === 'image'
-              img(src='#{p.en}')
+        mixin article(article.paraList)
 
       //- 评论
       mixin articleComments(comments)

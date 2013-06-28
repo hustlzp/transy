@@ -4,10 +4,9 @@
 #page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:12px;margin-bottom:15px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:18px;font-weight:bold;color:black;margin-bottom:15px;}
-#page-article .para-list p{margin-bottom:20px;font-family:'Arial','宋体';}#page-article .para-list p.en{line-height:20px;color:#333;}
-#page-article .para-list p.cn{line-height:24px;}
-#page-article .para-list li{font-family:'Arial','宋体';list-style:square;margin:0 0 15px 0;}#page-article .para-list li.en{line-height:20px;}
-#page-article .para-list li.cn{line-height:22px;}
+#page-article .para-list p{margin-bottom:15px;font-family:'Arial','宋体';}#page-article .para-list p.en{line-height:20px;color:#333;}
+#page-article .para-list p.cn{line-height:23px;}
+#page-article .para-list ul{margin-bottom:15px;}#page-article .para-list ul li{font-family:'Arial','宋体';margin-bottom:5px;}
 #page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);font-family:'Arial','宋体';}#page-article .para-list blockquote.en{line-height:20px;color:#333;}
 #page-article .para-list blockquote.cn{line-height:22px;}
 #page-article .para-list img{margin-bottom:15px;max-width:80%;}
@@ -27,7 +26,7 @@
 #page-edit-article .para[data-type="text"] .en{color:#333;}
 #page-edit-article .para[data-type="quote"] .en,#page-edit-article .para[data-type="quote"] .cn{border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);}
 #page-edit-article .para[data-type="quote"] .en{color:#333;}
-#page-edit-article .para[data-type="list"] .en:before,#page-edit-article .para[data-type="list"] .cn:before{content:url(../images/dot.png);}
+#page-edit-article .para[data-type="list"] .en:before,#page-edit-article .para[data-type="list"] .cn:before{margin-bottom:15px;content:url(../images/dot.png);}
 #page-edit-article .para[data-type="image"] img{max-width:375px;}
 #page-edit-article .annotation{cursor:pointer;width:15px;height:15px;border:0;vertical-align:bottom;background-color:margin: 0 3px;}
 #page-edit-article .context-menu{margin:0;display:none;list-style:none;position:fixed;z-index:10000;}#page-edit-article .context-menu>li{font-size:12px;padding:5px 10px;background-color:#2b5797;color:white;border-bottom:1px solid white;cursor:pointer;position:relative;}#page-edit-article .context-menu>li:last-child{border-bottom:0;}

@@ -30,9 +30,6 @@
             margin-left: 15px;
         }
 
-        .icon-link{
-        }
-
         .completion{
             font-size: 30px;
             line-height: 30px;
@@ -52,27 +49,23 @@
             margin-bottom: 15px;
         }
         p{
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-family: 'Arial', '宋体';
             &.en{
                 line-height: 20px;
                 color: #333;
             }
             &.cn{
-                line-height: 24px;
+                line-height: 23px;
             }
         }
-        li{
-            font-family: 'Arial', '宋体';
-            list-style: square;
-            margin: 0 0 15px 0;
-            &.en{
-                line-height: 20px;
+        ul{
+            margin-bottom: 15px;
+
+            li{
+                font-family: 'Arial', '宋体';
+                margin-bottom: 5px;
             }
-            &.cn{
-                line-height: 22px;
-            }
-            
         }
         blockquote{
             margin-bottom: 15px;
@@ -227,6 +220,7 @@
     .para[data-type="list"]{
         .en:before,
         .cn:before{
+            margin-bottom: 15px;
             content: url(../images/dot.png);
         }
     }

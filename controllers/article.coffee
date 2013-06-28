@@ -149,6 +149,8 @@ exports.discollect = (req, res)->
 
 # State var: if is displaying a list
 inList = false
+enListHTML = ""
+cnListHTML = ""
 
 # output article
 exports.output = (req, res)->
@@ -157,16 +159,53 @@ exports.output = (req, res)->
     for p in data.paraList
       switch req.params.mode
         when 'en'
-          html += outputHTML(p.type, p.en)
+          if p.type == 'list'
+            if not inList
+              inList = true
+              enListHTML = ""
+            enListHTML += outputHTML(p.type, p.en) + "\n"
+          else
+            if p.type != 'list'
+              if inList
+                inList = false
+                html += "<ul>\n" + enListHTML + "</ul>"
+                html += "\n\n"
+              html += outputHTML(p.type, p.en)
+              html += "\n\n"
         when 'cn'
-          html += outputHTML(p.type, p.cn)
+          if p.type == 'list'
+            if not inList
+              inList = true
+              cnListHTML = ""
+            cnListHTML += outputHTML(p.type, p.cn) + "\n"
+          else
+            if p.type != 'list'
+              if inList
+                inList = false
+                html += "<ul>\n" + cnListHTML + "</ul>"
+                html += "\n\n"
+              html += outputHTML(p.type, p.cn)
+              html += "\n\n"
         when 'ec'
-          html += outputHTML(p.type, p.en)
-          # when cn is empty, or it's a image, don't output it
-          if p.cn != '' and p.type != 'image'
-            html += '\n'
-            html += outputHTML(p.type, p.cn)
-      html += "\n\n"
+          if p.type == 'list'
+            if not inList
+              inList = true
+              enListHTML = ""
+              cnListHTML = ""
+            enListHTML += outputHTML(p.type, p.en) + "\n"
+            cnListHTML += outputHTML(p.type, p.cn) + "\n"
+          else
+            if p.type != 'list'
+              if inList
+                inList = false
+                html += "<ul>\n" + enListHTML + "</ul>"
+                html += "\n"
+                html += "<ul>\n" + cnListHTML + "</ul>"
+                html += "\n\n"
+              html += outputHTML(p.type, p.en)
+              html += "\n"
+              html += outputHTML(p.type, p.cn)
+              html += "\n\n"
 
     res.set('Content-Type', 'text/plain;charset=utf-8')
     res.send(200, html)
@@ -187,15 +226,6 @@ outputHTML = (type, content)->
     when 'quote'
       html = "<blockquote>#{content}</blockquote>"
     when 'list'
-      html = "<li>#{content}</li>"
-
-  # detect the begin of list, output <ul>
-  if type == 'list' and not inList
-    inList = true
-    html = "<ul>\n\n" + html
-  # detect the end of list, output </ul>
-  else if type != 'list' and inList
-    inList = false
-    html = "</ul>\n\n" + html
+      html = "    <li>#{content}</li>"
 
   return html
