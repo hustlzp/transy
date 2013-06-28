@@ -273,7 +273,7 @@ buildArticleObj = ->
   completeChar = 0
   for p in article.paraList 
     totalChar += p.en.length
-    if p.state == true
+    if p.state
       completeChar += p.en.length
   article.completion = Math.ceil(completeChar / totalChar * 100)
 
@@ -285,10 +285,20 @@ Dynamic change the height of the divider bar
 @param {DOM Div Element} para - the div element has class 'para'
 ###
 adjustHeight = (para)->
-  enHeight = para.find('.en').innerHeight()
-  cnHeight = para.find('.cn').innerHeight()
+  en = para.find('.en')
+  cn = para.find('.cn')
+  divider = para.find('.ec-divider')
+
+  # clean
+  # if para.attr('data-type') != 'image'
+  #   en.text(en.text())
+  #   cn.text(cn.text())
+
+  # adjust
+  enHeight = en.innerHeight()
+  cnHeight = cn.innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  para.find('.ec-divider').css('height', dvHeight + 12 + 'px')
+  divider.css('height', dvHeight + 12 + 'px')
 
 ###
 Focus input/textarea/contenteditable, and move blink to the end

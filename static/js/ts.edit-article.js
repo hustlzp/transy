@@ -250,7 +250,7 @@ buildArticleObj = function() {
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     p = _ref[_i];
     totalChar += p.en.length;
-    if (p.state === true) {
+    if (p.state) {
       completeChar += p.en.length;
     }
   }
@@ -266,11 +266,14 @@ Dynamic change the height of the divider bar
 
 
 adjustHeight = function(para) {
-  var cnHeight, dvHeight, enHeight;
-  enHeight = para.find('.en').innerHeight();
-  cnHeight = para.find('.cn').innerHeight();
+  var cn, cnHeight, divider, dvHeight, en, enHeight;
+  en = para.find('.en');
+  cn = para.find('.cn');
+  divider = para.find('.ec-divider');
+  enHeight = en.innerHeight();
+  cnHeight = cn.innerHeight();
   dvHeight = enHeight > cnHeight ? enHeight : cnHeight;
-  return para.find('.ec-divider').css('height', dvHeight + 12 + 'px');
+  return divider.css('height', dvHeight + 12 + 'px');
 };
 
 /*

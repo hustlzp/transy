@@ -57,14 +57,12 @@ block content
 
     span.completion #{article.completion}%
 
-
-
   mixin article(paraList)
     - var inList = false
     - var enListHTML = ""
     - var cnListHTML = ""
 
-    each p in article.paraList
+    each p in paraList
       case p.type
         when 'list'
           if !inList
