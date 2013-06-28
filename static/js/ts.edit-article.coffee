@@ -141,7 +141,7 @@ $ ->
           if addContent == ""
             return $(this).detach()
           # image
-          if addContent.match(/\bhttp:\/\//) and addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)
+          if addContent.match(/\b(http|https):\/\//) and addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)
             $(g.clickItem).after("""
               <div data-type='image' class='para clearfix'>
                 <div class='en'>

@@ -115,7 +115,7 @@ $(function() {
           if (addContent === "") {
             return $(this).detach();
           }
-          if (addContent.match(/\bhttp:\/\//) && addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)) {
+          if (addContent.match(/\b(http|https):\/\//) && addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)) {
             $(g.clickItem).after("<div data-type='image' class='para clearfix'>\n  <div class='en'>\n    <img src='" + addContent + "' /></div\n  ><div class='ec-divider' data-state='true'></div\n  ><div class='cn'>\n    <img src='" + addContent + "' />\n  </div>\n</div>");
             imagesLoaded($(g.clickItem).next(), function() {
               return adjustHeight($(g.clickItem).next());
