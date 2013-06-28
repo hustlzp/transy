@@ -130,7 +130,7 @@ $ ->
   $('.context-menu').click (e)->
     c = $(e.target).attr('class')
     switch c
-      when 'header', 'text', 'quote', 'code'
+      when 'header', 'text', 'quote', 'code', 'list'
         $(g.clickItem).attr('data-type', c)
         adjustHeight($(g.clickItem))
       when 'add-para'
@@ -288,7 +288,7 @@ adjustHeight = (para)->
   enHeight = para.find('.en').innerHeight()
   cnHeight = para.find('.cn').innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  para.find('.ec-divider').css('height', dvHeight + 10 + 'px')
+  para.find('.ec-divider').css('height', dvHeight + 12 + 'px')
 
 ###
 Focus input/textarea/contenteditable, and move blink to the end

@@ -59,8 +59,20 @@
                 color: #333;
             }
             &.cn{
-                line-height: 24px;
+                line-height: 22px;
             }
+        }
+        li{
+            font-family: 'Arial', '宋体';
+            list-style: square;
+            margin: 0 0 15px 0;
+            &.en{
+                line-height: 20px;
+            }
+            &.cn{
+                line-height: 22px;
+            }
+            
         }
         blockquote{
             margin-bottom: 15px;
@@ -210,6 +222,17 @@
         }
         .en{
             color: #333;
+        }
+    }
+    .para[data-type="list"]{
+        .en:before,
+        .cn:before{
+            content: url(../images/dot.png);
+
+        }
+        .en,
+        .cn{
+            text-indent: 5px;
         }
     }
     .para[data-type="image"]{

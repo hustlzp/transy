@@ -104,6 +104,7 @@ $(function() {
       case 'text':
       case 'quote':
       case 'code':
+      case 'list':
         $(g.clickItem).attr('data-type', c);
         return adjustHeight($(g.clickItem));
       case 'add-para':
@@ -269,7 +270,7 @@ adjustHeight = function(para) {
   enHeight = para.find('.en').innerHeight();
   cnHeight = para.find('.cn').innerHeight();
   dvHeight = enHeight > cnHeight ? enHeight : cnHeight;
-  return para.find('.ec-divider').css('height', dvHeight + 10 + 'px');
+  return para.find('.ec-divider').css('height', dvHeight + 12 + 'px');
 };
 
 /*
