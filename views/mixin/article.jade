@@ -4,8 +4,6 @@ mixin articles(articles)
     div.article-item
       a(href='/article/#{a.id}')
         h3.cn-title #{a.cnTitle}
-
-      h4.en-title #{a.enTitle}
       
       div.info-wap            
         a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
@@ -14,14 +12,6 @@ mixin articles(articles)
 
         span.divider
 
-        //- span 作者：
-        //- span #{a.author}
         span #{a.createTime}
 
-        //- span.divider
-
-        //- span 链接：
-        //- a(href='#{a.url}', target="_blank")
-        //-   i.icon-link
-
-        span.completion #{a.completion}%
+      span.completion #{a.completion}%
