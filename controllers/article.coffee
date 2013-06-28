@@ -147,6 +147,9 @@ exports.discollect = (req, res)->
       Article.reduceCollectCount articleId, (err)->
         res.redirect("/article/#{articleId}")
 
+# State var: if is displaying a list
+inList = false
+
 # output article
 exports.output = (req, res)->
   Article.findById req.params.id , (err, data)->
@@ -159,6 +162,7 @@ exports.output = (req, res)->
           html += outputHTML(p.type, p.cn)
         when 'ec'
           html += outputHTML(p.type, p.en)
+          # when cn is empty, or it's a image, don't output it
           if p.cn != '' and p.type != 'image'
             html += '\n'
             html += outputHTML(p.type, p.cn)
@@ -179,7 +183,19 @@ outputHTML = (type, content)->
     when 'text'
       html = "<p>#{content}</p>"
     when 'image'
-      html = "<p><img scr='#{content}' /></p>"
+      html = "<p><img src='#{content}' /></p>"
     when 'quote'
       html = "<blockquote>#{content}</blockquote>"
-  html
+    when 'list'
+      html = "<li>#{content}</li>"
+
+  # detect the begin of list, output <ul>
+  if type == 'list' and not inList
+    inList = true
+    html = "<ul>\n\n" + html
+  # detect the end of list, output </ul>
+  else if type != 'list' and inList
+    inList = false
+    html = "</ul>\n\n" + html
+
+  return html

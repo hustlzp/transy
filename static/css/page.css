@@ -1,16 +1,16 @@
 #page-index .hot-articles li{margin-bottom:3px;}
-#page-article .cn-title{margin-bottom:10px;font-weight:600;}
-#page-article .en-title{margin-bottom:10px;}
+#page-article .cn-title{margin-bottom:12px;font-weight:600;}
+#page-article .en-title{margin-bottom:12px;}
 #page-article .info-wap{border-bottom:1px solid lightgray;padding-bottom:12px;margin-bottom:15px;position:relative;}#page-article .info-wap .divider{display:inline-block;margin-left:15px;}
 #page-article .info-wap .completion{font-size:30px;line-height:30px;position:absolute;bottom:10px;right:5px;}
 #page-article .para-list{text-align:justify;}#page-article .para-list h3{font-size:18px;font-weight:bold;color:black;margin-bottom:15px;}
-#page-article .para-list p{margin-bottom:15px;font-family:'Arial','宋体';}#page-article .para-list p.en{line-height:20px;color:#333;}
-#page-article .para-list p.cn{line-height:22px;}
+#page-article .para-list p{margin-bottom:20px;font-family:'Arial','宋体';}#page-article .para-list p.en{line-height:20px;color:#333;}
+#page-article .para-list p.cn{line-height:24px;}
 #page-article .para-list li{font-family:'Arial','宋体';list-style:square;margin:0 0 15px 0;}#page-article .para-list li.en{line-height:20px;}
 #page-article .para-list li.cn{line-height:22px;}
 #page-article .para-list blockquote{margin-bottom:15px;border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);font-family:'Arial','宋体';}#page-article .para-list blockquote.en{line-height:20px;color:#333;}
 #page-article .para-list blockquote.cn{line-height:22px;}
-#page-article .para-list img{margin-bottom:15px;max-width:100%;}
+#page-article .para-list img{margin-bottom:15px;max-width:80%;}
 #page-edit-article [contenteditable]{outline:none;}
 #page-edit-article .title .cn-title,#page-edit-article .title .en-title{margin:0;padding:0;display:block;border:none;outline:none;width:100%;font-family:'Segoe UI Light','Open Sans',Verdana,Arial,Helvetica,sans-serif;font-weight:200;}
 #page-edit-article .title .cn-title{font-size:20pt;line-height:20pt;margin-bottom:2px;font-weight:600;}
