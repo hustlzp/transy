@@ -28,7 +28,6 @@
 #page-edit-article .para[data-type="quote"] .en,#page-edit-article .para[data-type="quote"] .cn{border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);}
 #page-edit-article .para[data-type="quote"] .en{color:#333;}
 #page-edit-article .para[data-type="list"] .en:before,#page-edit-article .para[data-type="list"] .cn:before{content:url(../images/dot.png);}
-#page-edit-article .para[data-type="list"] .en,#page-edit-article .para[data-type="list"] .cn{text-indent:5px;}
 #page-edit-article .para[data-type="image"] img{max-width:375px;}
 #page-edit-article .annotation{cursor:pointer;width:15px;height:15px;border:0;vertical-align:bottom;background-color:margin: 0 3px;}
 #page-edit-article .context-menu{margin:0;display:none;list-style:none;position:fixed;z-index:10000;}#page-edit-article .context-menu>li{font-size:12px;padding:5px 10px;background-color:#2b5797;color:white;border-bottom:1px solid white;cursor:pointer;position:relative;}#page-edit-article .context-menu>li:last-child{border-bottom:0;}
