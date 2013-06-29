@@ -94,7 +94,9 @@ $ ->
     # Tab, the next cn foucs (skip image)
     if e.which == 9
       e.preventDefault()
-      $(para).nextAll("[data-type!='image']").first().find('.cn').focus()
+      next = $(para).nextAll("[data-type!='image']").first().find('.cn')
+      next.focus()
+      setEndOfContenteditable(next[0])
 
   # handle context-menu event by delegate
   $(document).on('contextmenu', '.para', (e)->
@@ -133,39 +135,44 @@ $ ->
       when 'header', 'text', 'quote', 'code', 'list'
         $(g.clickItem).attr('data-type', c)
         adjustHeight($(g.clickItem))
-      when 'add-para'
-        $(g.clickItem).after("<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>")
-        # add content when textarea blur
+
+      when 'up', 'down'
+        # add textarea
+        textareaHTML = "<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>"
+        if c == 'up'
+          $(g.clickItem).before(textareaHTML)
+        else
+          $(g.clickItem).after(textareaHTML)
+
+        # create new para when textarea blur
         $('.add-content-wap').focus().blur ->
           addContent = $(this).val().trim()
           if addContent == ""
             return $(this).detach()
+
           # image
           if addContent.match(/\b(http|https):\/\//) and addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)
-            $(g.clickItem).after("""
-              <div data-type='image' class='para clearfix'>
-                <div class='en'>
-                  <img src='#{addContent}' /></div
-                ><div class='ec-divider' data-state='true'></div
-                ><div class='cn'>
-                  <img src='#{addContent}' />
-                </div>
-              </div>
-            """)
-            imagesLoaded($(g.clickItem).next(), ->
-              adjustHeight($(g.clickItem).next())
-            )
+            imageHTML = geneParaHTML('image', addContent)
+            if c == 'up'
+              $(g.clickItem).before(imageHTML)
+              imagesLoaded $(g.clickItem).prev(), ->
+                adjustHeight($(g.clickItem).prev())
+            else
+              $(g.clickItem).after(imageHTML)
+              imagesLoaded $(g.clickItem).next(), ->
+                adjustHeight($(g.clickItem).next())            
           else  # text
-            $(g.clickItem).after("""
-              <div data-type='text' class='para clearfix'>
-                <div class='en' contenteditable='true'>#{addContent}</div
-                ><div class='ec-divider' data-state='false'></div
-                ><div class='cn' contenteditable='true'></div>
-              </div>
-            """)
-            adjustHeight($(g.clickItem).next())
+            textHTML = geneParaHTML('text', addContent)
+            if c == 'up'
+              $(g.clickItem).before(textHTML)
+              adjustHeight($(g.clickItem).prev())
+            else
+              $(g.clickItem).after(textHTML)
+              adjustHeight($(g.clickItem).next())
 
+          # hide textarea
           $(this).detach()
+
       when 'remove-para'
         $(g.clickItem).detach()
       # when 'add-annotation'
@@ -174,6 +181,29 @@ $ ->
       #     annotationTag.className = 'annotation'
       #     annotationTag.src = 'http://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/chat-128.png'
       #     g.selectedRange.insertNode(annotationTag)
+
+###
+Generate new para HTML code
+@method geneParaHTML
+@params {String} content - the content of new para
+###
+geneParaHTML = (type, content)->
+  if type == 'image'
+    html = """
+      <div data-type='image' class='para clearfix'>
+        <div class='en'><img src='#{content}' /></div
+        ><div class='ec-divider' data-state='true'></div
+        ><div class='cn'><img src='#{content}' /></div>
+      </div>
+    """
+  else if type == 'text'
+    html = """
+      <div data-type='text' class='para clearfix'>
+        <div class='en' contenteditable='true'>#{content}</div
+        ><div class='ec-divider' data-state='false'></div
+        ><div class='cn' contenteditable='true'></div>
+      </div>
+    """
 
 ###
 Save article, triggle when click the save btn, or press Ctrl-S
@@ -285,36 +315,22 @@ Dynamic change the height of the divider bar
 @param {DOM Div Element} para - the div element has class 'para'
 ###
 adjustHeight = (para)->
-  en = para.find('.en')
-  cn = para.find('.cn')
-  divider = para.find('.ec-divider')
-
-  # clean
-  # if para.attr('data-type') != 'image'
-  #   en.text(en.text())
-  #   cn.text(cn.text())
-
-  # adjust
-  enHeight = en.innerHeight()
-  cnHeight = cn.innerHeight()
+  enHeight = para.find('.en').innerHeight()
+  cnHeight = para.find('.cn').innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  divider.css('height', dvHeight + 15 + 'px')
+  para.find('.ec-divider').css('height', dvHeight + 15 + 'px')
 
 ###
-Focus input/textarea/contenteditable, and move blink to the end
-@method moveEnd
-@params {DOM Element} obj - input/textarea/contenteditable DOM Element
+Move blink to the end of a ccontenteditable element, see also:
+http://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
+@method setEndOfContenteditable
+@params {DOM Element} element - contenteditable DOM Element
 ###
-moveEnd = (obj)->
-  obj.focus()
-  len = obj.innerHTML.length
-  alert(len)
-
-  if document.selection
-    sel = obj.createTextRange()
-    sel.moveStart('character', len)
-    sel.collapse()
-    sel.select()
-  else if typeof obj.selectionStart == 'number' and typeof obj.selectionEnd == 'number'
-    obj.selectionStart = len
-    obj.selectionEnd = len
+setEndOfContenteditable = (element)->
+  if document.createRange # Firefox, Chrome, Opera, Safari, IE 9+
+    range = document.createRange()
+    range.selectNodeContents(element)
+    range.collapse(false)
+    selection = window.getSelection()
+    selection.removeAllRanges()
+    selection.addRange(range)
