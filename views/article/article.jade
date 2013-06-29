@@ -63,6 +63,13 @@ block content
     - var cnListHTML = ""
 
     each p in paraList
+      //- if list ends, output it
+      if p.type !== 'list' && inList
+        - inList = false
+        div.para-list
+          ul.en !{enListHTML}
+          ul.cn !{cnListHTML}
+
       case p.type
         when 'list'
           if !inList
@@ -90,12 +97,6 @@ block content
         when 'image'
           div.para-list
             img(src='#{p.en}')
-
-      if p.type !== 'list' && inList
-        - inList = false
-        div.para-list
-          ul.en !{enListHTML}
-          ul.cn !{cnListHTML}
 
   div.row
     div.span8

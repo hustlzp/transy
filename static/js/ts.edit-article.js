@@ -273,7 +273,7 @@ adjustHeight = function(para) {
   enHeight = en.innerHeight();
   cnHeight = cn.innerHeight();
   dvHeight = enHeight > cnHeight ? enHeight : cnHeight;
-  return divider.css('height', dvHeight + 12 + 'px');
+  return divider.css('height', dvHeight + 15 + 'px');
 };
 
 /*

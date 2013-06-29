@@ -298,7 +298,7 @@ adjustHeight = (para)->
   enHeight = en.innerHeight()
   cnHeight = cn.innerHeight()
   dvHeight = if enHeight > cnHeight then enHeight else cnHeight    
-  divider.css('height', dvHeight + 12 + 'px')
+  divider.css('height', dvHeight + 15 + 'px')
 
 ###
 Focus input/textarea/contenteditable, and move blink to the end

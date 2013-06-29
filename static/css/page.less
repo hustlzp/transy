@@ -42,47 +42,48 @@
     .para-list{
         text-align: justify;
 
+        h3, p, ul, blockquote, img{
+            margin-bottom: 20px;
+        }
+
+        h3, p, ul li, blockquote{
+            font-family: 'Open Sans', '宋体';
+            font-weight: 400;
+            font-size: 14px;
+            color: #333;
+        }
+
         h3{
             font-size: 18px;
             font-weight: bold;
             color: black;
-            margin-bottom: 15px;
         }
         p{
-            margin-bottom: 15px;
-            font-family: 'Arial', '宋体';
             &.en{
                 line-height: 20px;
-                color: #333;
             }
             &.cn{
-                line-height: 23px;
+                line-height: 24px;
             }
         }
         ul{
-            margin-bottom: 15px;
-
             li{
-                font-family: 'Arial', '宋体';
                 margin-bottom: 5px;
             }
         }
         blockquote{
-            margin-bottom: 15px;
             border-left: 4px solid #bbb;
             padding: 10px 15px; 
             background-color: rgba(204, 204, 204, 0.1);
-            font-family: 'Arial', '宋体';
+
             &.en{
                 line-height: 20px;
-                color: #333;
             }
             &.cn{
                 line-height: 22px;
             }
         }
         img{
-            margin-bottom: 15px;
             max-width: 80%;
         }
     }
@@ -150,19 +151,22 @@
 
         .en,
         .cn{
-            font-family: 'Arial', '宋体';
-            line-height: 20px;
+            font-family: 'Open Sans', '宋体';
+            color: #333;
+            font-weight: 400;
+            font-size: 14px;
             float: left;
             display: inline-block;
             vertical-align: text-top;
             text-align: justify;
         }
-
         .en{
+            line-height: 20px;
             width: 515px;
         }
         .cn{
             width: 375px;
+            line-height: 24px;
         }
 
         .ec-divider{
@@ -199,11 +203,11 @@
         .cn{
             font-size: 20px;
             font-weight: bold;
+            color: black;
         }
     }
     .para[data-type="text"]{
         .en{
-            color: #333;
         }
     }
     .para[data-type="quote"]{
@@ -214,12 +218,12 @@
             background-color: rgba(204, 204, 204, 0.1);
         }
         .en{
-            color: #333;
         }
     }
     .para[data-type="list"]{
         .en:before,
         .cn:before{
+            color: #333;
             margin-bottom: 15px;
             content: url(../images/dot.png);
         }
