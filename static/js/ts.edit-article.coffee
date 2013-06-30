@@ -137,6 +137,9 @@ $ ->
         adjustHeight($(g.clickItem))
 
       when 'up', 'down'
+        # remove all the textareas exist in the page
+        $('.new-para-wap').detach()
+
         # add textarea
         textareaHTML = """
           <div class='new-para-wap clearfix'>
