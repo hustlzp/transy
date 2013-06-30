@@ -61,6 +61,7 @@
         p{
             &.en{
                 line-height: 20px;
+                color: black;
             }
             &.cn{
                 line-height: 24px;
@@ -70,6 +71,10 @@
             li{
                 margin-bottom: 5px;
             }
+
+            &.en li{
+                color: black;
+            }
         }
         blockquote{
             border-left: 4px solid #bbb;
@@ -78,6 +83,7 @@
 
             &.en{
                 line-height: 20px;
+                color: black;    
             }
             &.cn{
                 line-height: 22px;
@@ -152,7 +158,7 @@
         .en,
         .cn{
             font-family: 'Open Sans', '宋体';
-            color: #333;
+            
             font-weight: 400;
             font-size: 14px;
             float: left;
@@ -163,10 +169,12 @@
         .en{
             line-height: 20px;
             width: 515px;
+            color: #000;
         }
         .cn{
             width: 375px;
             line-height: 24px;
+            color: #333;
         }
 
         .ec-divider{
@@ -282,6 +290,10 @@
                     border-bottom: 1px solid white;
                     cursor: pointer;
 
+                    &:last-child{
+                        border-bottom: 0;
+                    }
+
                     &:hover{
                         background-color: rgb(252, 100, 0);
                         background-color: #2d89ef;
@@ -312,8 +324,8 @@
         position: fixed;
         bottom: 0;
         right: 0;
-        margin-bottom: 8px;
-        margin-right: 8px;
+        margin-bottom: 50px;
+        margin-right: 0px;
         z-index: 1000;
         
         .save-state{
@@ -324,7 +336,7 @@
             height: 32px;
             width: 32px;
             position: absolute;
-            top: 0;
+            top: 37px;
             left: 0;
             z-index: -100;
 
@@ -352,7 +364,9 @@
             }
 
             .save-btn{
-                margin-right: 5px;
+                // margin-right: 5px;
+                display: block;
+                margin-top: 5px;
             } 
         }
     }
