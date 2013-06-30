@@ -6,13 +6,13 @@ block vars
   -var page = 'page-add-article'
 
 block content
-  h2.form-header 添加原文
+  h2.form-header #{topic.title} / 添加原文
 
   div.row
     div.span8
       mixin errors()
 
-      form(action='/article/add/#{tid}', method='post')
+      form(action='/article/add/#{topic.id}', method='post')
         div.input-control.text
           mixin text('title', '标题')
 

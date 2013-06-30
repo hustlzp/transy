@@ -26,7 +26,8 @@ exports.article = (req, res)->
 
 # show add article page
 exports.showAdd = (req, res)->
-  res.render('article/add_article', { tid: req.params.tid })
+  Topic.findById req.params.tid, (err, topic)->
+    res.render('article/add_article', { topic: topic })
 
 # new article
 exports.add = (req, res)->
