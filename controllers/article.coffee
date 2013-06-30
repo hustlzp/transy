@@ -153,6 +153,8 @@ inList = false
 enListHTML = ""
 cnListHTML = ""
 
+(mode, type, p)->
+
 # output article
 exports.output = (req, res)->
   Article.findById req.params.id , (err, data)->
@@ -166,13 +168,12 @@ exports.output = (req, res)->
               enListHTML = ""
             enListHTML += outputHTML(p.type, p.en) + "\n"
           else
-            if p.type != 'list'
-              if inList
-                inList = false
-                html += "<ul>\n" + enListHTML + "</ul>"
-                html += "\n\n"
-              html += outputHTML(p.type, p.en)
+            if inList
+              inList = false
+              html += "<ul>\n" + enListHTML + "</ul>"
               html += "\n\n"
+            html += outputHTML(p.type, p.en)
+            html += "\n\n"
         when 'cn'
           if p.type == 'list'
             if not inList
@@ -180,13 +181,12 @@ exports.output = (req, res)->
               cnListHTML = ""
             cnListHTML += outputHTML(p.type, p.cn) + "\n"
           else
-            if p.type != 'list'
-              if inList
-                inList = false
-                html += "<ul>\n" + cnListHTML + "</ul>"
-                html += "\n\n"
-              html += outputHTML(p.type, p.cn)
+            if inList
+              inList = false
+              html += "<ul>\n" + cnListHTML + "</ul>"
               html += "\n\n"
+            html += outputHTML(p.type, p.cn)
+            html += "\n\n"
         when 'ec'
           if p.type == 'list'
             if not inList
@@ -196,17 +196,16 @@ exports.output = (req, res)->
             enListHTML += outputHTML(p.type, p.en) + "\n"
             cnListHTML += outputHTML(p.type, p.cn) + "\n"
           else
-            if p.type != 'list'
-              if inList
-                inList = false
-                html += "<ul>\n" + enListHTML + "</ul>"
-                html += "\n"
-                html += "<ul>\n" + cnListHTML + "</ul>"
-                html += "\n\n"
-              html += outputHTML(p.type, p.en)
+            if inList
+              inList = false
+              html += "<ul>\n" + enListHTML + "</ul>"
               html += "\n"
-              html += outputHTML(p.type, p.cn)
+              html += "<ul>\n" + cnListHTML + "</ul>"
               html += "\n\n"
+            html += outputHTML(p.type, p.en)
+            html += "\n"
+            html += outputHTML(p.type, p.cn)
+            html += "\n\n"
 
     res.set('Content-Type', 'text/plain;charset=utf-8')
     res.send(200, html)

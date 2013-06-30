@@ -111,17 +111,18 @@ $(function() {
         return adjustHeight($(g.clickItem));
       case 'up':
       case 'down':
-        textareaHTML = "<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>";
+        textareaHTML = "<div class='new-para-wap clearfix'>\n  <textarea class='new-para-textarea' placeholder='文本 / 图片地址' rows=4></textarea>\n  <div class='btn-wap'>\n    <button class='ok-btn'><i class='icon-checkmark' /></button>\n    <button class='cancel-btn'><i class='icon-cancel-2' /></button>\n  </div>\n</div>";
         if (c === 'up') {
           $(g.clickItem).before(textareaHTML);
         } else {
           $(g.clickItem).after(textareaHTML);
         }
-        return $('.add-content-wap').focus().blur(function() {
+        $('.new-para-textarea').focus();
+        $('.ok-btn').click(function() {
           var addContent, imageHTML, textHTML;
-          addContent = $(this).val().trim();
+          addContent = $('.new-para-textarea').val().trim();
           if (addContent === "") {
-            return $(this).detach();
+            return $('.new-para-wap').detach();
           }
           if (addContent.match(/\b(http|https):\/\//) && addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)) {
             imageHTML = geneParaHTML('image', addContent);
@@ -146,7 +147,10 @@ $(function() {
               adjustHeight($(g.clickItem).next());
             }
           }
-          return $(this).detach();
+          return $('.new-para-wap').detach();
+        });
+        return $('.cancel-btn').click(function() {
+          return $('.new-para-wap').detach();
         });
       case 'remove-para':
         return $(g.clickItem).detach();

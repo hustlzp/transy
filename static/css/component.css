@@ -5,7 +5,7 @@ html,body.metrouicss{height:100%;}
 .metrouicss .footer{clear:both;position:relative;z-index:10;height:2.8em;margin-top:-2.8em;padding-top:0.5em;text-align:center;border-top:1px dashed #ddd;width:940px;margin-left:auto;margin-right:auto;}.metrouicss .footer a{font-size:12px;}
 .metrouicss .footer .copyright{font-size:12px;float:left;}
 .metrouicss .footer .links{float:right;}.metrouicss .footer .links a{margin-left:15px;}
-.metrouicss ul{margin-left:5px;}.metrouicss ul li{margin-bottom:2px;}
+.metrouicss ul{margin-left:0px;}
 .metrouicss textarea,.metrouicss input{font-family:'Open Sans','宋体';font-weight:400;}
 .metrouicss .page-header{border-bottom:1px solid lightgray;padding-bottom:13px;margin-bottom:15px;clear:both;}
 .metrouicss .form-header{margin-bottom:15px;}

@@ -138,17 +138,26 @@ $ ->
 
       when 'up', 'down'
         # add textarea
-        textareaHTML = "<textarea class='add-content-wap' placeholder='文本 / 图片地址' rows=4></textarea>"
+        textareaHTML = """
+          <div class='new-para-wap clearfix'>
+            <textarea class='new-para-textarea' placeholder='文本 / 图片地址' rows=4></textarea>
+            <div class='btn-wap'>
+              <button class='ok-btn'><i class='icon-checkmark' /></button>
+              <button class='cancel-btn'><i class='icon-cancel-2' /></button>
+            </div>
+          </div>
+        """
         if c == 'up'
           $(g.clickItem).before(textareaHTML)
         else
           $(g.clickItem).after(textareaHTML)
 
-        # create new para when textarea blur
-        $('.add-content-wap').focus().blur ->
-          addContent = $(this).val().trim()
+        # insert new para
+        $('.new-para-textarea').focus()
+        $('.ok-btn').click ->
+          addContent = $('.new-para-textarea').val().trim()
           if addContent == ""
-            return $(this).detach()
+            return $('.new-para-wap').detach()
 
           # image
           if addContent.match(/\b(http|https):\/\//) and addContent.match(/.(gif|png|jpeg|jpg|jpeg|bmp)\b/)
@@ -170,8 +179,11 @@ $ ->
               $(g.clickItem).after(textHTML)
               adjustHeight($(g.clickItem).next())
 
-          # hide textarea
-          $(this).detach()
+          $('.new-para-wap').detach()
+
+        # cancel
+        $('.cancel-btn').click ->
+          $('.new-para-wap').detach()
 
       when 'remove-para'
         $(g.clickItem).detach()
