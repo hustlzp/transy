@@ -6,11 +6,11 @@
 #page-article .para-list{text-align:justify;}#page-article .para-list h3,#page-article .para-list p,#page-article .para-list ul,#page-article .para-list blockquote,#page-article .para-list img{margin-bottom:18px;}
 #page-article .para-list h3,#page-article .para-list p,#page-article .para-list ul li,#page-article .para-list blockquote{font-family:'Open Sans','宋体';font-weight:400;font-size:14px;color:#333;}
 #page-article .para-list h3{font-size:18px;font-weight:bold;color:black;}
-#page-article .para-list p.en{line-height:20px;color:black;}
+#page-article .para-list p.en{line-height:21px;color:black;}
 #page-article .para-list p.cn{line-height:24px;}
 #page-article .para-list ul li{margin-bottom:5px;}
 #page-article .para-list ul.en li{color:black;}
-#page-article .para-list blockquote{border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);}#page-article .para-list blockquote.en{line-height:20px;color:black;}
+#page-article .para-list blockquote{border-left:4px solid #bbb;padding:10px 15px;background-color:rgba(204, 204, 204, 0.1);}#page-article .para-list blockquote.en{line-height:21px;color:black;}
 #page-article .para-list blockquote.cn{line-height:22px;}
 #page-article .para-list img{max-width:80%;}
 #page-edit-article [contenteditable]{outline:none;}

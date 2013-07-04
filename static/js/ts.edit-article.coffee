@@ -145,8 +145,8 @@ $ ->
           <div class='new-para-wap clearfix'>
             <textarea class='new-para-textarea' placeholder='文本 / 图片地址' rows=4></textarea>
             <div class='btn-wap'>
-              <button class='ok-btn'><i class='icon-checkmark' /></button>
-              <button class='cancel-btn'><i class='icon-cancel-2' /></button>
+              <button class='ok-btn' title='确定'><i class='icon-checkmark' /></button>
+              <button class='cancel-btn' title='取消'><i class='icon-cancel-2' /></button>
             </div>
           </div>
         """

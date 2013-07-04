@@ -2,7 +2,7 @@ html,body.metrouicss{height:100%;}
 .metrouicss{}.metrouicss .page{width:940px;margin:auto;}
 .metrouicss .nav-bar{margin-bottom:20px;}.metrouicss .nav-bar .nav-bar-inner>.divider{margin-left:10px;margin-right:10px;}
 .metrouicss .content{height:auto;min-height:100%;padding-bottom:5em;}
-.metrouicss .footer{clear:both;position:relative;z-index:10;height:2.8em;margin-top:-2.8em;padding-top:0.5em;text-align:center;border-top:1px dashed #ddd;width:940px;margin-left:auto;margin-right:auto;}.metrouicss .footer a{font-size:12px;}
+.metrouicss .footer{clear:both;position:relative;z-index:10;height:2.5em;margin-top:-2.5em;padding-top:0.4em;text-align:center;border-top:1px dashed #ddd;width:940px;margin-left:auto;margin-right:auto;}.metrouicss .footer a{font-size:12px;}
 .metrouicss .footer .copyright{font-size:12px;float:left;}
 .metrouicss .footer .links{float:right;}.metrouicss .footer .links a{margin-left:15px;}
 .metrouicss ul{margin-left:0px;}
@@ -24,8 +24,7 @@ html,body.metrouicss{height:100%;}
 .metrouicss .topic-item .t-info-wap{margin-left:75px;}
 .metrouicss .topic-item:hover{color:#333;background-color:#fbfbfb;}
 .metrouicss .topic-item .t-article-count{position:absolute;bottom:10px;right:10px;color:#666;}
-.metrouicss .comment-item{margin-bottom:10px;padding-bottom:10px;position:relative;}.metrouicss .comment-item .c-user-avatar{width:60px;height:60px;float:left;}
-.metrouicss .comment-item .c-content-wap{margin-left:75px;}.metrouicss .comment-item .c-content-wap .c-user{display:inline-block;margin-bottom:8px;color:#666;}
+.metrouicss .comment-item{margin-bottom:10px;padding-bottom:10px;position:relative;}.metrouicss .comment-item .c-content-wap .c-header{display:inline-block;margin-bottom:8px;color:#666;}
 .metrouicss .comment-item .c-content-wap .c-content{margin-bottom:5px;}
 .metrouicss .comment-item .c-content-wap .c-time{font-size:12px;color:#666;}
-.metrouicss .comment-item .toolbar{position:absolute;top:5px;right:5px;margin-right:0;}.metrouicss .comment-item .toolbar a{margin-left:5px;}
+.metrouicss .comment-item .toolbar{position:absolute;top:10px;right:5px;margin-right:0;}.metrouicss .comment-item .toolbar a{margin-left:5px;}

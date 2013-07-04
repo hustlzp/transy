@@ -112,7 +112,7 @@ $(function() {
       case 'up':
       case 'down':
         $('.new-para-wap').detach();
-        textareaHTML = "<div class='new-para-wap clearfix'>\n  <textarea class='new-para-textarea' placeholder='文本 / 图片地址' rows=4></textarea>\n  <div class='btn-wap'>\n    <button class='ok-btn'><i class='icon-checkmark' /></button>\n    <button class='cancel-btn'><i class='icon-cancel-2' /></button>\n  </div>\n</div>";
+        textareaHTML = "<div class='new-para-wap clearfix'>\n  <textarea class='new-para-textarea' placeholder='文本 / 图片地址' rows=4></textarea>\n  <div class='btn-wap'>\n    <button class='ok-btn' title='确定'><i class='icon-checkmark' /></button>\n    <button class='cancel-btn' title='取消'><i class='icon-cancel-2' /></button>\n  </div>\n</div>";
         if (c === 'up') {
           $(g.clickItem).before(textareaHTML);
         } else {
