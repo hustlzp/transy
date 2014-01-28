@@ -71,7 +71,7 @@ exports.output = function (req, res) {
     Article.findById(req.params.id, function (err, data) {
         var html, p, i;
         html = '';
-        for (i = 0, _len = data.paraList.length; _i < _len; _i++) {
+        for (i = 0; i < data.paraList.length; i++) {
             p = data.paraList[i];
             switch (req.params.mode) {
                 case 'en':
