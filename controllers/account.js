@@ -15,13 +15,11 @@ exports.signup = function (req, res, next) {
     if (req.form.isValid) {
         User.getByName(req.form.name, function (err, user) {
             if (user) {
-                req.form.pushError('name', '用户名已存在');
                 res.render('account/signup', { form: req.form });
             } else {
                 User.getByEmail(req.form.email, function (err, user) {
                     var email, name, pwd, userId;
                     if (user) {
-                        req.form.pushError('email', '邮箱已存在');
                         res.render('account/signup', { form: req.form });
                     } else {
                         userId = new ObjectId();
@@ -53,12 +51,10 @@ exports.signin = function (req, res) {
     if (req.form.isValid) {
         User.getByEmail(req.form.email, function (err, user) {
             if (!user) {
-                req.form.pushError('email', '帐号不存在');
                 res.render('account/signin', { form: req.form });
             } else {
                 User.getByEmailAndPwd(req.form.email, req.form.pwd, function (err, user) {
                     if (!user) {
-                        req.form.pushError('pwd', '密码错误');
                         res.render('account/signin', {
                             form: req.form
                         });
