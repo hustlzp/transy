@@ -69,11 +69,10 @@ exports.output = function (req, res) {
         enListHTML = "",
         cnListHTML = "";
     Article.findById(req.params.id, function (err, data) {
-        var html, p, _i, _len, _ref;
+        var html, p, i;
         html = '';
-        _ref = data.paraList;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            p = _ref[_i];
+        for (i = 0, _len = data.paraList.length; _i < _len; _i++) {
+            p = data.paraList[i];
             switch (req.params.mode) {
                 case 'en':
                     if (p.type === 'list') {

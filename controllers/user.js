@@ -9,14 +9,18 @@ var url = require('url'),
     mongoose = require('mongoose'),
     ObjectId = mongoose.Types.ObjectId;
 
-exports.showSetting = function (req, res) {
+exports.showSettings = function (req, res) {
     User.findById(req.cookies.user.id, function (err, u) {
-        res.render('user/setting', {u: u});
+        res.render('user/settings', {u: u});
     });
 };
 
-exports.setting = function (req, res) {
-    User.findById(req.cookies.user.id, function (err, u) {
-        res.render('user/setting', {u: u});
-    });
+exports.settings = function (req, res) {
+    if (req.form.isValid) {
+        User.findById(req.cookies.user.id, function (err, u) {
+            res.render('user/settings', {u: u});
+        });
+    } else {
+        res.render('user/settings', {form: req.form});
+    }
 };

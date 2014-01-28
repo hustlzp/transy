@@ -24,14 +24,7 @@ exports.article = form(
     field('content', '正文').trim().required()
 );
 
-exports.topic = form(
-    field('type', '类别').trim(),
-    field('title', '标题').trim().required(),
-    field('intro', '描述').trim().required(),
-    field('image', '图片').trim()
-);
-
-exports.setting = form(
+exports.settings = form(
     field('pwd', '原密码').trim().required(),
     field('newPwd', '新密码').trim().required(),
     field('reNewPwd', '重复新密码').trim().required()

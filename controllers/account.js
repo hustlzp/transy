@@ -8,7 +8,7 @@ var User = require('../models/user'),
     ObjectId = mongoose.Types.ObjectId;
 
 exports.showSignup = function (req, res) {
-    res.render('sign/signup');
+    res.render('account/signup');
 };
 
 exports.signup = function (req, res, next) {
@@ -16,15 +16,13 @@ exports.signup = function (req, res, next) {
         User.getByName(req.form.name, function (err, user) {
             if (user) {
                 req.form.pushError('name', '用户名已存在');
-                res.render('sign/signup', {
-                    form: req.form
-                });
+                res.render('account/signup', { form: req.form });
             } else {
                 User.getByEmail(req.form.email, function (err, user) {
                     var email, name, pwd, userId;
                     if (user) {
                         req.form.pushError('email', '邮箱已存在');
-                        res.render('sign/signup', { form: req.form });
+                        res.render('account/signup', { form: req.form });
                     } else {
                         userId = new ObjectId();
                         name = req.form.name;
@@ -39,9 +37,7 @@ exports.signup = function (req, res, next) {
             }
         });
     } else {
-        res.render('sign/signup', {
-            form: req.form
-        });
+        res.render('account/signup', { form: req.form });
     }
 };
 
@@ -50,7 +46,7 @@ exports.activeAccount = function (req, res) {
 };
 
 exports.showSignin = function (req, res) {
-    res.render('sign/signin');
+    res.render('account/signin');
 };
 
 exports.signin = function (req, res) {
@@ -58,14 +54,12 @@ exports.signin = function (req, res) {
         User.getByEmail(req.form.email, function (err, user) {
             if (!user) {
                 req.form.pushError('email', '帐号不存在');
-                res.render('sign/signin', {
-                    form: req.form
-                });
+                res.render('account/signin', { form: req.form });
             } else {
                 User.getByEmailAndPwd(req.form.email, req.form.pwd, function (err, user) {
                     if (!user) {
                         req.form.pushError('pwd', '密码错误');
-                        res.render('sign/signin', {
+                        res.render('account/signin', {
                             form: req.form
                         });
                     } else {
@@ -76,7 +70,7 @@ exports.signin = function (req, res) {
             }
         });
     } else {
-        res.render('sign/signin', { form: req.form });
+        res.render('account/signin', { form: req.form });
     }
 };
 

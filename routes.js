@@ -34,6 +34,6 @@ module.exports = function (app) {
     app.get('/article/:id', article.article);
 
     // User
-    app.get('/u/setting', user.showSetting);
-    app.post('/u/setting', validator.setting, user.setting);
+    app.get('/u/settings', user.showSettings);
+    app.post('/u/settings', validator.settings, user.settings);
 };

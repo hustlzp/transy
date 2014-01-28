@@ -150,8 +150,8 @@ $(function () {
 
     // handle context menu click
     return $('.context-menu').click(function (e) {
-        var c, textareaHTML;
-        c = $(e.target).attr('class');
+        var c = $(e.target).attr('class'),
+            textareaHTML;
         switch (c) {
             case 'header':
             case 'text':

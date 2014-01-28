@@ -1,4 +1,5 @@
 extends ../layout
+include ../mixin/form
 
 block vars
   -var title = '个人设置'
@@ -11,7 +12,9 @@ block content
 
       h3 密码重置
 
-      form(action='/u/change_password', method='post').span6
+      mixin errors()
+
+      form(action='/u/settings', method='post').span6
         div.input-control.text
           input(type='password', name='pwd', placeholder='原密码')
 
