@@ -9,7 +9,6 @@
     "express": "3.2.5",
     "jade": "0.30.0",
     "mongoose": "3.6.11",
-    "coffee-script": "1.6.2",
     "nodemailer": "0.4.4",
     "eventproxy": "0.2.5",
     "moment": "2.0.0"

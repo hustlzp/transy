@@ -24,9 +24,7 @@ exports.signup = function (req, res, next) {
                     var email, name, pwd, userId;
                     if (user) {
                         req.form.pushError('email', '邮箱已存在');
-                        res.render('sign/signup', {
-                            form: req.form
-                        });
+                        res.render('sign/signup', { form: req.form });
                     } else {
                         userId = new ObjectId();
                         name = req.form.name;
@@ -78,9 +76,7 @@ exports.signin = function (req, res) {
             }
         });
     } else {
-        res.render('sign/signin', {
-            form: req.form
-        });
+        res.render('sign/signin', { form: req.form });
     }
 };
 
