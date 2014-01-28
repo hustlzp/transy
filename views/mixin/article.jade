@@ -5,12 +5,12 @@ mixin articles(articles)
       a(href='/article/#{a.id}')
         h3.cn-title #{a.cnTitle}
       
-      div.info-wap            
-        a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
-        span 发表在&nbsp;
-        a(href='/topic/#{a.topic.id}') #{a.topic.title}
-
-        span.divider
+      div.info-wap
+        //a(href='/u/#{a.creator.name}') #{a.creator.name}&nbsp;
+        //span 发表在&nbsp;
+        //a(href='/topic/#{a.topic.id}') #{a.topic.title}
+        //
+        //span.divider
 
         span #{a.createTime}
 

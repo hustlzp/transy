@@ -20,7 +20,7 @@ Para = new Schema
 Article = new Schema
   _id: ObjectId
   creator: { type: ObjectId, ref: 'User' }
-  topic: { type: ObjectId, ref: 'Topic' }
+#  topic: { type: ObjectId, ref: 'Topic' }
   enTitle: String
   cnTitle: String
   url: String
@@ -67,7 +67,6 @@ Article.statics.getById = (articleId, callback)->
   this
   .findById(articleId)
   .populate('creator')
-  .populate('topic')
   .exec callback
 
 # get by user
@@ -75,7 +74,6 @@ Article.statics.getByUser = (userId, callback)->
   this
   .find({ creator: userId })
   .populate('creator')
-  .populate('topic')
   .exec callback
 
 # get by topic
@@ -87,11 +85,10 @@ Article.statics.getByTopic = (topicId, callback)->
   .exec callback
 
 # new
-Article.statics.add = (articleId, userId, topicId, enTitle, content, articleUrl, author, callback)->
+Article.statics.add = (articleId, userId, enTitle, content, articleUrl, author, callback)->
   article = new this
     _id: articleId
     creator: userId
-    topic: topicId
     enTitle: enTitle
     cnTitle: '待译标题'
     url: articleUrl
@@ -123,23 +120,17 @@ Article.statics.edit = (articleId, article, callback)->
   , callback
 
 # remove
-# Article.statics.removeById = (articleId, callback)->
-#   this.findByIdAndRemove articleId , (err, article)->
-#     # article count - 1 in Topic
-#     Topic.reduceArticleCount article.topic, (err)->
-#       # article count - 1 in User
-#       User.reduceArticleCount article.creator, callback
+Article.statics.removeById = (articleId, callback)->
+   this.findByIdAndRemove articleId , (err, article)->
+     # article count - 1 in Topic
+     Topic.reduceArticleCount article.topic, (err)->
+       # article count - 1 in User
+       User.reduceArticleCount article.creator, callback
 
 Article.statics.addCommentCount = (articleId, callback)->
   this.update { _id: articleId }, { $inc: { commentCount: 1 }}, callback
 
 Article.statics.reduceCommentCount = (articleId, callback)->
   this.update { _id: articleId }, { $inc: { commentCount: -1 }}, callback
-
-Article.statics.addCollectCount = (articleId, callback)->
-  this.update { _id: articleId }, { $inc: { collectCount: 1 }}, callback
-
-Article.statics.reduceCollectCount = (articleId, callback)->
-  this.update { _id: articleId }, { $inc: { collectCount: -1 }}, callback
 
 module.exports = mongoose.model('Article', Article)

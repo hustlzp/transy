@@ -1,10 +1,6 @@
 //- comments
 mixin articleComments(comments)
-  :coffeescript
-    $ ->
-      $('.btn-remove-comment').click ->
-        if not confirm('确认删除此回复？')
-          return false
+  script(src='/js/comment.js')
 
   for c in comments
     div.comment-item
@@ -14,7 +10,7 @@ mixin articleComments(comments)
           a(href="/u/#{c.user.name}") #{c.user.name}
         div.c-content #{c.content}
         div.c-time #{c.createTime}
-      if locals.cookies.user 
+      if locals.cookies.user
         div.toolbar
           if locals.cookies.user.id === c.article.creator.toString()
             a.btn-remove-comment(href='/comment/#{c.id}/remove', title='删除评论')

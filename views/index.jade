@@ -8,14 +8,6 @@ block vars
 block content
   div.row
     div.span8
-      h2.page-header 最新
+      h2.page-header 我的文章
 
       mixin articles(articles)
-    
-    div.span4
-      h4 近期热门
-
-      ul.hot-articles
-        for a in hotArticles
-          li
-            a(href='/article/#{a.id}') #{a.cnTitle}

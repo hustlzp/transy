@@ -5,8 +5,8 @@ block vars
   -var page = 'page-edit-article'
 
 block content
-  script(src='/js/jquery.imagesLoaded.js')
-  script(src='/js/ts.edit-article.js')
+  script(src='/js/lib/jquery.imagesLoaded.js')
+  script(src='/js/edit-article.js')
 
   div.title.clearfix(data-article-id='#{article.id}')
     input.cn-title(value='#{article.cnTitle}', placeholder="待译标题")

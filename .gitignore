@@ -1,2 +1,2 @@
-*.sublime-*
-*.pyc
+.idea/*
+node_modules/*

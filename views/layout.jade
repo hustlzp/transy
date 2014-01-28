@@ -1,4 +1,4 @@
-doctype 5
+doctype html
 html
   block vars
   head
@@ -8,35 +8,25 @@ html
     //- link(href="/css/modern-responsive.css", rel='stylesheet')
     link(href='/css/component.css', rel='stylesheet')
     link(href='/css/page.css', rel='stylesheet')
-    script(src='/js/jquery.min.js')
-    script(src='/js/buttonset.js')
-    script(src='/js/dropdown.js')
+    script(src='/js/lib/jquery.min.js')
+    script(src='/js/lib/buttonset.js')
+    script(src='/js/lib/dropdown.js')
 
   body.metrouicss(id='#{page}')
     div.page.content
-      <!-- nav -->
+      // nav
       div.nav-bar
         div.nav-bar-inner.padding10       
           a(href="/")
             span.element.brand
               | Transy&nbsp;
-              sup alpha
-
-          span.divider
-
-          ul.menu
-            li
-              a(href="/") 主页
-            li
-              a(href="/topics") 话题
-            if locals.cookies.user
-              li
-                a(href="/u/#{locals.cookies.user.name}") 我
+              //sup alpha
+              small 翻译助手
 
           ul.menu.place-right
             if locals.cookies.user
               li
-                a(href='/topic/add') 创建话题
+                a(href='/article/add') 新文章
               li(data-role="dropdown")
                 a(href='#') #{locals.cookies.user.name}
                 ul.dropdown-menu
@@ -50,7 +40,7 @@ html
               li
                 a(href='/signin') 登陆
 
-      <!-- content -->
+      // content
       div.grid
         block content
 
@@ -63,7 +53,7 @@ html
         a(href='/about') About
         a(href='https://github.com/hustlzp/transy', target='_blank') GitHub
 
-    <!--start of feedback code powered by geekui-->
+    // start of feedback code powered by geekui
     script(type="text/javascript", src="http://geekui.com/static/js/widgets.js")
     script(type="text/javascript", charset="utf-8")
       var options = {};
@@ -74,4 +64,4 @@ html
       options.display = "overlay";
       options.style = "gray_right.png";
       var feedback_widget = new GKFN.feedback_widget(options);
-    <!--end of feedback code powered by geekui-->
+    // end of feedback code powered by geekui
