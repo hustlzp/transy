@@ -4,7 +4,7 @@ $(function(){
         return confirm('确认删除此文章？');
     });
 
-    // display mode: ec, cn, en
+    // display mode ec, cn, en
     var mode = 'ec';
     var id = $('.cn-title').data('article-id');
 
@@ -24,5 +24,9 @@ $(function(){
         $('.en').hide();
         $('.cn').show();
         mode = 'cn';
+    });
+
+    $('.btn-output').click(function(){
+        window.open("/article/" + id + "/output/" + mode, "_blank")
     });
 });

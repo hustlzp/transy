@@ -15,7 +15,7 @@ mixin text(name, placeholder)
       //- if no errors
       if form.getErrors(name).length === 0
         value = form[name]
-    else  //- if get
+    else
       value = form[name]
   input(type="text", placeholder="#{placeholder}", name='#{name}', value='#{value}')
 

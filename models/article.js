@@ -7,7 +7,6 @@ var moment = require('moment'),
     mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    Topic = require('./topic'),
     User = require('./user');
 
 Para = new Schema({

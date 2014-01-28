@@ -6,8 +6,6 @@ var url = require('url'),
     EventProxy = require('eventproxy'),
     User = require('../models/user'),
     Article = require('../models/article'),
-    Collect = require('../models/collect'),
-    Comment = require('../models/comment'),
     mongoose = require('mongoose'),
     ObjectId = mongoose.Types.ObjectId;
 
@@ -15,11 +13,8 @@ exports.article = function (req, res) {
     var articleId;
     articleId = req.params.id;
     Article.getById(articleId, function (err, article) {
-        Comment.getByArticle(articleId, function (err, comments) {
-            res.render("article/article", {
-                article: article,
-                comments: comments
-            });
+        res.render("article/article", {
+            article: article,
         });
     });
 };
@@ -51,7 +46,7 @@ exports.add = function (req, res) {
 
 exports.showEdit = function (req, res) {
     Article.getById(req.params.id, function (err, article) {
-        res.render("article/edit_article", {
+        res.render("article/edit", {
             article: article
         });
     });

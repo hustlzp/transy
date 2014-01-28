@@ -1,5 +1,4 @@
 extends ../layout
-include ../mixin/comment
 
 block vars
   -var title=article.cnTitle
@@ -67,14 +66,6 @@ block content
     div.span8
       div.mb25
         mixin article(article.paraList)
-
-      //- 评论
-      mixin articleComments(comments)
-
-      form(action='/article/#{article.id}/comment', method='post')
-        div.input-control.text
-          textarea(name='content', placeholder='评论')
-        input(type='submit', value='提交')
 
     div.span4
       div.button-set.place-right(data-role='button-set')
