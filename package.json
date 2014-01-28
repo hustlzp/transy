@@ -1,16 +1,17 @@
 {
   "name": "transy",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "coffee app.coffee"
+    "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.2.5",
-    "jade": "0.30.0",
-    "mongoose": "3.6.11",
+    "express": "3.x",
+    "express-form": "0.8.x",
+    "jade": "1.x",
+    "mongoose": "3.8.5",
     "nodemailer": "0.4.4",
     "eventproxy": "0.2.5",
-    "moment": "2.0.0"
+    "moment": "2.5.1"
   }
 }

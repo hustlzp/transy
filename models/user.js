@@ -1,4 +1,4 @@
-/*
+/**
  * User Model
  */
 
@@ -15,30 +15,14 @@ User = new Schema({
     url: String,
     location: String,
     signature: String,
-    createTime: {
-        type: Date,
-        "default": new Date()
-    },
-    isActive: {
-        type: Boolean,
-        "default": false
-    },
-    articleCount: {
-        type: Number,
-        "default": 0,
-        min: 0
-    },
-    collectCount: {
-        type: Number,
-        "default": 0,
-        min: 0
-    },
-    commentCount: {
-        type: Number,
-        "default": 0,
-        min: 0
-    }
+    createTime: { type: Date, "default": new Date() },
+    isActive: { type: Boolean, "default": false },
+    articleCount: { type: Number, "default": 0, min: 0 },
 });
+
+/*
+ * Methods
+ */
 
 User.statics.getByName = function (name, callback) {
     this.findOne({
@@ -76,8 +60,6 @@ User.statics.reduceArticleCount = function (userId, callback) {
     this.update({_id: userId}, {$inc: {articleCount: -1}}, callback);
 };
 
-module.exports = mongoose.model('User', User);
-
 /*
  * Get md5 value of a string
  * @method md5
@@ -90,3 +72,5 @@ function md5(str) {
     hash.update(str);
     return hash.digest('hex');
 };
+
+module.exports = mongoose.model('User', User);

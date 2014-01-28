@@ -1,4 +1,4 @@
-/*
+/**
  * Article Controller
  */
 
@@ -10,12 +10,9 @@ var url = require('url'),
     ObjectId = mongoose.Types.ObjectId;
 
 exports.article = function (req, res) {
-    var articleId;
-    articleId = req.params.id;
+    var articleId = req.params.id;
     Article.getById(articleId, function (err, article) {
-        res.render("article/article", {
-            article: article,
-        });
+        res.render("article/article", { article: article });
     });
 };
 
@@ -38,17 +35,13 @@ exports.add = function (req, res) {
             });
         });
     } else {
-        res.render('article/add', {
-            form: req.form
-        });
+        res.render('article/add', { form: req.form });
     }
 };
 
 exports.showEdit = function (req, res) {
     Article.getById(req.params.id, function (err, article) {
-        res.render("article/edit", {
-            article: article
-        });
+        res.render("article/edit", { article: article });
     });
 };
 
@@ -65,10 +58,8 @@ exports.edit = function (req, res) {
 exports["delete"] = function (req, res) {
     var articleId = req.params.id;
     Article.findByIdAndRemove(articleId, function (err, article) {
-        Topic.reduceArticleCount(article.topic, function (err) {
-            User.reduceArticleCount(article.creator, function (err) {
-                res.redirect("u/" + req.cookies.user.name);
-            });
+        User.reduceArticleCount(article.creator, function (err) {
+            res.redirect("/");
         });
     });
 };
@@ -170,6 +161,7 @@ function outputHTML(type, content) {
             break;
         case 'list':
             html = "<li>" + content + "</li>";
+            break;
     }
     return html;
 };

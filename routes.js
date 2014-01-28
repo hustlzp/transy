@@ -1,10 +1,10 @@
-/*
+/**
  * Route Rules
  */
 
 var validator = require('./validator'),
     site = require('./controllers/site'),
-    sign = require('./controllers/sign'),
+    account = require('./controllers/account'),
     user = require('./controllers/user'),
     article = require('./controllers/article');
 
@@ -12,18 +12,17 @@ var validator = require('./validator'),
  * Apply route rules to app object
  * @param {app object} app - the app
  */
-
 module.exports = function (app) {
     // Site
     app.get('/', site.index);
     app.get('/about', site.about);
 
     // Account
-    app.get('/signup', sign.showSignup);
-    app.post('/signup', validator.signup, sign.signup);
-    app.get('/signin', sign.showSignin);
-    app.post('/signin', validator.signin, sign.signin);
-    app.get('/signout', sign.signout);
+    app.get('/signup', account.showSignup);
+    app.post('/signup', validator.signup, account.signup);
+    app.get('/signin', account.showSignin);
+    app.post('/signin', validator.signin, account.signin);
+    app.get('/signout', account.signout);
 
     // Article
     app.get('/article/add', article.showAdd);

@@ -1,4 +1,4 @@
-/*
+/**
  * Message Model
  */
 
@@ -8,15 +8,9 @@ var mongoose = require('mongoose'),
 
 Message = new Schema({
     _id: ObjectId,
-    user: {
-        type: ObjectId,
-        ref: 'User'
-    },
+    user: { type: ObjectId, ref: 'User' },
     content: String,
-    createTime: {
-        type: Date,
-        "default": new Date()
-    }
+    createTime: { type: Date, "default": new Date() }
 });
 
 module.exports = mongoose.model('Message', Message);

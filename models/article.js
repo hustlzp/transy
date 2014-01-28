@@ -1,4 +1,4 @@
-/*
+/**
  * Article Model
  */
 
@@ -18,41 +18,23 @@ Para = new Schema({
 
 Article = new Schema({
     _id: ObjectId,
-    creator: {
-        type: ObjectId,
-        ref: 'User'
-    },
+    creator: { type: ObjectId, ref: 'User' },
     enTitle: String,
     cnTitle: String,
     url: String,
     author: String,
-    completion: {
-        type: Number,
-        "default": 0,
-        min: 0,
-        max: 100
-    },
-    createTime: {
-        type: Date,
-        "default": new Date()
-    },
-    updateTime: {
-        type: Date,
-        "default": new Date()
-    },
+    completion: { type: Number, "default": 0, min: 0, max: 100 },
+    createTime: { type: Date, "default": new Date() },
+    updateTime: { type: Date, "default": new Date() },
     paraList: [Para],
     annotationList: [String],
-    collectCount: {
-        type: Number,
-        "default": 0,
-        min: 0
-    },
-    commentCount: {
-        type: Number,
-        "default": 0,
-        min: 0
-    }
+    collectCount: { type: Number, "default": 0, min: 0 },
+    commentCount: { type: Number, "default": 0, min: 0 }
 });
+
+/*
+ * Properties
+ */
 
 Article.virtual('urlHost').get(function () {
     return url.parse(this.url).hostname;
@@ -62,13 +44,17 @@ Article.path('createTime').get(function (time) {
     return moment(time).fromNow();
 });
 
+/*
+ * Methods
+ */
+
 Article.statics.getById = function (articleId, callback) {
     this.findById(articleId).populate('creator').exec(callback);
 };
 
 Article.statics.getByUser = function (userId, callback) {
-     this.find({
-        creator: userId
+    this.find({
+        creator: new mongoose.Types.ObjectId(userId)
     }).populate('creator').exec(callback);
 };
 
@@ -100,9 +86,7 @@ Article.statics.add = function (articleId, userId, enTitle, content, articleUrl,
 };
 
 Article.statics.edit = function (articleId, article, callback) {
-    this.update({
-        _id: articleId
-    }, {
+    this.update({ _id: articleId }, {
         enTitle: article.enTitle,
         cnTitle: article.cnTitle,
         author: article.author,

@@ -1,4 +1,4 @@
-/*
+/**
  * App File
  */
 
@@ -27,17 +27,12 @@ app.set('ip', '127.0.0.1');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
+app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.methodOverride());
+app.use(injectVars);
+app.use(app.router);
 app.use(express["static"](path.join(__dirname, 'static')));
-
-// Inject vars to template
-app.use(function (req, res, next) {
-    res.locals.cookies = req.cookies;
-    res.locals.config = config;
-    return next();
-});
 
 if ('development' === app.get('env')) {
     app.use(express.errorHandler());
@@ -48,3 +43,10 @@ routes(app);
 http.createServer(app).listen(app.get('port'), app.get('ip'), 511, function () {
     return console.log('Express server listening on ' + app.get('ip') + ':' + app.get('port'));
 });
+
+// Middleware: Inject vars to template
+function injectVars(req, res, next) {
+    res.locals.cookies = req.cookies;
+    res.locals.config = config;
+    return next();
+}
