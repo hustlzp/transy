@@ -26,7 +26,9 @@ app.set('port', process.env.PORT || 3000);
 app.set('ip', '127.0.0.1');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
+if ('development' === app.get('env')) {
+    app.use(express.logger('dev'));
+}
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.bodyParser());

@@ -12,7 +12,6 @@ exports.index = function (req, res) {
     } else {
         res.render('account/signin');
     }
-
 };
 
 exports.about = function (req, res) {
