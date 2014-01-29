@@ -7,16 +7,16 @@ mixin errors()
 
 //- text field
 mixin text(name, placeholder)
-  -var value = ''
+  - var value = ''
   //- if this filed has value
   if typeof form !== "undefined" && form[name]
     //- if post
     if form.getErrors
       //- if no errors
       if form.getErrors(name).length === 0
-        value = form[name]
+        - value = form[name]
     else
-      value = form[name]
+      - value = form[name]
   input(type="text", placeholder="#{placeholder}", name='#{name}', value='#{value}')
 
 //- password field
@@ -25,9 +25,9 @@ mixin password(name, placeholder)
   if typeof form !== "undefined" && form[name]
     if form.getErrors
       if form.getErrors(name).length === 0
-        value = form[name]
+        - value = form[name]
     else
-      value = form[name]
+      - value = form[name]
   input(type="password", placeholder="#{placeholder}", name='#{name}', value='#{value}')
 
 //- textarea field
@@ -36,9 +36,9 @@ mixin textarea(name, placeholder, rows)
   if typeof form !== "undefined" && form[name]
     if form.getErrors
       if form.getErrors(name).length === 0
-        value = form[name]
+        - value = form[name]
     else
-      value = form[name]
+      - value = form[name]
   textarea(name='#{name}', placeholder='#{placeholder}', rows='#{rows}') #{value}
 
 //- select
