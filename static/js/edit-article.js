@@ -71,12 +71,10 @@ $(function () {
     // save when press save button
     $('.save-btn').click(saveArticle);
 
-    // save when press Ctrl-S
-    $(document).keydown(function (e) {
-        if (e.ctrlKey && e.which === 83) {
-            e.preventDefault();
-            saveArticle();
-        }
+    // save when press Ctrl+S or ⌘+S
+    key('⌘+s, ctrl+s', function(e){
+        e.preventDefault();
+        saveArticle();
     });
 
     // alarm when window close and changes have not been saved
