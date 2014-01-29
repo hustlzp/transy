@@ -5,6 +5,6 @@ Transy
 
 [v2] http://www.transy.org
 
-A simple Wep App helps people translate English into Chinese.
+A simple Wep App helps people translate English to Chinese.
 
-Lovely build with - Node, MongoDB, Metro UI CSS and CoffeeScript.
+Lovely build with Node.js, MongoDB, Metro UI CSS.
