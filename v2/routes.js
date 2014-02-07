@@ -3,10 +3,10 @@
  */
 
 var validator = require('./validator'),
-    site = require('./controllers/site'),
-    account = require('./controllers/account'),
-    user = require('./controllers/user'),
-    article = require('./controllers/article');
+    site = require('./../controllers/site'),
+    account = require('./../controllers/account'),
+    user = require('./../controllers/user'),
+    article = require('./../controllers/article');
 
 /*
  * Apply route rules to app object
