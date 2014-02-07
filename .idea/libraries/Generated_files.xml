@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/v2/node_modules/moment/foo.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/models/collect.js" />
+      <root url="file://$PROJECT_DIR$/models/collect.js" />
+      <root url="file://$PROJECT_DIR$/controllers/topic.js" />
+      <root url="file://$PROJECT_DIR$/controllers/topic.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/moment/foo.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/moment/foo.js" />
+      <root url="file://$PROJECT_DIR$/v2/static/js/edit-article.js" />
+      <root url="file://$PROJECT_DIR$/v2/config.js" />
+      <root url="file://$PROJECT_DIR$/v2/node_modules/moment/foo.js" />
+      <root url="file://$PROJECT_DIR$/v2/controllers/article.js" />
+      <root url="file://$PROJECT_DIR$/v2/app.js" />
+      <root url="file://$PROJECT_DIR$/v2/controllers/account.js" />
+      <root url="file://$PROJECT_DIR$/v2/controllers/user.js" />
+      <root url="file://$PROJECT_DIR$/v2/routes.js" />
+      <root url="file://$PROJECT_DIR$/v2/controllers/site.js" />
+      <root url="file://$PROJECT_DIR$/v2/service/mail.js" />
+      <root url="file://$PROJECT_DIR$/v2/models/user.js" />
+      <root url="file://$PROJECT_DIR$/v2/node_modules/moment/foo.js" />
+      <root url="file://$PROJECT_DIR$/v2/models/article.js" />
+      <root url="file://$PROJECT_DIR$/v2/models/message.js" />
+      <root url="file://$PROJECT_DIR$/v2/validator.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
