@@ -1,10 +1,22 @@
 Transy
 ======
 
-[v1] https://chrome.google.com/webstore/search/transy
+A Simple Wep App helps people translate English to Chinese.
 
-[v2] http://www.transy.org
+[v1]
 
-A simple Wep App helps people translate English to Chinese.
+https://chrome.google.com/webstore/search/transy
 
-Lovely build with Node.js, MongoDB, Metro UI CSS.
+Pure Javascript + LocalStorage
+
+[v2]
+
+http://www.transy.org
+
+Node.js + MongoDB + Metro UI CSS
+
+[v3] - under construction
+
+http://new.transy.org
+
+AngularJS + Node.js + MongoDB + Bootstrap3
