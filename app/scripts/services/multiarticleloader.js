@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('transyApp')
-  .factory('MultiArticleLoader', ['$q', 'Article', function ($q, Article) {
+  .factory('MultiArticleLoader', function ($q, Article) {
     return function () {
-      var delay = $q.defer;
+      var delay = $q.defer();
       Article.query(function(articles){
         delay.resolve(articles);
       }, function(){
@@ -11,4 +11,4 @@ angular.module('transyApp')
       });
       return delay.promise;
     }
-  }]);
+  });
