@@ -10,7 +10,12 @@ angular.module('transyApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          articles: function(MultiArticleLoader){
+            return MultiArticleLoader();
+          }
+        }
       })
       .otherwise({
         redirectTo: '/'
