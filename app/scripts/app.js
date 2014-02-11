@@ -17,6 +17,15 @@ angular.module('transyApp', [
           }
         }
       })
+      .when('/article/:articleId', {
+        templateUrl: 'views/article.html',
+        controller: 'ArticleViewCtrl',
+        resolve: {
+          article: function(ArticleLoader, $route){
+            return ArticleLoader($route.current.params.articleId);
+          }
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

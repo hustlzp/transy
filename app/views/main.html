@@ -2,10 +2,14 @@
   <div class="col-sm-8">
     <div class="page-header">
       <h1>译文</h1>
-      <div ng-repeat="a in articles">
-        <b>{{a.enTitle}}</b>
-      </div>
     </div>
+
+    <div class="article-item" ng-repeat="a in articles">
+      <a ng-href="/#/article/{{a._id}}" class="title">{{a.cnTitle}}</a>
+      <span class="created">{{a.createTime}}</span>
+      <span class="completion">{{a.completion}}%</span>
+    </div>
+
   </div>
 </div>
 

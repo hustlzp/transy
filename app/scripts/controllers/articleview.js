@@ -1,0 +1,31 @@
+'use strict';
+
+angular.module('transyApp')
+  .controller('ArticleViewCtrl', function ($scope, article) {
+    var html = '',
+      paras = article.paraList;
+
+    // Build html for article content
+    for (var i = 0; i < paras.length; i++) {
+      var para = paras[i];
+      switch (para.type) {
+        case 'header':
+          html += '<h3 class="en">' + para.en + '</h3>';
+          html += '<h3 class="cn">' + para.cn + '</h3>';
+          break;
+        case 'text':
+          html += '<p class="en">' + para.en + '</p>';
+          html += '<p class="cn">' + para.cn + '</p>';
+          break;
+        case 'quote':
+          html += '<blockquote class="en">' + para.en + '</blockquote>';
+          html += '<blockquote class="cn">' + para.cn + '</blockquote>';
+          break;
+        case 'image':
+          html += '<p><img src="' + para.en + '">' + '"/></p>';
+          break;
+      }
+    }
+    $scope.article = article;
+    $scope.html = html;
+  });

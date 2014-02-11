@@ -11,3 +11,10 @@ exports.list = function (req, res) {
     res.json(articles);
   });
 };
+
+exports.single = function(req, res){
+  Article.getById(req.params.id, function(err, article){
+    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:9000');
+    res.json(article);
+  });
+}

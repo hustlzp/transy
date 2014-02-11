@@ -6,13 +6,20 @@ describe('Service: MultiArticleLoader', function () {
   beforeEach(module('transyApp'));
 
   // instantiate service
-  var MultiArticleLoader;
-  beforeEach(inject(function (_MultiArticleLoader_) {
-    MultiArticleLoader = _MultiArticleLoader_;
+  var articles, multiArticleLoader, mockBackend;
+  beforeEach(inject(function (_MultiArticleLoader_, _$httpBackend_) {
+    var url = 'http://localhost:3000/article';
+    multiArticleLoader = _MultiArticleLoader_;
+    mockBackend = _$httpBackend_;
+    mockBackend.expectGET(url).respond([{'enTitle': 'title1'}, {'enTitle': 'title2'}]);
   }));
 
-  it('should do something', function () {
-    expect(!!MultiArticleLoader).toBe(true);
+  it('should fetch the correct articles', function () {
+    var promise = multiArticleLoader();
+    promise.then(function(arts){
+      articles = arts;
+    });
+    mockBackend.flush();
+    expect(articles.length).toBe(2);
   });
-
 });

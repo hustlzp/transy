@@ -6,13 +6,18 @@ describe('Service: Article', function () {
   beforeEach(module('transyApp'));
 
   // instantiate service
-  var Article;
-  beforeEach(inject(function (_Article_) {
+  var article, Article, mockBackend;
+  beforeEach(inject(function (_Article_, _$httpBackend_) {
+    var url = 'http://localhost:3000/article/1';
     Article = _Article_;
+    mockBackend = _$httpBackend_;
+    mockBackend.expectGET(url).respond({'cnTitle': 'title'});
   }));
 
-  it('should do something', function () {
-    expect(!!Article).toBe(true);
+  it('should get the correct article', function () {
+    article = Article.get({id: 1});
+    mockBackend.flush();
+    expect(article.cnTitle).toEqual('title');
   });
 
 });

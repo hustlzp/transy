@@ -27,8 +27,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/articles', article.list);
-app.get('/users', user.list);
+app.get('/article', article.list);
+app.get('/article/:id', article.single);
+app.get('/user', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

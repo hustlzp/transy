@@ -10,5 +10,5 @@ angular.module('transyApp')
         delay.reject('Unable to load articles');
       });
       return delay.promise;
-    }
+    };
   });

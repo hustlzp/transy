@@ -1,0 +1,18 @@
+.article-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.article-item .title {
+  font-size: 18px;
+}
+.article-item .created {
+  margin-left: 15px;
+  color: gray;
+}
+.article-item .completion {
+  display: block;
+  float: right;
+  font-size: 18px;
+  margin-right: 10px;
+}
