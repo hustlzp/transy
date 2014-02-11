@@ -2,12 +2,10 @@
 
 angular.module('transyApp')
   .controller('ArticleViewCtrl', function ($scope, article) {
-    var html = '',
-      paras = article.paraList;
+    var html = '';
 
     // Build html for article content
-    for (var i = 0; i < paras.length; i++) {
-      var para = paras[i];
+    angular.forEach(article.paraList, function (para) {
       switch (para.type) {
         case 'header':
           html += '<h3 class="en">' + para.en + '</h3>';
@@ -25,7 +23,7 @@ angular.module('transyApp')
           html += '<p><img src="' + para.en + '">' + '"/></p>';
           break;
       }
-    }
+    });
     $scope.article = article;
     $scope.html = html;
   });
