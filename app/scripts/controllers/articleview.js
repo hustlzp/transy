@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('transyApp')
-  .controller('ArticleViewCtrl', function ($scope, article) {
+  .controller('ArticleViewCtrl', function ($scope, $rootScope, $location, article) {
     var html = '';
 
     // Build html for article content
@@ -24,6 +24,11 @@ angular.module('transyApp')
           break;
       }
     });
+    $rootScope.pageId = 'page-article';
+    $rootScope.pageTitle = article.cnTtitle;
     $scope.article = article;
     $scope.html = html;
+    $scope.edit = function () {
+      $location.path('/article/' + article._id + '/edit');
+    };
   });

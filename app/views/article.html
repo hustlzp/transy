@@ -1,16 +1,12 @@
-<h2>{{article.cnTitle}}</h2>
+<h1 class="cn-title">{{article.cnTitle}}</h1>
 
-<h2>{{article.enTitle}}</h2>
+<h2 class="en-title">{{article.enTitle}}</h2>
 
-<div>
-  作者：
-  {{article.author}}
-  来源：
-  <a ng-href="{{article.url}}" target="_blank">{{article.url}}</a>
-  {{article.completion}}%
+<div class="article-meta">
+  <span>作者：{{article.author}}</span>
+  <span>来源：<a ng-href="{{article.url}}" target="_blank">{{article.url}}</a></span>
+  <span class="completion">{{article.completion}}%</span>
 </div>
-
-<hr/>
 
 <div class="row">
   <div class="col-sm-8">
@@ -19,18 +15,17 @@
 
   <div class="col-sm-4">
     <div class="btn-group">
-      <a href="#" class="btn btn-default btn-sel-cn">中</a>
-      <a href="#" class="btn btn-default btn-sel-ec">中 / 英</a>
-      <a href="#" class="btn btn-default btn-sel-en">英</a>
+      <button href="#" class="btn btn-default btn-sel-cn">中</button>
+      <button href="#" class="btn btn-default btn-sel-ec">中 / 英</button>
+      <button href="#" class="btn btn-default btn-sel-en">英</button>
     </div>
     <div class="btn-group">
-      <a href="#" class="btn btn-default">
+      <button href="#" ng-click="edit()" class="btn btn-default">
         <i class="fa fa-pencil"></i> 编辑
-      </a>
-      <a href="#" class="btn btn-default">
+      </button>
+      <button href="#" ng-click="remove()" class="btn btn-default">
         <i class="fa fa-trash-o"></i> 删除
-      </a>
+      </button>
     </div>
   </div>
 </div>
-
