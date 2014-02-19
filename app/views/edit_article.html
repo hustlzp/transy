@@ -1,1 +1,25 @@
-<h1>{{article.cnTitle}}</h1>
+<div class="title-wap">
+  <input type="text" ng-model="article.cnTitle" class="cn-title">
+  <input type="text" ng-model="article.enTitle" class="en-title"/>
+</div>
+
+<div class="author-wap">
+  <span class="label label-warning">作者</span>
+  <input type="text" class="input-author" ng-model="article.author"/>
+</div>
+
+<div class="url-wap">
+  <span class="label label-warning">链接</span>
+  <input type="text" class="input-url" ng-model="article.url"/>
+</div>
+
+<div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}">
+  <div class="en" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
+  <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="article.paraList[$index].en"></div>
+
+  <div class="ec-divider" data-state="{{p.state}}"></div>
+
+  <div class="cn" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
+  <!--<div class="cn" ng-if="p.type !== 'image'" contenteditable ng-model="p.cn"></div>-->
+  <textarea class="cn" ng-if="p.type !== 'image'" ng-model="p.cn"></textarea>
+</div>

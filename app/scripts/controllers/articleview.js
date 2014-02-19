@@ -25,7 +25,7 @@ angular.module('transyApp')
       }
     });
     $rootScope.pageId = 'page-article';
-    $rootScope.pageTitle = article.cnTtitle;
+    $rootScope.pageTitle = article.cnTitle;
     $scope.article = article;
     $scope.html = html;
     $scope.edit = function () {

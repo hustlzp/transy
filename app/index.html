@@ -6,16 +6,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{pageTitle}}</title>
+    <title ng-bind="pageTitle"></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/page.css">
     <link rel="stylesheet" href="styles/component.css"/>
@@ -94,6 +94,7 @@
         <script src="scripts/controllers/articleview.js"></script>
         <script src="scripts/services/articleloader.js"></script>
         <script src="scripts/controllers/editarticle.js"></script>
+        <script src="scripts/directives/contenteditable.js"></script>
         <!-- endbuild -->
 </body>
 </html>
