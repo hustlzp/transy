@@ -18,7 +18,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-//app.use(express.methodOverride());
+app.use(express.methodOverride());
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://127.0.0.1:9000");

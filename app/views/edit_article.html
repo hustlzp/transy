@@ -15,7 +15,7 @@
 
 <button class="btn btn-default" ng-click="save()">保存</button>
 
-<div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}">
+<div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}" contextmenu>
   <div class="en" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
   <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="p.en"></div>
 
@@ -24,3 +24,22 @@
   <div class="cn" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
   <div class="cn" ng-if="p.type !== 'image'" contenteditable ng-model="p.cn"></div>
 </div>
+
+<ul class="context-menu">
+  <li class="only-for-text">
+    格式
+    <ul class="sub-menu">
+      <li class="header">标题</li>
+      <li class="header">正文</li>
+      <li class="quote">引用</li>
+    </ul>
+  </li>
+  <li class="add-para">
+    增加段落
+    <ul class="sub-menu">
+      <li class="up">上方</li>
+      <li class="down">下方</li>
+    </ul>
+  </li>
+  <li class="remove-para">删除段落</li>
+</ul>

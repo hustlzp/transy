@@ -7,5 +7,5 @@ angular.module('transyApp')
     $scope.article = article;
     $scope.save = function () {
       $scope.article.$save();
-    }
+    };
   });

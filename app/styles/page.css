@@ -25,6 +25,7 @@
   font-weight: 400;
   font-size: 14px;
   float: left;
+  outline: none;
   display: inline-block;
   vertical-align: text-top;
   text-align: justify;
@@ -78,4 +79,54 @@
 }
 #page-edit-article .para[data-type="image"] img {
   max-width: 375px;
+}
+#page-edit-article .context-menu {
+  margin: 0;
+  display: none;
+  list-style: none;
+  position: fixed;
+  z-index: 10000;
+}
+#page-edit-article .context-menu > li {
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #2b5797;
+  color: white;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  position: relative;
+}
+#page-edit-article .context-menu > li:last-child {
+  border-bottom: 0;
+}
+#page-edit-article .context-menu > li .sub-menu {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 68px;
+  list-style: none;
+  margin: 0;
+  border-left: 1px solid white;
+  width: 60px;
+  padding-left: 0px;
+}
+#page-edit-article .context-menu > li .sub-menu li {
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #2b5797;
+  color: white;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+#page-edit-article .context-menu > li .sub-menu li:last-child {
+  border-bottom: 0;
+}
+#page-edit-article .context-menu > li .sub-menu li:hover {
+  background-color: #2d89ef;
+}
+#page-edit-article .context-menu > li:hover {
+  background-color: #2d89ef;
+}
+#page-edit-article .context-menu > li:hover .sub-menu {
+  visibility: visible;
 }

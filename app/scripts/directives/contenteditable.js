@@ -6,7 +6,9 @@ angular.module('transyApp')
       restrict: 'A', // only activate on element attribute
       require: '?ngModel', // get a hold of NgModelController
       link: function (scope, element, attrs, ngModel) {
-        if (!ngModel) return; // do nothing if no ng-model
+        if (!ngModel) { // do nothing if no ng-model
+          return;
+        }
 
         // Specify how UI should be updated
         ngModel.$render = function () {
@@ -23,11 +25,11 @@ angular.module('transyApp')
           var html = element.html();
           // When we clear the content editable the browser leaves a <br> behind
           // If strip-br attribute is provided then we strip this out
-          if (attrs.stripBr && html == '<br>') {
+          if (attrs.stripBr && html === '<br>') {
             html = '';
           }
           ngModel.$setViewValue(html);
         }
       }
-    }
+    };
   });

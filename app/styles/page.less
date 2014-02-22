@@ -34,6 +34,7 @@
       font-weight: 400;
       font-size: 14px;
       float: left;
+      outline: none;
       display: inline-block;
       vertical-align: text-top;
       text-align: justify;
@@ -102,6 +103,65 @@
   .para[data-type="image"] {
     img {
       max-width: 375px;
+    }
+  }
+
+  .context-menu {
+    margin: 0;
+    display: none;
+    list-style: none;
+    position: fixed;
+    z-index: 10000;
+
+    & > li {
+      font-size: 12px;
+      padding: 5px 10px;
+      background-color: #2b5797;
+      color: white;
+      border-bottom: 1px solid white;
+      cursor: pointer;
+      position: relative;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      .sub-menu {
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 68px;
+        list-style: none;
+        margin: 0;
+        border-left: 1px solid white;
+        width: 60px;
+        padding-left: 0px;
+
+        li {
+          font-size: 12px;
+          padding: 5px 10px;
+          background-color: #2b5797;
+          color: white;
+          border-bottom: 1px solid white;
+          cursor: pointer;
+
+          &:last-child {
+            border-bottom: 0;
+          }
+
+          &:hover {
+            background-color: #2d89ef;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: #2d89ef;
+
+        .sub-menu {
+          visibility: visible;
+        }
+      }
     }
   }
 }
