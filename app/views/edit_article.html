@@ -13,13 +13,14 @@
   <input type="text" class="input-url" ng-model="article.url"/>
 </div>
 
+<button class="btn btn-default" ng-click="save()">保存</button>
+
 <div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}">
   <div class="en" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
-  <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="article.paraList[$index].en"></div>
+  <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="p.en"></div>
 
   <div class="ec-divider" data-state="{{p.state}}"></div>
 
   <div class="cn" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
-  <!--<div class="cn" ng-if="p.type !== 'image'" contenteditable ng-model="p.cn"></div>-->
-  <textarea class="cn" ng-if="p.type !== 'image'" ng-model="p.cn"></textarea>
+  <div class="cn" ng-if="p.type !== 'image'" contenteditable ng-model="p.cn"></div>
 </div>
