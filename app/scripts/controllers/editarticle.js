@@ -32,11 +32,17 @@ angular.module('transyApp')
     // 在下方增加段落
     $scope.addBelow = function () {
       var index = contextmenuService.getIndex();
-      $scope.article.paraList.splice(index+1, 0, {
+      $scope.article.paraList.splice(index + 1, 0, {
         en: '',
         cn: '',
         type: 'text',
         status: false
       });
+    };
+
+    // 改变段落类型
+    $scope.changeType = function (type) {
+      var index = contextmenuService.getIndex();
+      $scope.article.paraList[index].type = type;
     };
   });
