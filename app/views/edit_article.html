@@ -12,12 +12,11 @@
   <span class="label label-warning">链接</span>
   <input type="text" class="input-url" ng-model="article.url"/>
 </div>
-{{index}}
 
 <button class="btn btn-default" ng-click="save()">保存</button>
 
 <div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}"
-     contextmenu data-index="{{$index}}">
+     contextmenu data-index="{{$index}}" adjust-height watch-target="p">
   <div class="en" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
   <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="p.en"></div>
 
