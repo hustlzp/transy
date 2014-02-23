@@ -12,6 +12,7 @@
   <span class="label label-warning">链接</span>
   <input type="text" class="input-url" ng-model="article.url"/>
 </div>
+{{index}}
 
 <button class="btn btn-default" ng-click="save()">保存</button>
 
@@ -38,8 +39,8 @@
   <li class="add-para">
     增加段落
     <ul class="sub-menu">
-      <li class="up">上方</li>
-      <li class="down">下方</li>
+      <li class="up" ng-click="addAbove()">上方</li>
+      <li class="down" ng-click="addBelow()">下方</li>
     </ul>
   </li>
   <li class="remove-para" ng-click="remove()">删除段落</li>

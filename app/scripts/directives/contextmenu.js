@@ -31,7 +31,7 @@ angular.module('transyApp')
         // 在element上点击右键时，显示菜单
         // 并将当前点击的index存储到service中
         element.bind('contextmenu', function (event) {
-          var index = element.data('index');
+          var index = parseInt(element.attr('data-index'));
 
           scope.$apply(function () {
             event.preventDefault(); // 阻止浏览器默认的右键行为
