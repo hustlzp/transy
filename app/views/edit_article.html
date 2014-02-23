@@ -21,7 +21,7 @@
   <div class="en" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
   <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="p.en"></div>
 
-  <div class="ec-divider" data-state="{{p.state}}"></div>
+  <div class="ec-divider" data-state="{{p.state}}" ng-click="toggleState($index)"></div>
 
   <div class="cn" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
   <div class="cn" ng-if="p.type !== 'image'" contenteditable ng-model="p.cn"></div>

@@ -45,4 +45,9 @@ angular.module('transyApp')
       var index = contextmenuService.getIndex();
       $scope.article.paraList[index].type = type;
     };
+
+    // 切换段落翻译状态
+    $scope.toggleState = function (index) {
+      $scope.article.paraList[index].state = !$scope.article.paraList[index].state;
+    };
   });
