@@ -15,7 +15,8 @@
 
 <button class="btn btn-default" ng-click="save()">保存</button>
 
-<div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}" contextmenu>
+<div ng-repeat="p in article.paraList" class="para clearfix" data-type="{{p.type}}"
+     contextmenu data-index="{{$index}}">
   <div class="en" ng-if="p.type === 'image'"><img src="{{p.en}}" alt=""/></div>
   <div class="en" ng-if="p.type !== 'image'" contenteditable ng-model="p.en"></div>
 
@@ -41,5 +42,5 @@
       <li class="down">下方</li>
     </ul>
   </li>
-  <li class="remove-para">删除段落</li>
+  <li class="remove-para" ng-click="remove()">删除段落</li>
 </ul>
