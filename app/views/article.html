@@ -10,17 +10,17 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <!--<div ng-bind-html="html">-->
     <div>
-      <h3 class="en" ng-if="p.type === 'header'" ng-repeat-start="p in article.paraList">
+      <h3 class="en" ng-repeat-start="p in article.paraList" ng-if="p.type === 'header'"
+          ng-show="showEn">
         {{ p.en }}</h3>
-      <h3 class="cn" ng-if="p.type === 'header'">{{p.cn}}</h3>
+      <h3 class="cn" ng-if="p.type === 'header'" ng-show="showCn">{{p.cn}}</h3>
 
-      <p class="en" ng-if="p.type === 'text'">{{p.en}}</p>
-      <p class="cn" ng-if="p.type === 'text'">{{p.cn}}</p>
+      <p class="en" ng-if="p.type === 'text'" ng-show="showEn">{{p.en}}</p>
+      <p class="cn" ng-if="p.type === 'text'" ng-show="showCn">{{p.cn}}</p>
 
-      <blockquote class="en" ng-if="p.type === 'quote'">{{p.en}}</blockquote>
-      <blockquote class="cn" ng-if="p.type === 'quote'">{{p.cn}}</blockquote>
+      <blockquote class="en" ng-if="p.type === 'quote'" ng-show="showEn">{{p.en}}</blockquote>
+      <blockquote class="cn" ng-if="p.type === 'quote'" ng-show="showCn">{{p.cn}}</blockquote>
 
       <p ng-repeat-end ng-if="p.type === 'image'"><img ng-src="p.en"/></p>
     </div>
@@ -28,9 +28,9 @@
 
   <div class="col-sm-4">
     <div class="btn-group">
-      <button href="#" class="btn btn-default btn-sel-cn">中</button>
-      <button href="#" class="btn btn-default btn-sel-ec">中 / 英</button>
-      <button href="#" class="btn btn-default btn-sel-en">英</button>
+      <button href="#" class="btn btn-default btn-sel-cn" ng-click="showMode('cn')">中</button>
+      <button href="#" class="btn btn-default btn-sel-ec" ng-click="showMode('ec')">中 / 英</button>
+      <button href="#" class="btn btn-default btn-sel-en" ng-click="showMode('en')">英</button>
     </div>
     <div class="btn-group">
       <button href="#" ng-click="edit()" class="btn btn-default">
