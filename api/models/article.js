@@ -54,19 +54,19 @@ Article.statics.getByUser = function (userId, callback) {
   }).exec(callback);
 };
 
-Article.statics.add = function (articleId, userId, enTitle, content, articleUrl, author, callback) {
+Article.statics.add = function (articleId, userId, data, callback) {
   var article, p, paras, _i, _len;
   article = new this({
     _id: articleId,
     creator: userId,
-    enTitle: enTitle,
+    enTitle: data.enTitle,
     cnTitle: '待译标题',
-    url: articleUrl,
-    author: author,
+    url: data.url,
+    author: data.author,
     abstract: '',
     paraList: []
   });
-  paras = content.split('\n');
+  paras = data.content.split('\n');
   for (_i = 0, _len = paras.length; _i < _len; _i++) {
     p = paras[_i];
     if (p.trim() !== '') {

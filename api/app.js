@@ -36,6 +36,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/article', article.list);
+app.post('/article', article.new);
 app.get('/article/:id', article.single);
 app.post('/article/:id', article.update);
 app.delete('/article/:id', article.delete);
