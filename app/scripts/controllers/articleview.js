@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('transyApp')
-  .controller('ArticleViewCtrl', function ($scope, $rootScope, $location, article) {
+  .controller('ArticleViewCtrl', function ($scope, $rootScope, $location, article, $window) {
     $rootScope.pageId = 'page-article';
     $rootScope.pageTitle = article.cnTitle;
 
@@ -15,10 +15,12 @@ angular.module('transyApp')
     };
 
     // 删除文章
-    $scope.remove = function(){
-      $scope.article.$remove(function(){
-        $location.path('/');
-      });
+    $scope.remove = function () {
+      if ($window.confirm('确认删除此文？')) {
+        $scope.article.$remove(function () {
+          $location.path('/');
+        });
+      }
     };
 
     // 切换显示模式
@@ -33,5 +35,5 @@ angular.module('transyApp')
         $scope.showEn = false;
         $scope.showCn = true;
       }
-    }
+    };
   });
