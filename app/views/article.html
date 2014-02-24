@@ -27,11 +27,18 @@
   </div>
 
   <div class="col-sm-4">
-    <div class="btn-group">
-      <button href="#" class="btn btn-default btn-sel-cn" ng-click="showMode('cn')">中</button>
-      <button href="#" class="btn btn-default btn-sel-ec" ng-click="showMode('ec')">中 / 英</button>
-      <button href="#" class="btn btn-default btn-sel-en" ng-click="showMode('en')">英</button>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default" ng-click="showMode('cn')">
+        <input type="radio" name="options" id="option1"> 中
+      </label>
+      <label class="btn btn-default active" ng-click="showMode('ec')">
+        <input type="radio" name="options" id="option2"> 中 / 英
+      </label>
+      <label class="btn btn-default" ng-click="showMode('en')">
+        <input type="radio" name="options" id="option3"> 英
+      </label>
     </div>
+
     <div class="btn-group">
       <button href="#" ng-click="edit()" class="btn btn-default">
         <i class="fa fa-pencil"></i> 编辑
