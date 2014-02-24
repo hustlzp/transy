@@ -26,3 +26,19 @@ exports.update = function (req, res) {
     }
   });
 }
+
+exports['delete'] = function (req, res) {
+  var articleId = req.params.id;
+  Article.findByIdAndRemove(articleId, function (err, article) {
+    /*
+    User.reduceArticleCount(article.creator, function (err) {
+      res.redirect("/");
+    });
+    */
+    if (!err) {
+      res.send(200, 'deleted');
+    } else {
+      res.send(500, err);
+    }
+  });
+}

@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
+// 用于支持跨域请求
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://127.0.0.1:9000");
   res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE');
@@ -37,6 +38,7 @@ if ('development' == app.get('env')) {
 app.get('/article', article.list);
 app.get('/article/:id', article.single);
 app.post('/article/:id', article.update);
+app.delete('/article/:id', article.delete);
 app.get('/user', user.list);
 
 http.createServer(app).listen(app.get('port'), function () {

@@ -14,6 +14,13 @@ angular.module('transyApp')
       $location.path('/article/' + article._id + '/edit');
     };
 
+    // 删除文章
+    $scope.remove = function(){
+      $scope.article.$remove(function(){
+        $location.path('/');
+      });
+    };
+
     // 切换显示模式
     $scope.showMode = function (mode) {
       if (mode === 'ec') {
