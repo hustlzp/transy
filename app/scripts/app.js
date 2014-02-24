@@ -35,6 +35,10 @@ angular.module('transyApp', [
           }
         }
       })
+      .when('/new', {
+        templateUrl: 'views/new_article.html',
+        controller: 'NewArticleCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
