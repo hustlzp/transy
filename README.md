@@ -15,7 +15,7 @@ http://www.transy.org
 
 Node.js + MongoDB + Metro UI CSS
 
-[v3] - under construction
+[v3 - under construction]
 
 http://new.transy.org
 
