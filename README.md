@@ -10,7 +10,7 @@ Pure Javascript + LocalStorage
 
 ##v2
 
-http://www.transy.org
+http://www.transy.org (offline)
 
 Node.js + MongoDB + Metro UI CSS
 
